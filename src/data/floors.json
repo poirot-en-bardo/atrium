@@ -1,0 +1,20 @@
+[
+  {
+    "id": "parter",
+    "name": "parter",
+    "salas": [
+      { "id": "sala1", "name": "Sala 1" },
+      { "id": "sala2", "name": "Sala 2" },
+      { "id": "sala3", "name": "Sala 3" },
+      { "id": "sala4", "name": "Sala 4" }
+    ]
+  },
+  {
+    "id": "etaj1",
+    "name": "Etaj 1",
+    "salas": [
+      { "id": "sala1", "name": "sala 1" },
+      { "id": "sala2", "name": "sala 2" }
+    ]
+  }
+]

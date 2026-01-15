@@ -9,6 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.16.9"
+    "astro": "^5.16.9",
+    "tabletop": "^1.6.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.9"
   }
 }

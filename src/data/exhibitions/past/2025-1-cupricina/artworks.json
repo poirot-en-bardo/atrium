@@ -1,0 +1,25 @@
+[
+  {
+    "id": "art001",
+    "title": "Starry Night",
+    "author": "Vincent van Gogh",
+    "technique": "Oil on canvas",
+    "imageUrl": "https://res.cloudinary.com/YOUR_CLOUD_NAME/starry-night.jpg",
+    "floorId": "floor1",
+    "roomId": "room1",
+    "forSale": true,
+    "price": 500000,
+    "sold": false
+  },
+  {
+    "id": "art002",
+    "title": "Mona Lisa",
+    "author": "Leonardo da Vinci",
+    "technique": "Oil on poplar",
+    "imageUrl": "https://res.cloudinary.com/YOUR_CLOUD_NAME/mona-lisa.jpg",
+    "floorId": "floor1",
+    "roomId": "room2",
+    "forSale": false
+  }
+]
+
