@@ -9,7 +9,10 @@ interface Props {
   forSale?: boolean;
 }
 
+import { withBase } from '../utils/withBase';
+
 const { id, title, author, imageUrl, price, sold, forSale } = Astro.props;
+const resolvedImage = withBase(imageUrl);
 
 const formattedPrice =
   typeof price === 'number'
@@ -35,7 +38,7 @@ const statusText = sold
   data-price={typeof price === 'number' ? String(price) : ''}
 >
   <div class="artwork-image">
-    <img src={imageUrl} alt={title} loading="lazy" />
+    <img src={resolvedImage} alt={title} loading="lazy" />
     <span class="sold-badge" data-role="sold-badge" aria-hidden={!sold} hidden={!sold}>
       VANDUT
     </span>

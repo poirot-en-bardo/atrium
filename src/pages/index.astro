@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getExhibitionsByStatus } from '../utils/exhibitions';
 import { formatDateRange } from '../utils/dates';
+import { withBase } from '../utils/withBase';
 
 const current = getExhibitionsByStatus('current');
 const upcoming = getExhibitionsByStatus('upcoming');
@@ -24,9 +25,9 @@ const hasUpcoming = upcomingList.length > 0;
 <BaseLayout title="Atrium Gallery" description="Arhiva statica de expozitii pentru vizitarea in galerie.">
   {hasFeatured ? (
     <section class="home-feature">
-      <a class="feature-card" href={`${base}exhibition/${featured.id}`}>
+      <a class="feature-card" href={`${base}exhibition/${featured.id}/`}>
         <div class="feature-media">
-          <img class="feature-image" src={featured.thumbnail} alt={featured.title} loading="lazy" />
+          <img class="feature-image" src={withBase(featured.thumbnail)} alt={featured.title} loading="lazy" />
           <span class="feature-badge">
             {featuredIsUpcoming ? 'În curând' : 'Expozitie curenta'}
           </span>
@@ -55,8 +56,8 @@ const hasUpcoming = upcomingList.length > 0;
               <ul class="archive-list">
                 {upcomingList.map((exhibition) => (
                   <li>
-                    <a class="list-link list-link--archive" href={`${base}exhibition/${exhibition.id}`}>
-                      <img class="list-thumb" src={exhibition.thumbnail} alt={exhibition.title} loading="lazy" />
+                    <a class="list-link list-link--archive" href={`${base}exhibition/${exhibition.id}/`}>
+                      <img class="list-thumb" src={withBase(exhibition.thumbnail)} alt={exhibition.title} loading="lazy" />
                       <span class="list-text">
                         <span class="list-title">{exhibition.title}</span>
                         <span class="list-meta">{formatDateRange(exhibition.startDate, exhibition.endDate)}</span>
@@ -98,8 +99,8 @@ const hasUpcoming = upcomingList.length > 0;
             <ul class="archive-list">
               {archivePreview.map((exhibition) => (
                 <li>
-                  <a class="list-link list-link--archive" href={`${base}exhibition/${exhibition.id}`}>
-                    <img class="list-thumb" src={exhibition.thumbnail} alt={exhibition.title} loading="lazy" />
+                    <a class="list-link list-link--archive" href={`${base}exhibition/${exhibition.id}/`}>
+                    <img class="list-thumb" src={withBase(exhibition.thumbnail)} alt={exhibition.title} loading="lazy" />
                     <span class="list-text">
                       <span class="list-title">{exhibition.title}</span>
                       <span class="list-meta">{formatDateRange(exhibition.startDate, exhibition.endDate)}</span>
@@ -120,8 +121,8 @@ const hasUpcoming = upcomingList.length > 0;
           <ul class="archive-list">
             {archivePreview.map((exhibition) => (
               <li>
-                <a class="list-link list-link--archive" href={`${base}exhibition/${exhibition.id}`}>
-                  <img class="list-thumb" src={exhibition.thumbnail} alt={exhibition.title} loading="lazy" />
+                <a class="list-link list-link--archive" href={`${base}exhibition/${exhibition.id}/`}>
+                  <img class="list-thumb" src={withBase(exhibition.thumbnail)} alt={exhibition.title} loading="lazy" />
                   <span class="list-text">
                     <span class="list-title">{exhibition.title}</span>
                     <span class="list-meta">{formatDateRange(exhibition.startDate, exhibition.endDate)}</span>
@@ -140,9 +141,9 @@ const hasUpcoming = upcomingList.length > 0;
   ) : (
     <section class="home-archive">
       {lastPast && (
-        <a class="feature-card feature-card--archive" href={`${base}exhibition/${lastPast.id}`}>
+        <a class="feature-card feature-card--archive" href={`${base}exhibition/${lastPast.id}/`}>
           <div class="feature-media">
-            <img class="feature-image" src={lastPast.thumbnail} alt={lastPast.title} loading="lazy" />
+          <img class="feature-image" src={withBase(lastPast.thumbnail)} alt={lastPast.title} loading="lazy" />
             <span class="feature-badge">Ultima expozitie</span>
           </div>
           <div class="feature-content">
