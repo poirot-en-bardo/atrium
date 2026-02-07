@@ -42,7 +42,7 @@ const hasUpcoming = upcomingList.length > 0;
             </span>
           </p>
           <p class="feature-description">{featured.description}</p>
-          <span class="exhibition-link">Detalii</span>
+          <span class="exhibition-link">Vezi expoziția</span>
         </div>
       </a>
 
@@ -51,16 +51,19 @@ const hasUpcoming = upcomingList.length > 0;
           <div class="home-columns">
             <section class="home-list">
               <h3>În curând</h3>
-              <ul>
+              <ul class="archive-list">
                 {upcomingList.map((exhibition) => (
-                <li>
-                  <a class="list-link" href={`/exhibition/${exhibition.id}`}>
-                    <span class="list-title">{exhibition.title}</span>
-                    <span class="list-meta">{formatDateRange(exhibition.startDate, exhibition.endDate)}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+                  <li>
+                    <a class="list-link list-link--archive" href={`/exhibition/${exhibition.id}`}>
+                      <img class="list-thumb" src={exhibition.thumbnail} alt={exhibition.title} loading="lazy" />
+                      <span class="list-text">
+                        <span class="list-title">{exhibition.title}</span>
+                        <span class="list-meta">{formatDateRange(exhibition.startDate, exhibition.endDate)}</span>
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
           </section>
 
             <section class="home-list">
@@ -153,7 +156,7 @@ const hasUpcoming = upcomingList.length > 0;
               </span>
             </p>
             <p class="feature-description">{lastPast.description}</p>
-            <span class="exhibition-link">Detalii</span>
+            <span class="exhibition-link">Vezi expoziția</span>
           </div>
         </a>
       )}

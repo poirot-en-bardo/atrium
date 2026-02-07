@@ -1,5 +1,7 @@
-// @ts-check
+// /Volumes/Study/Projects/Atrium/atrium-gallery/astro.config.mjs
 import { defineConfig } from 'astro/config';
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+    site: 'https://poirot-en-bardo.github.io',
+    base: '/atrium',
+});
