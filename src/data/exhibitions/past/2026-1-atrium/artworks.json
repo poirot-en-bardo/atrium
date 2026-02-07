@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ls-001",
+    "title": "Morning Window",
+    "author": "Anya Mirel",
+    "imageUrl": "/images/placeholder.svg",
+    "floorId": "floor-a",
+    "roomId": "room-a",
+    "forSale": true
+  },
+  {
+    "id": "ls-002",
+    "title": "Glass Study",
+    "author": "Matei Ionescu",
+    "imageUrl": "/images/placeholder.svg",
+    "floorId": "floor-a",
+    "roomId": "room-a",
+    "forSale": true
+  },
+  {
+    "id": "ls-003",
+    "title": "Lightwell",
+    "author": "Iris Holm",
+    "imageUrl": "/images/placeholder.svg",
+    "floorId": "floor-a",
+    "roomId": "room-b",
+    "forSale": false
+  },
+  {
+    "id": "ls-004",
+    "title": "Soft Focus",
+    "author": "Radu Petrescu",
+    "imageUrl": "/images/placeholder.svg",
+    "floorId": "floor-b",
+    "roomId": "room-c",
+    "forSale": true
+  }
+]

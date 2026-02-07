@@ -1,0 +1,18 @@
+[
+  {
+    "id": "floor-a",
+    "name": "Ground Floor",
+    "rooms": [
+      { "id": "room-a", "name": "Gallery A" },
+      { "id": "room-b", "name": "Gallery B" }
+    ]
+  },
+  {
+    "id": "floor-b",
+    "name": "Upper Floor",
+    "rooms": [
+      { "id": "room-c", "name": "Gallery C" },
+      { "id": "room-d", "name": "Gallery D" }
+    ]
+  }
+]

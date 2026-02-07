@@ -1,0 +1,48 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  author: string;
+  imageUrl: string;
+  price?: number;
+  sold?: boolean;
+  forSale?: boolean;
+}
+
+const { id, title, author, imageUrl, price, sold, forSale } = Astro.props;
+
+const formattedPrice =
+  typeof price === 'number'
+    ? new Intl.NumberFormat('ro-RO', {
+        style: 'currency',
+        currency: 'EUR',
+        maximumFractionDigits: 0,
+      }).format(price)
+    : null;
+
+const statusText = sold
+  ? 'VANDUT'
+  : forSale
+    ? formattedPrice || 'Pret la cerere'
+    : 'Nu este de vanzare';
+---
+
+<article
+  class="artwork-card"
+  data-artwork-id={id}
+  data-for-sale={forSale ? 'true' : 'false'}
+  data-sold={sold ? 'true' : 'false'}
+  data-price={typeof price === 'number' ? String(price) : ''}
+>
+  <div class="artwork-image">
+    <img src={imageUrl} alt={title} loading="lazy" />
+    <span class="sold-badge" data-role="sold-badge" aria-hidden={!sold} hidden={!sold}>
+      VANDUT
+    </span>
+  </div>
+  <div class="artwork-meta">
+    <h3 class="artwork-title">{title}</h3>
+    <p class="artwork-author">{author}</p>
+    <p class="artwork-status" data-role="artwork-status">{statusText}</p>
+  </div>
+</article>

@@ -1,0 +1,40 @@
+---
+import RoomSection from './RoomSection.astro';
+
+interface Room {
+  id: string;
+  name: string;
+}
+
+interface Artwork {
+  id: string;
+  floorId: string;
+  roomId: string;
+  title: string;
+  author: string;
+  imageUrl: string;
+  price?: number;
+  sold?: boolean;
+  forSale?: boolean;
+}
+
+interface Props {
+  floorId: string;
+  floorName: string;
+  rooms: Room[];
+  artworks: Artwork[];
+}
+
+const { floorId, floorName, rooms, artworks } = Astro.props;
+---
+
+<section class="floor-section" data-floor-id={floorId}>
+  <div class="floor-rooms">
+    {rooms.map((room) => {
+      const roomArtworks = artworks.filter(
+        (art) => art.floorId === floorId && art.roomId === room.id
+      );
+      return <RoomSection roomName={room.name} artworks={roomArtworks} />;
+    })}
+  </div>
+</section>

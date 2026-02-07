@@ -1,0 +1,31 @@
+---
+import ArtworkCarousel from './ArtworkCarousel.astro';
+
+interface Artwork {
+  id: string;
+  floorId: string;
+  roomId: string;
+  title: string;
+  author: string;
+  imageUrl: string;
+  price?: number;
+  sold?: boolean;
+  forSale?: boolean;
+}
+
+interface Props {
+  roomName: string;
+  artworks: Artwork[];
+}
+
+const { roomName, artworks } = Astro.props;
+---
+
+{artworks && artworks.length > 0 ? (
+  <section class="room-section">
+    <header class="room-header">
+      <h3 class="room-title">{roomName}</h3>
+    </header>
+    <ArtworkCarousel artworks={artworks} />
+  </section>
+) : null}

@@ -1,0 +1,60 @@
+---
+import ArtworkCard from './ArtworkCard.astro';
+
+interface Artwork {
+  id: string;
+  title: string;
+  author: string;
+  imageUrl: string;
+  price?: number;
+  sold?: boolean;
+  forSale?: boolean;
+}
+
+interface Props {
+  artworks: Artwork[];
+}
+
+const { artworks } = Astro.props;
+---
+
+<div class="artwork-carousel" role="region" aria-label="Artwork carousel" data-carousel>
+  <div class="artwork-track" tabindex="0" data-carousel-track>
+    {artworks.map((art) => (
+      <div class="artwork-slide">
+        <ArtworkCard {...art} />
+      </div>
+    ))}
+  </div>
+  <div class="carousel-bar" aria-hidden="true">
+    <span class="carousel-thumb" data-carousel-thumb></span>
+  </div>
+</div>
+
+<script>
+  const carousels = document.querySelectorAll('[data-carousel]');
+  carousels.forEach((carousel) => {
+    const track = carousel.querySelector('[data-carousel-track]');
+    const thumb = carousel.querySelector('[data-carousel-thumb]');
+    if (!track || !thumb) return;
+
+    const updateThumb = () => {
+      const lastSlide = track.lastElementChild;
+      const maxScroll =
+        lastSlide && lastSlide instanceof HTMLElement
+          ? lastSlide.offsetLeft
+          : track.scrollWidth - track.clientWidth;
+      const ratio = maxScroll > 0 ? track.scrollLeft / maxScroll : 0;
+      const normalized = Math.min(1, Math.max(0, ratio));
+      const visibleRatio = track.scrollWidth > 0 ? track.clientWidth / track.scrollWidth : 1;
+      const widthPercent = Math.max(visibleRatio * 100, 10);
+      thumb.style.width = `${widthPercent}%`;
+      thumb.style.transform = `translateX(${normalized * (100 - widthPercent)}%)`;
+    };
+
+    updateThumb();
+    track.addEventListener('scroll', updateThumb, { passive: true });
+    window.addEventListener('resize', updateThumb);
+    requestAnimationFrame(updateThumb);
+  });
+</script>

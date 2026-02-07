@@ -1,0 +1,70 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const pathname = Astro.url.pathname;
+const isHome = pathname === '/';
+const isDespre = pathname.startsWith('/despre');
+---
+
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    {description ? <meta name="description" content={description} /> : null}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-brand">
+        <a href="/" class="site-logo">Atrium Gallery</a>
+      </div>
+      <nav class="site-nav" aria-label="Principal">
+        <a href="/" class={`nav-link ${isHome ? 'is-active' : ''}`} aria-current={isHome ? 'page' : undefined}>
+          Expozitii
+        </a>
+        <a href="/despre" class={`nav-link ${isDespre ? 'is-active' : ''}`} aria-current={isDespre ? 'page' : undefined}>
+          Despre noi
+        </a>
+      </nav>
+    </header>
+    <main class="site-main">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>Pentru mai multe detalii: 0723232323</p>
+      <p class="footer-location">
+        <span class="footer-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" role="img" focusable="false">
+            <path d="M12 2.5c-3.59 0-6.5 2.9-6.5 6.48 0 4.47 6.5 12.52 6.5 12.52s6.5-8.05 6.5-12.52C18.5 5.4 15.59 2.5 12 2.5zm0 8.6a2.12 2.12 0 1 1 0-4.25 2.12 2.12 0 0 1 0 4.25z" />
+          </svg>
+        </span>
+        Câmpulung-Muscel, România
+      </p>
+    </footer>
+
+    <button class="scroll-top" type="button" aria-label="Inapoi sus" hidden>
+      ↑
+    </button>
+    <script is:inline>
+      const scrollButton = document.querySelector('.scroll-top');
+      const toggleScrollButton = () => {
+        if (!scrollButton) return;
+        scrollButton.hidden = window.scrollY < 300;
+      };
+      toggleScrollButton();
+      window.addEventListener('scroll', toggleScrollButton, { passive: true });
+      scrollButton?.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    </script>
+  </body>
+</html>

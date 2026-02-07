@@ -1,25 +1,29 @@
 [
   {
-    "id": "art001",
+    "id": "cp-001",
     "title": "Starry Night",
     "author": "Vincent van Gogh",
-    "technique": "Oil on canvas",
-    "imageUrl": "https://res.cloudinary.com/YOUR_CLOUD_NAME/starry-night.jpg",
-    "floorId": "floor1",
-    "roomId": "room1",
-    "forSale": true,
-    "price": 500000,
-    "sold": false
+    "imageUrl": "/images/placeholder.svg",
+    "floorId": "parter",
+    "roomId": "sala1",
+    "forSale": true
   },
   {
-    "id": "art002",
+    "id": "cp-002",
     "title": "Mona Lisa",
     "author": "Leonardo da Vinci",
-    "technique": "Oil on poplar",
-    "imageUrl": "https://res.cloudinary.com/YOUR_CLOUD_NAME/mona-lisa.jpg",
-    "floorId": "floor1",
-    "roomId": "room2",
+    "imageUrl": "/images/placeholder.svg",
+    "floorId": "etaj1",
+    "roomId": "sala2",
     "forSale": false
+  },
+  {
+    "id": "cp-003",
+    "title": "Composition in Blue",
+    "author": "Lina Pop",
+    "imageUrl": "/images/placeholder.svg",
+    "floorId": "etaj1",
+    "roomId": "sala3",
+    "forSale": true
   }
 ]
-

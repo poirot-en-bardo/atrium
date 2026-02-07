@@ -1,4 +1,4 @@
-import Tabletop from "tabletop";
+import Tabletop from 'tabletop';
 
 export interface SheetArtwork {
   id: string;
@@ -6,18 +6,32 @@ export interface SheetArtwork {
   sold?: boolean;
 }
 
-export async function fetchExhibitionSheet(spreadsheetId: string, exhibitionId: string): Promise<SheetArtwork[]> {
+const truthyValues = new Set(['true', 'yes', '1', 'y', 'sold']);
+
+function normalizeSold(value: unknown): boolean {
+  if (typeof value === 'boolean') return value;
+  if (typeof value === 'number') return value > 0;
+  if (typeof value === 'string') return truthyValues.has(value.trim().toLowerCase());
+  return false;
+}
+
+export async function fetchExhibitionSheet(
+  spreadsheetId: string,
+  exhibitionId: string
+): Promise<SheetArtwork[]> {
+  if (!spreadsheetId) return [];
+
   const data = await Tabletop.init({
     key: spreadsheetId,
-    simpleSheet: false,  // load all sheets
+    simpleSheet: false,
   });
 
   const sheet = data[exhibitionId];
   if (!sheet) return [];
 
-  return sheet.map((row: any) => ({
+  return sheet.map((row: Record<string, string>) => ({
     id: row['Artwork ID'],
     price: row['Price'] ? Number(row['Price']) : undefined,
-    sold: row['Sold'] === 'TRUE',
+    sold: normalizeSold(row['Sold']),
   }));
 }

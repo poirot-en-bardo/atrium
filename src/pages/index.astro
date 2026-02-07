@@ -1,16 +1,175 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getExhibitionsByStatus } from '../utils/exhibitions';
+import { formatDateRange } from '../utils/dates';
 
+const current = getExhibitionsByStatus('current');
+const upcoming = getExhibitionsByStatus('upcoming');
+const past = getExhibitionsByStatus('past');
+
+const featured = current[0] ?? upcoming[0] ?? null;
+const hasCurrent = current.length > 0;
+const featuredIsUpcoming = featured ? upcoming.some((ex) => ex.id === featured.id) : false;
+const upcomingList = featuredIsUpcoming ? upcoming.slice(1) : upcoming;
+const hasFeatured = Boolean(featured);
+const lastPast = past.length > 0 ? past[past.length - 1] : null;
+const archiveList = [...past].reverse();
+const archiveLimit = 5;
+const archivePreview = archiveList.slice(0, archiveLimit);
+const hasMoreArchive = archiveList.length > archiveLimit;
+const hasUpcoming = upcomingList.length > 0;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Atrium Gallery" description="Arhiva statica de expozitii pentru vizitarea in galerie.">
+  {hasFeatured ? (
+    <section class="home-feature">
+      <a class="feature-card" href={`/exhibition/${featured.id}`}>
+        <div class="feature-media">
+          <img class="feature-image" src={featured.thumbnail} alt={featured.title} loading="lazy" />
+          <span class="feature-badge">
+            {featuredIsUpcoming ? 'În curând' : 'Expozitie curenta'}
+          </span>
+        </div>
+        <div class="feature-content">
+          <h2>{featured.title}</h2>
+          <p class="feature-dates">{formatDateRange(featured.startDate, featured.endDate)}</p>
+          <p class="feature-location">
+            {featured.location}
+            <span class="location-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img" focusable="false">
+                <path d="M12 2.5c-3.59 0-6.5 2.9-6.5 6.48 0 4.47 6.5 12.52 6.5 12.52s6.5-8.05 6.5-12.52C18.5 5.4 15.59 2.5 12 2.5zm0 8.6a2.12 2.12 0 1 1 0-4.25 2.12 2.12 0 0 1 0 4.25z" />
+              </svg>
+            </span>
+          </p>
+          <p class="feature-description">{featured.description}</p>
+          <span class="exhibition-link">Detalii</span>
+        </div>
+      </a>
+
+      {hasCurrent ? (
+        hasUpcoming ? (
+          <div class="home-columns">
+            <section class="home-list">
+              <h3>În curând</h3>
+              <ul>
+                {upcomingList.map((exhibition) => (
+                <li>
+                  <a class="list-link" href={`/exhibition/${exhibition.id}`}>
+                    <span class="list-title">{exhibition.title}</span>
+                    <span class="list-meta">{formatDateRange(exhibition.startDate, exhibition.endDate)}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+            <section class="home-list">
+              <h3>Arhiva</h3>
+              {archivePreview.length > 0 ? (
+                <ul class="archive-list">
+                  {archivePreview.map((exhibition) => (
+                    <li>
+                      <a class="list-link list-link--archive" href={`/exhibition/${exhibition.id}`}>
+                        <img class="list-thumb" src={exhibition.thumbnail} alt={exhibition.title} loading="lazy" />
+                        <span class="list-text">
+                          <span class="list-title">{exhibition.title}</span>
+                          <span class="list-meta">{formatDateRange(exhibition.startDate, exhibition.endDate)}</span>
+                          <span class="list-meta">{exhibition.location}</span>
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p class="muted">Arhiva este goala momentan.</p>
+              )}
+              {hasMoreArchive && (
+                <a class="archive-more" href="/past">Vezi toate expozitiile</a>
+              )}
+            </section>
+          </div>
+        ) : (
+          <section class="home-archive">
+            <h2 class="section-title">Arhiva</h2>
+            <ul class="archive-list">
+              {archivePreview.map((exhibition) => (
+                <li>
+                  <a class="list-link list-link--archive" href={`/exhibition/${exhibition.id}`}>
+                    <img class="list-thumb" src={exhibition.thumbnail} alt={exhibition.title} loading="lazy" />
+                    <span class="list-text">
+                      <span class="list-title">{exhibition.title}</span>
+                      <span class="list-meta">{formatDateRange(exhibition.startDate, exhibition.endDate)}</span>
+                    <span class="list-meta">{exhibition.location}</span>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            {hasMoreArchive && (
+              <a class="archive-more" href="/past">Vezi toate expozitiile</a>
+            )}
+          </section>
+        )
+      ) : (
+        <section class="home-archive">
+          <h2 class="section-title">Arhiva</h2>
+          <ul class="archive-list">
+            {archivePreview.map((exhibition) => (
+              <li>
+                <a class="list-link list-link--archive" href={`/exhibition/${exhibition.id}`}>
+                  <img class="list-thumb" src={exhibition.thumbnail} alt={exhibition.title} loading="lazy" />
+                  <span class="list-text">
+                    <span class="list-title">{exhibition.title}</span>
+                    <span class="list-meta">{formatDateRange(exhibition.startDate, exhibition.endDate)}</span>
+                <span class="list-meta">{exhibition.location}</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          {hasMoreArchive && (
+            <a class="archive-more" href="/past">Vezi toate expozitiile</a>
+          )}
+        </section>
+      )}
+    </section>
+  ) : (
+    <section class="home-archive">
+      {lastPast && (
+        <a class="feature-card feature-card--archive" href={`/exhibition/${lastPast.id}`}>
+          <div class="feature-media">
+            <img class="feature-image" src={lastPast.thumbnail} alt={lastPast.title} loading="lazy" />
+            <span class="feature-badge">Ultima expozitie</span>
+          </div>
+          <div class="feature-content">
+            <h2>{lastPast.title}</h2>
+            <p class="feature-dates">{formatDateRange(lastPast.startDate, lastPast.endDate)}</p>
+            <p class="feature-location">
+              {lastPast.location}
+              <span class="location-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                  <path d="M12 2.5c-3.59 0-6.5 2.9-6.5 6.48 0 4.47 6.5 12.52 6.5 12.52s6.5-8.05 6.5-12.52C18.5 5.4 15.59 2.5 12 2.5zm0 8.6a2.12 2.12 0 1 1 0-4.25 2.12 2.12 0 0 1 0 4.25z" />
+                </svg>
+              </span>
+            </p>
+            <p class="feature-description">{lastPast.description}</p>
+            <span class="exhibition-link">Detalii</span>
+          </div>
+        </a>
+      )}
+
+      <h2 class="section-title">Arhiva</h2>
+      <ul class="archive-list">
+        {archiveList.map((exhibition) => (
+          <li>
+            <div>
+              <a href={`/exhibition/${exhibition.id}`}>{exhibition.title}</a>
+              <span class="archive-dates">{formatDateRange(exhibition.startDate, exhibition.endDate)}</span>
+              <span class="archive-location">{exhibition.location}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</BaseLayout>

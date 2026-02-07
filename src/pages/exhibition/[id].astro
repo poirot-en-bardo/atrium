@@ -1,28 +1,163 @@
 ---
-import fs from 'fs';
-import path from 'path';
-import { fetchExhibitionSheet } from '../../utils/fetchSheet';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FloorSection from '../../components/FloorSection.astro';
+import {
+  getAllExhibitions,
+  getExhibitionById,
+  getExhibitionContent,
+} from '../../utils/exhibitions';
+import { formatDateRange } from '../../utils/dates';
 
-interface Params {
-    id: string;
+export async function getStaticPaths() {
+  return getAllExhibitions().map((exhibition) => ({
+    params: { id: exhibition.id },
+  }));
 }
 
-const { id } = Astro.params as unknown as Params; // Dynamic exhibition ID from URL
+const { id } = Astro.params as { id: string };
+const exhibition = getExhibitionById(id);
 
-// Path to the exhibition folder (current exhibitions)
-const exhibitionDir = path.resolve(`./src/data/exhibitions/current/${id}`);
+if (!exhibition) {
+  throw new Error(`Exhibition not found: ${id}`);
+}
 
-// Read JSON files
-const metadata = JSON.parse(fs.readFileSync(path.join(exhibitionDir, 'metadata.json'), 'utf-8'));
-const floors = JSON.parse(fs.readFileSync(path.join(exhibitionDir, 'floors.json'), 'utf-8'));
-const artworks = JSON.parse(fs.readFileSync(path.join(exhibitionDir, 'artworks.json'), 'utf-8'));
-
-// Fetch dynamic price/sold from Google Sheets
-const sheetData = await fetchExhibitionSheet('SPREADSHEET_ID', id);
-
-// Merge JSON artworks with sheet data
-const mergedArtworks = artworks.map((a: any) => {
-    const sheet = sheetData.find(s => s.id === a.id);
-    return { ...a, ...sheet }; // Merges price/sold into the artwork object
-});
+const { floors, artworks } = getExhibitionContent(exhibition.id);
+const isUpcoming = exhibition.status === 'upcoming' || artworks.length === 0;
+const sheetId = import.meta.env.PUBLIC_GOOGLE_SHEET_ID ?? '';
+const enableSheetMerge = Boolean(sheetId && !isUpcoming);
 ---
+
+<BaseLayout title={`${exhibition.title} | Atrium Gallery`} description={exhibition.description}>
+  <section class="exhibition-header">
+    <div class="exhibition-hero">
+      <img src={exhibition.thumbnail} alt={exhibition.title} />
+    </div>
+    <div class="exhibition-summary">
+      <h1>{exhibition.title}</h1>
+      <p>{formatDateRange(exhibition.startDate, exhibition.endDate)}</p>
+      <p class="exhibition-location">
+        <a class="location-link" href={exhibition.locationMapUrl} target="_blank" rel="noreferrer">
+          {exhibition.location}
+        </a>
+        <span class="location-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" role="img" focusable="false">
+            <path d="M12 2.5c-3.59 0-6.5 2.9-6.5 6.48 0 4.47 6.5 12.52 6.5 12.52s6.5-8.05 6.5-12.52C18.5 5.4 15.59 2.5 12 2.5zm0 8.6a2.12 2.12 0 1 1 0-4.25 2.12 2.12 0 0 1 0 4.25z" />
+          </svg>
+        </span>
+      </p>
+      <p>{exhibition.description}</p>
+    </div>
+  </section>
+
+  {!isUpcoming && floors.length > 0 && (
+    <nav class="floor-nav" aria-label="Selectare etaj" data-floor-nav>
+      {floors.map((floor, index) => (
+        <button
+          type="button"
+          class="floor-button"
+          data-floor-button={floor.id}
+          aria-pressed={index === 0 ? 'true' : 'false'}
+        >
+          {floor.name}
+        </button>
+      ))}
+    </nav>
+  )}
+
+  {isUpcoming ? (
+    <div class="placeholder-panel">
+      <h2>In curand</h2>
+      <p>Planurile de etaj si lucrarile vor fi publicate aproape de deschidere.</p>
+    </div>
+  ) : (
+    floors.map((floor, index) => (
+      <FloorSection
+        floorId={floor.id}
+        floorName={floor.name}
+        rooms={floor.rooms}
+        artworks={artworks}
+        data-visible={index === 0 ? 'true' : 'false'}
+      />
+    ))
+  )}
+
+  {!isUpcoming && floors.length > 0 && (
+    <script>
+      const nav = document.querySelector('[data-floor-nav]');
+      const buttons = nav ? Array.from(nav.querySelectorAll('[data-floor-button]')) : [];
+      const sections = Array.from(document.querySelectorAll('[data-floor-id]'));
+
+      const setActiveFloor = (floorId) => {
+        sections.forEach((section) => {
+          const isActive = section.getAttribute('data-floor-id') === floorId;
+          section.setAttribute('data-visible', isActive ? 'true' : 'false');
+        });
+        buttons.forEach((button) => {
+          const isActive = button.getAttribute('data-floor-button') === floorId;
+          button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+      };
+
+      if (buttons.length > 0) {
+        setActiveFloor(buttons[0].getAttribute('data-floor-button'));
+        buttons.forEach((button) => {
+          button.addEventListener('click', () => {
+            const floorId = button.getAttribute('data-floor-button');
+            if (floorId) setActiveFloor(floorId);
+          });
+        });
+      }
+    </script>
+  )}
+
+  {enableSheetMerge && (
+    <script type="module" define:vars={{ sheetId, exhibitionId: id }}>
+      import { fetchExhibitionSheet } from '../../utils/fetchSheet';
+
+      const formatPrice = (value) => {
+        if (typeof value !== 'number' || Number.isNaN(value)) return null;
+        return new Intl.NumberFormat('ro-RO', {
+          style: 'currency',
+          currency: 'EUR',
+          maximumFractionDigits: 0,
+        }).format(value);
+      };
+
+      const updateCard = (card, row) => {
+        const forSale = card.dataset.forSale === 'true';
+        const sold = row.sold === true;
+        const price = typeof row.price === 'number' ? row.price : null;
+
+        card.dataset.sold = sold ? 'true' : 'false';
+        card.dataset.price = price ? String(price) : '';
+
+        const badge = card.querySelector('[data-role="sold-badge"]');
+        if (badge) {
+          badge.hidden = !sold;
+          badge.setAttribute('aria-hidden', sold ? 'false' : 'true');
+        }
+
+        const status = card.querySelector('[data-role="artwork-status"]');
+        if (!status) return;
+
+        if (sold) {
+          status.textContent = 'VANDUT';
+        } else if (forSale) {
+          status.textContent = formatPrice(price) || 'Pret la cerere';
+        } else {
+          status.textContent = 'Nu este de vanzare';
+        }
+      };
+
+      const hydrate = async () => {
+        const data = await fetchExhibitionSheet(sheetId, exhibitionId);
+        data.forEach((row) => {
+          const card = document.querySelector(`[data-artwork-id="${row.id}"]`);
+          if (card) updateCard(card, row);
+        });
+      };
+
+      hydrate();
+    </script>
+  )}
+</BaseLayout>
