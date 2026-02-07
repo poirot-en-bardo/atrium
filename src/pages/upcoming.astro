@@ -4,6 +4,7 @@ import { getExhibitionsByStatus } from '../utils/exhibitions';
 import { formatDateRange } from '../utils/dates';
 
 const exhibitions = getExhibitionsByStatus('upcoming');
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Expozitii viitoare | Atrium Gallery" description="Ce urmeaza la Atrium Gallery.">
@@ -16,7 +17,7 @@ const exhibitions = getExhibitionsByStatus('upcoming');
           <h3>{exhibition.title}</h3>
           <p class="exhibition-meta">{formatDateRange(exhibition.startDate, exhibition.endDate)}</p>
           <p>{exhibition.description}</p>
-          <a class="exhibition-link" href={`/exhibition/${exhibition.id}`}>Detalii</a>
+          <a class="exhibition-link" href={`${base}exhibition/${exhibition.id}`}>Detalii</a>
         </div>
       </article>
     ))}
