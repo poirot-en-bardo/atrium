@@ -1,18 +1,19 @@
 [
   {
-    "id": "floor-a",
-    "name": "Ground Floor",
+    "id": "parter",
+    "name": "Parter",
     "rooms": [
-      { "id": "room-a", "name": "Gallery A" },
-      { "id": "room-b", "name": "Gallery B" }
+      { "id": "sala1", "name": "Sala 1" }
     ]
   },
   {
-    "id": "floor-b",
-    "name": "Upper Floor",
+    "id": "etaj1",
+    "name": "Etaj 1",
     "rooms": [
-      { "id": "room-c", "name": "Gallery C" },
-      { "id": "room-d", "name": "Gallery D" }
+      { "id": "sala1", "name": "Sala 1" },
+      { "id": "sala2", "name": "Sala 2" },
+      { "id": "sala3", "name": "Sala 3" },
+      { "id": "sala4", "name": "Sala 4" }
     ]
   }
 ]

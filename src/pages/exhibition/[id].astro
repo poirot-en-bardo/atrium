@@ -31,7 +31,9 @@ const enableSheetMerge = Boolean(sheetId && !isUpcoming);
 <BaseLayout title={`${exhibition.title} | Atrium Gallery`} description={exhibition.description}>
   <section class="exhibition-header">
     <div class="exhibition-hero">
-      <img src={withBase(exhibition.thumbnail)} alt={exhibition.title} />
+      <div class="poster-frame">
+        <img class="poster-image" src={withBase(exhibition.thumbnail)} alt={exhibition.title} />
+      </div>
     </div>
     <div class="exhibition-summary">
       <h1>{exhibition.title}</h1>

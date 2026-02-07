@@ -26,7 +26,9 @@ const hasUpcoming = upcomingList.length > 0;
     <section class="home-feature">
       <a class="feature-card" href={`exhibition/${featured.id}/`}>
         <div class="feature-media">
-          <img class="feature-image" src={withBase(featured.thumbnail)} alt={featured.title} loading="lazy" />
+          <div class="poster-frame">
+            <img class="poster-image" src={withBase(featured.thumbnail)} alt={featured.title} loading="lazy" />
+          </div>
           <span class="feature-badge">
             {featuredIsUpcoming ? 'În curând' : 'Expozitie curenta'}
           </span>
@@ -142,7 +144,9 @@ const hasUpcoming = upcomingList.length > 0;
       {lastPast && (
         <a class="feature-card feature-card--archive" href={`exhibition/${lastPast.id}/`}>
           <div class="feature-media">
-          <img class="feature-image" src={withBase(lastPast.thumbnail)} alt={lastPast.title} loading="lazy" />
+            <div class="poster-frame">
+              <img class="poster-image" src={withBase(lastPast.thumbnail)} alt={lastPast.title} loading="lazy" />
+            </div>
             <span class="feature-badge">Ultima expozitie</span>
           </div>
           <div class="feature-content">

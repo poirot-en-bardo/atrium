@@ -8,7 +8,7 @@
   },
   {
     "id": "etaj1",
-    "name": "Etaj 2",
+    "name": "Etaj 1",
     "rooms": [
       { "id": "sala1", "name": "Sala 1" },
       { "id": "sala2", "name": "Sala 2" },

@@ -9,6 +9,7 @@
   --accent: #c65d3a;
   --paper: #fdfcfb;
   --shadow: 0 20px 40px rgba(17, 17, 17, 0.08);
+  --poster-radius: 16px;
 }
 
 * {
@@ -215,10 +216,14 @@ img {
   border-radius: 24px;
   background: var(--paper);
   border: 1px solid rgba(0, 0, 0, 0.06);
-  align-items: center;
+  align-items: start;
   color: inherit;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+.feature-content {
+  padding-top: 0.5rem;
 }
 
 .feature-card:hover {
@@ -241,15 +246,22 @@ img {
 .feature-media {
   position: relative;
   width: 100%;
-  max-width: 220px;
+  max-width: 200px;
   margin: 0 auto;
 }
 
-.feature-image {
+.poster-frame {
+  border-radius: var(--poster-radius);
+  overflow: hidden;
+  background: var(--paper);
+  height: 320px;
+}
+
+.poster-image {
   width: 100%;
-  height: 210px;
-  object-fit: cover;
-  border-radius: 18px;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .feature-content h2 {
@@ -413,12 +425,10 @@ img {
   margin-bottom: 2rem;
 }
 
-.exhibition-hero img {
+.exhibition-hero .poster-frame {
   width: 100%;
   max-width: 260px;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 18px;
+  height: 360px;
   margin: 0 auto;
 }
 
@@ -674,7 +684,7 @@ img {
   text-align: center;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 700px) {
   .site-header {
     flex-direction: row;
     justify-content: flex-start;
@@ -696,7 +706,10 @@ img {
   }
 
   .feature-card {
-    grid-template-columns: 220px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) 200px;
+    grid-template-areas: "content media";
+    column-gap: 1.2rem;
+    align-items: center;
   }
 
   .home-columns {
@@ -704,18 +717,29 @@ img {
     gap: 2.5rem;
   }
 
-  .feature-image {
-    height: 240px;
+  .poster-frame {
+    height: 320px;
+  }
+
+  .feature-media {
+    grid-area: media;
+    order: 2;
+    margin-left: auto;
+  }
+
+  .feature-content {
+    grid-area: content;
+    order: 1;
   }
 
   .exhibition-header {
     grid-template-columns: max-content 1fr;
-    align-items: center;
+    align-items: start;
     column-gap: 1.25rem;
   }
 
-  .exhibition-hero img {
-    height: 260px;
+  .exhibition-hero .poster-frame {
+    height: 420px;
     max-width: 300px;
   }
 
@@ -724,3 +748,6 @@ img {
   }
 
 }
+  .feature-content {
+    padding-top: 0;
+  }

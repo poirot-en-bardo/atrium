@@ -4,8 +4,8 @@
     "title": "Morning Window",
     "author": "Anya Mirel",
     "imageUrl": "/images/placeholder.svg",
-    "floorId": "floor-a",
-    "roomId": "room-a",
+    "floorId": "parter",
+    "roomId": "sala1",
     "forSale": true
   },
   {
@@ -13,8 +13,8 @@
     "title": "Glass Study",
     "author": "Matei Ionescu",
     "imageUrl": "/images/placeholder.svg",
-    "floorId": "floor-a",
-    "roomId": "room-a",
+    "floorId": "parter",
+    "roomId": "sala1",
     "forSale": true
   },
   {
@@ -22,8 +22,8 @@
     "title": "Lightwell",
     "author": "Iris Holm",
     "imageUrl": "/images/placeholder.svg",
-    "floorId": "floor-a",
-    "roomId": "room-b",
+    "floorId": "etaj1",
+    "roomId": "sala2",
     "forSale": false
   },
   {
@@ -31,8 +31,8 @@
     "title": "Soft Focus",
     "author": "Radu Petrescu",
     "imageUrl": "/images/placeholder.svg",
-    "floorId": "floor-b",
-    "roomId": "room-c",
+    "floorId": "etaj1",
+    "roomId": "sala1",
     "forSale": true
   }
 ]
