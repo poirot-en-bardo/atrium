@@ -18,14 +18,13 @@ const archiveList = [...past].reverse();
 const archiveLimit = 5;
 const archivePreview = archiveList.slice(0, archiveLimit);
 const hasMoreArchive = archiveList.length > archiveLimit;
-const base = import.meta.env.BASE_URL;
 const hasUpcoming = upcomingList.length > 0;
 ---
 
 <BaseLayout title="Atrium Gallery" description="Arhiva statica de expozitii pentru vizitarea in galerie.">
   {hasFeatured ? (
     <section class="home-feature">
-      <a class="feature-card" href={`${base}exhibition/${featured.id}/`}>
+      <a class="feature-card" href={`exhibition/${featured.id}/`}>
         <div class="feature-media">
           <img class="feature-image" src={withBase(featured.thumbnail)} alt={featured.title} loading="lazy" />
           <span class="feature-badge">
@@ -56,7 +55,7 @@ const hasUpcoming = upcomingList.length > 0;
               <ul class="archive-list">
                 {upcomingList.map((exhibition) => (
                   <li>
-                    <a class="list-link list-link--archive" href={`${base}exhibition/${exhibition.id}/`}>
+                    <a class="list-link list-link--archive" href={`exhibition/${exhibition.id}/`}>
                       <img class="list-thumb" src={withBase(exhibition.thumbnail)} alt={exhibition.title} loading="lazy" />
                       <span class="list-text">
                         <span class="list-title">{exhibition.title}</span>
@@ -74,7 +73,7 @@ const hasUpcoming = upcomingList.length > 0;
                 <ul class="archive-list">
                   {archivePreview.map((exhibition) => (
                     <li>
-                      <a class="list-link list-link--archive" href={`${base}exhibition/${exhibition.id}/`}>
+                      <a class="list-link list-link--archive" href={`exhibition/${exhibition.id}/`}>
                         <img class="list-thumb" src={withBase(exhibition.thumbnail)} alt={exhibition.title} loading="lazy" />
                         <span class="list-text">
                           <span class="list-title">{exhibition.title}</span>
@@ -89,7 +88,7 @@ const hasUpcoming = upcomingList.length > 0;
                 <p class="muted">Arhiva este goala momentan.</p>
               )}
               {hasMoreArchive && (
-                <a class="archive-more" href={`${base}past`}>Vezi toate expozitiile</a>
+                <a class="archive-more" href="past/">Vezi toate expozitiile</a>
               )}
             </section>
           </div>
@@ -99,7 +98,7 @@ const hasUpcoming = upcomingList.length > 0;
             <ul class="archive-list">
               {archivePreview.map((exhibition) => (
                 <li>
-                    <a class="list-link list-link--archive" href={`${base}exhibition/${exhibition.id}/`}>
+                  <a class="list-link list-link--archive" href={`exhibition/${exhibition.id}/`}>
                     <img class="list-thumb" src={withBase(exhibition.thumbnail)} alt={exhibition.title} loading="lazy" />
                     <span class="list-text">
                       <span class="list-title">{exhibition.title}</span>
@@ -111,7 +110,7 @@ const hasUpcoming = upcomingList.length > 0;
               ))}
             </ul>
             {hasMoreArchive && (
-              <a class="archive-more" href={`${base}past`}>Vezi toate expozitiile</a>
+              <a class="archive-more" href="past/">Vezi toate expozitiile</a>
             )}
           </section>
         )
@@ -121,7 +120,7 @@ const hasUpcoming = upcomingList.length > 0;
           <ul class="archive-list">
             {archivePreview.map((exhibition) => (
               <li>
-                <a class="list-link list-link--archive" href={`${base}exhibition/${exhibition.id}/`}>
+                <a class="list-link list-link--archive" href={`exhibition/${exhibition.id}/`}>
                   <img class="list-thumb" src={withBase(exhibition.thumbnail)} alt={exhibition.title} loading="lazy" />
                   <span class="list-text">
                     <span class="list-title">{exhibition.title}</span>
@@ -133,7 +132,7 @@ const hasUpcoming = upcomingList.length > 0;
             ))}
           </ul>
           {hasMoreArchive && (
-            <a class="archive-more" href={`${base}past`}>Vezi toate expozitiile</a>
+            <a class="archive-more" href="past/">Vezi toate expozitiile</a>
           )}
         </section>
       )}
@@ -141,7 +140,7 @@ const hasUpcoming = upcomingList.length > 0;
   ) : (
     <section class="home-archive">
       {lastPast && (
-        <a class="feature-card feature-card--archive" href={`${base}exhibition/${lastPast.id}/`}>
+        <a class="feature-card feature-card--archive" href={`exhibition/${lastPast.id}/`}>
           <div class="feature-media">
           <img class="feature-image" src={withBase(lastPast.thumbnail)} alt={lastPast.title} loading="lazy" />
             <span class="feature-badge">Ultima expozitie</span>
@@ -168,7 +167,7 @@ const hasUpcoming = upcomingList.length > 0;
         {archiveList.map((exhibition) => (
           <li>
             <div>
-              <a href={`${base}exhibition/${exhibition.id}/`}>{exhibition.title}</a>
+              <a href={`exhibition/${exhibition.id}/`}>{exhibition.title}</a>
               <span class="archive-dates">{formatDateRange(exhibition.startDate, exhibition.endDate)}</span>
               <span class="archive-location">{exhibition.location}</span>
             </div>

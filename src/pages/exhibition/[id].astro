@@ -17,7 +17,6 @@ export async function getStaticPaths() {
 
 const { id } = Astro.params as { id: string };
 const exhibition = getExhibitionById(id);
-const base = import.meta.env.BASE_URL;
 
 if (!exhibition) {
   throw new Error(`Exhibition not found: ${id}`);
