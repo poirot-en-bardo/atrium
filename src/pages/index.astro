@@ -74,8 +74,8 @@ const hasUpcoming = upcomingList.length > 0;
                 <ul class="archive-list">
                   {archivePreview.map((exhibition) => (
                     <li>
-                      <a class="list-link list-link--archive" href={`/exhibition/${exhibition.id}`}>
-                        <img class="list-thumb" src={exhibition.thumbnail} alt={exhibition.title} loading="lazy" />
+                      <a class="list-link list-link--archive" href={`${base}exhibition/${exhibition.id}/`}>
+                        <img class="list-thumb" src={withBase(exhibition.thumbnail)} alt={exhibition.title} loading="lazy" />
                         <span class="list-text">
                           <span class="list-title">{exhibition.title}</span>
                           <span class="list-meta">{formatDateRange(exhibition.startDate, exhibition.endDate)}</span>
@@ -168,7 +168,7 @@ const hasUpcoming = upcomingList.length > 0;
         {archiveList.map((exhibition) => (
           <li>
             <div>
-              <a href={`/exhibition/${exhibition.id}`}>{exhibition.title}</a>
+              <a href={`${base}exhibition/${exhibition.id}/`}>{exhibition.title}</a>
               <span class="archive-dates">{formatDateRange(exhibition.startDate, exhibition.endDate)}</span>
               <span class="archive-location">{exhibition.location}</span>
             </div>
