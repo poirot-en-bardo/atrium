@@ -79,7 +79,7 @@
   {
     "id": "pricina-700",
     "title": "Ochii",
-    "author": "Dragos Nita",
+    "author": "Deragos Nita",
     "year": "2024",
     "description": "Cranii pictate in acrilic si pandantive sculptate in os",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841682/dragos_ebpvlg.jpg",
@@ -120,7 +120,7 @@
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841683/sergiu1_lfsgov.jpg",
     "floorId": "etaj1",
     "roomId": "sala2",
-    "forSale": false
+    "forSale": true
   },
 
   {
@@ -166,7 +166,7 @@
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841683/rares1_gamabl.jpg",
     "floorId": "etaj1",
     "roomId": "sala3",
-    "forSale": false
+    "forSale": true
   },
   {
     "id": "pricina-15",
@@ -213,7 +213,7 @@
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841684/iulian1_r7u51z.jpg",
     "floorId": "etaj1",
     "roomId": "sala4",
-    "forSale": false
+    "forSale": true
   },
   {
     "id": "pricina-19",
@@ -235,7 +235,7 @@
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841682/iulian3_goumjd.jpg",
     "floorId": "etaj1",
     "roomId": "sala4",
-    "forSale": false
+    "forSale": true
   },
   {
     "id": "pricina-21",
@@ -257,6 +257,6 @@
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841684/rodica_qiwat8.jpg",
     "floorId": "etaj1",
     "roomId": "sala4",
-    "forSale": false
+    "forSale": true
   }
 ]

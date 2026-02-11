@@ -103,21 +103,6 @@ const enableSheetMerge = Boolean(sheetId && !isUpcoming);
       const navs = Array.from(document.querySelectorAll('[data-floor-nav]'));
       const buttons = navs.flatMap((nav) => Array.from(nav.querySelectorAll('[data-floor-button]')));
       const sections = Array.from(document.querySelectorAll('[data-floor-id]'));
-      const floorIds = buttons
-        .map((button) => button.getAttribute('data-floor-button'))
-        .filter((floorId) => Boolean(floorId));
-
-      const getFloorFromUrl = () => {
-        const url = new URL(window.location.href);
-        const floorId = url.searchParams.get('floor');
-        return floorId && floorIds.includes(floorId) ? floorId : null;
-      };
-
-      const persistFloorToUrl = (floorId) => {
-        const url = new URL(window.location.href);
-        url.searchParams.set('floor', floorId);
-        window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`);
-      };
 
       const setActiveFloor = (floorId) => {
         sections.forEach((section) => {
@@ -128,12 +113,10 @@ const enableSheetMerge = Boolean(sheetId && !isUpcoming);
           const isActive = button.getAttribute('data-floor-button') === floorId;
           button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
         });
-        persistFloorToUrl(floorId);
       };
 
       if (buttons.length > 0) {
-        const initialFloor = getFloorFromUrl() ?? buttons[0].getAttribute('data-floor-button');
-        if (initialFloor) setActiveFloor(initialFloor);
+        setActiveFloor(buttons[0].getAttribute('data-floor-button'));
         buttons.forEach((button) => {
           button.addEventListener('click', () => {
             const floorId = button.getAttribute('data-floor-button');
