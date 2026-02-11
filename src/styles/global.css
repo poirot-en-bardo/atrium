@@ -5,6 +5,7 @@
   --bg: #ffffff;
   --ink: #171717;
   --muted: #5e5e5e;
+  --muted-readable: #4f4f4f;
   --line: #eeeae6;
   --accent: #c65d3a;
   --paper: #fdfcfb;
@@ -149,6 +150,15 @@ img {
   padding: 2rem 0 1rem;
 }
 
+.hero-map {
+  width: min(100%, 620px);
+  margin: 0 auto;
+  margin-bottom: 2.6rem;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
 .hero h1 {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 600;
@@ -157,6 +167,27 @@ img {
 
 .accent-title {
   color: var(--accent);
+  margin-top: 1.4rem;
+}
+
+.hero .accent-title {
+  font-size: clamp(1.55rem, 3vw, 1.95rem);
+}
+
+.accent-title--decorated {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  text-align: center;
+}
+
+.accent-title--decorated::before,
+.accent-title--decorated::after {
+  content: "";
+  width: clamp(52px, 10vw, 140px);
+  border-top: 1.5px solid color-mix(in oklab, var(--accent) 70%, white);
+  transform: translateY(1px);
 }
 
 .hero p {
@@ -265,7 +296,7 @@ img {
 }
 
 .feature-content h2 {
-  font-family: 'Newsreader', 'Times New Roman', serif;
+  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
   margin: 0 0 0.5rem;
   font-size: clamp(1.8rem, 3.5vw, 2.4rem);
   font-weight: 400;
@@ -288,14 +319,16 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 0.1rem;
-  margin: 0 0 0.5rem;
-  color: var(--muted);
-  font-size: 1.05rem;
+  margin: 0 0 1.1rem;
+  color: var(--ink);
+  font-size: 1.2rem;
 }
 
 .feature-description {
   margin: 0 0 1rem;
   font-size: 1.05rem;
+  color: var(--muted-readable);
+  white-space: pre-line;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -321,7 +354,7 @@ img {
 
 .home-list h3 {
   margin: 0 0 0.75rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .home-list ul {
@@ -362,12 +395,13 @@ img {
 }
 
 .list-title {
-  font-size: 1.05rem;
+  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+  font-size: 1.22rem;
 }
 
 .list-meta {
   color: var(--muted);
-  font-size: 1rem;
+  font-size: 1.08rem;
 }
 
 
@@ -393,14 +427,14 @@ img {
 }
 
 .archive-list .list-title {
-  font-size: 1.15rem;
+  font-size: 1.3rem;
 }
 
 .archive-more {
   display: inline-block;
   margin-top: 0.75rem;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   letter-spacing: 0.04em;
   color: var(--accent);
 }
@@ -412,9 +446,9 @@ img {
 
 .exhibition-link {
   font-family: 'Space Grotesk', sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.04em;
-  font-size: 0.9rem;
+  font-size: 1.08rem;
   color: var(--accent);
 }
 
@@ -433,10 +467,11 @@ img {
 }
 
 .exhibition-summary h1 {
-  font-family: 'Newsreader', 'Times New Roman', serif;
-  margin: 0;
+  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+  margin: 0 0 0.9rem;
   font-size: clamp(2rem, 4vw, 2.8rem);
-  font-weight: 400;
+  font-weight: 700;
+  color: #b14f31;
 }
 
 .exhibition-summary p {
@@ -444,16 +479,24 @@ img {
   color: var(--muted);
 }
 
+.exhibition-summary .exhibition-description {
+  color: var(--muted-readable);
+  white-space: pre-line;
+}
+
 .exhibition-summary p:nth-of-type(1) {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
   color: var(--ink);
+  font-size: 1.2rem;
 }
 
 .exhibition-summary .exhibition-location {
   display: inline-flex;
   align-items: center;
   gap: 0.1rem;
-  margin-bottom: 0.9rem;
+  margin-bottom: 2.2rem;
+  color: var(--ink);
+  font-size: 1.2rem;
 }
 
 .location-link {
@@ -472,11 +515,20 @@ img {
   transform: translateY(-1px);
 }
 
+.feature-location .location-icon svg,
+.exhibition-location .location-icon svg {
+  transform: translateY(-2px);
+}
+
 .floor-nav {
   display: flex;
   gap: 1rem;
   overflow-x: auto;
   padding: 0.5rem 0 1rem;
+}
+
+.floor-nav-bottom {
+  margin-top: 1.5rem;
 }
 
 .floor-nav a,
@@ -564,6 +616,16 @@ img {
   scroll-snap-align: start;
 }
 
+.artwork-carousel-single .artwork-track {
+  overflow: visible;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+.artwork-carousel-single .artwork-slide {
+  flex: 0 0 100%;
+}
+
 .carousel-arrows {
   position: absolute;
   inset: 0;
@@ -604,20 +666,6 @@ img {
 .carousel-dot.is-active {
   background: var(--accent);
   transform: scale(1.15);
-}
-
-.artwork-carousel::before {
-  content: 'Gliseaza';
-  position: absolute;
-  left: 50%;
-  top: 0.2rem;
-  transform: translateX(-50%);
-  font-size: 0.8rem;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.7;
-  pointer-events: none;
 }
 
 .artwork-card {
@@ -666,6 +714,21 @@ img {
 .artwork-author {
   margin: 0 0 0.75rem;
   color: var(--muted);
+}
+
+.artwork-year {
+  margin: 0 0 0.45rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.artwork-description {
+  margin: 0 0 0.8rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.35;
 }
 
 .artwork-status {
@@ -734,7 +797,7 @@ img {
 
   .exhibition-header {
     grid-template-columns: max-content 1fr;
-    align-items: start;
+    align-items: center;
     column-gap: 1.25rem;
   }
 
@@ -743,11 +806,69 @@ img {
     max-width: 300px;
   }
 
+  .exhibition-summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 420px;
+  }
+
   .artwork-slide {
-    flex: 0 0 100%;
+    flex: 0 0 50%;
+  }
+
+  .artwork-carousel-single .artwork-slide {
+    flex: 0 0 50%;
   }
 
 }
   .feature-content {
     padding-top: 0;
   }
+
+@media (max-width: 699px) {
+  .feature-card {
+    gap: 0.65rem;
+    padding-top: 1.3rem;
+    padding-bottom: 1.3rem;
+  }
+
+  .feature-content {
+    padding-top: 0;
+  }
+
+  .feature-content h2 {
+    font-size: clamp(1.9rem, 7vw, 2.2rem);
+    text-align: center;
+  }
+
+  .feature-dates {
+    text-align: center;
+  }
+
+  .feature-location {
+    display: flex;
+    justify-content: center;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .exhibition-summary h1 {
+    text-align: center;
+    font-size: clamp(2.25rem, 8.5vw, 3.1rem);
+  }
+
+  .exhibition-summary p:nth-of-type(1) {
+    text-align: center;
+  }
+
+  .exhibition-summary .exhibition-location {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

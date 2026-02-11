@@ -4,6 +4,8 @@ interface Props {
   title: string;
   author: string;
   imageUrl: string;
+  year?: string;
+  description?: string;
   price?: number;
   sold?: boolean;
   forSale?: boolean;
@@ -11,7 +13,7 @@ interface Props {
 
 import { withBase } from '../utils/withBase';
 
-const { id, title, author, imageUrl, price, sold, forSale } = Astro.props;
+const { id, title, author, imageUrl, year, description, price, sold, forSale } = Astro.props;
 const resolvedImage = withBase(imageUrl);
 
 const formattedPrice =
@@ -46,6 +48,8 @@ const statusText = sold
   <div class="artwork-meta">
     <h3 class="artwork-title">{title}</h3>
     <p class="artwork-author">{author}</p>
+    {year ? <p class="artwork-year">{year}</p> : null}
+    {description ? <p class="artwork-description">{description}</p> : null}
     <p class="artwork-status" data-role="artwork-status">{statusText}</p>
   </div>
 </article>

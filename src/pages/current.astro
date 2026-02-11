@@ -2,22 +2,21 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getExhibitionsByStatus } from '../utils/exhibitions';
 import { formatDateRange } from '../utils/dates';
-import { withBase } from '../utils/withBase';
 
 const exhibitions = getExhibitionsByStatus('current');
 ---
 
-<BaseLayout title="Expozitii curente | Atrium Gallery" description="Expozitiile in desfasurare la Atrium Gallery.">
-  <h1 class="section-title">Expozitii curente</h1>
+<BaseLayout title="Expoziții curente | Atrium Gallery" description="Expozițiile in desfasurare la Atrium Gallery.">
+  <h1 class="section-title">Expoziții curente</h1>
   <div class="exhibition-list">
     {exhibitions.map((exhibition) => (
       <article class="exhibition-item">
-        <img class="exhibition-thumb" src={withBase(exhibition.thumbnail)} alt={exhibition.title} loading="lazy" />
+        <img class="exhibition-thumb" src={exhibition.thumbnail} alt={exhibition.title} loading="lazy" />
         <div class="exhibition-info">
           <h3>{exhibition.title}</h3>
           <p class="exhibition-meta">{formatDateRange(exhibition.startDate, exhibition.endDate)}</p>
           <p>{exhibition.description}</p>
-          <a class="exhibition-link" href={`exhibition/${exhibition.id}/`}>Intra in expozitie</a>
+          <a class="exhibition-link" href={`exhibition/${exhibition.id}/`}>Intra in expoziție</a>
         </div>
       </article>
     ))}

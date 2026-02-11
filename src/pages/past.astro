@@ -2,17 +2,16 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getExhibitionsByStatus } from '../utils/exhibitions';
 import { formatDateRange } from '../utils/dates';
-import { withBase } from '../utils/withBase';
 
 const exhibitions = getExhibitionsByStatus('past');
 ---
 
-<BaseLayout title="Expozitii trecute | Atrium Gallery" description="Arhiva expozitiilor anterioare.">
-  <h1 class="section-title">Expozitii trecute</h1>
+<BaseLayout title="Expoziții trecute | Atrium Gallery" description="Arhiva expozițiilor anterioare.">
+  <h1 class="section-title">Expoziții trecute</h1>
   <div class="exhibition-list">
     {exhibitions.map((exhibition) => (
       <article class="exhibition-item">
-        <img class="exhibition-thumb" src={withBase(exhibition.thumbnail)} alt={exhibition.title} loading="lazy" />
+        <img class="exhibition-thumb" src={exhibition.thumbnail} alt={exhibition.title} loading="lazy" />
         <div class="exhibition-info">
           <h3>{exhibition.title}</h3>
           <p class="exhibition-meta">{formatDateRange(exhibition.startDate, exhibition.endDate)}</p>

@@ -6,6 +6,8 @@ interface Artwork {
   title: string;
   author: string;
   imageUrl: string;
+  year?: string;
+  description?: string;
   price?: number;
   sold?: boolean;
   forSale?: boolean;
@@ -16,9 +18,15 @@ interface Props {
 }
 
 const { artworks } = Astro.props;
+const hasMultiple = artworks.length > 1;
 ---
 
-<div class="artwork-carousel" role="region" aria-label="Artwork carousel" data-carousel>
+<div
+  class={`artwork-carousel ${hasMultiple ? '' : 'artwork-carousel-single'}`}
+  role="region"
+  aria-label="Artwork carousel"
+  data-carousel={hasMultiple ? '' : undefined}
+>
   <div class="artwork-track" tabindex="0" data-carousel-track>
     {artworks.map((art) => (
       <div class="artwork-slide">
@@ -26,15 +34,19 @@ const { artworks } = Astro.props;
       </div>
     ))}
   </div>
-  <div class="carousel-arrows">
-    <button class="carousel-arrow left" type="button" aria-label="Anterior">‹</button>
-    <button class="carousel-arrow right" type="button" aria-label="Urmator">›</button>
-  </div>
-  <div class="carousel-dots" aria-hidden="true">
-    {artworks.map((_, index) => (
-      <span class="carousel-dot" data-carousel-dot={index}></span>
-    ))}
-  </div>
+  {hasMultiple && (
+    <>
+      <div class="carousel-arrows">
+        <button class="carousel-arrow left" type="button" aria-label="Anterior">‹</button>
+        <button class="carousel-arrow right" type="button" aria-label="Urmator">›</button>
+      </div>
+      <div class="carousel-dots" aria-hidden="true">
+        {artworks.map((_, index) => (
+          <span class="carousel-dot" data-carousel-dot={index}></span>
+        ))}
+      </div>
+    </>
+  )}
 </div>
 
 <script>

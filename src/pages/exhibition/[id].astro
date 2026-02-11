@@ -7,7 +7,6 @@ import {
   getExhibitionContent,
 } from '../../utils/exhibitions';
 import { formatDateRange } from '../../utils/dates';
-import { withBase } from '../../utils/withBase';
 
 export async function getStaticPaths() {
   return getAllExhibitions().map((exhibition) => ({
@@ -32,23 +31,23 @@ const enableSheetMerge = Boolean(sheetId && !isUpcoming);
   <section class="exhibition-header">
     <div class="exhibition-hero">
       <div class="poster-frame">
-        <img class="poster-image" src={withBase(exhibition.thumbnail)} alt={exhibition.title} />
+        <img class="poster-image" src={exhibition.thumbnail} alt={exhibition.title} />
       </div>
     </div>
     <div class="exhibition-summary">
       <h1>{exhibition.title}</h1>
       <p>{formatDateRange(exhibition.startDate, exhibition.endDate)}</p>
       <p class="exhibition-location">
-        <a class="location-link" href={exhibition.locationMapUrl} target="_blank" rel="noreferrer">
-          {exhibition.location}
-        </a>
         <span class="location-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" role="img" focusable="false">
             <path d="M12 2.5c-3.59 0-6.5 2.9-6.5 6.48 0 4.47 6.5 12.52 6.5 12.52s6.5-8.05 6.5-12.52C18.5 5.4 15.59 2.5 12 2.5zm0 8.6a2.12 2.12 0 1 1 0-4.25 2.12 2.12 0 0 1 0 4.25z" />
           </svg>
         </span>
+        <a class="location-link" href={exhibition.locationMapUrl} target="_blank" rel="noreferrer">
+          {exhibition.location}
+        </a>
       </p>
-      <p>{exhibition.description}</p>
+      <p class="exhibition-description">{exhibition.description}</p>
     </div>
   </section>
 
@@ -85,9 +84,24 @@ const enableSheetMerge = Boolean(sheetId && !isUpcoming);
   )}
 
   {!isUpcoming && floors.length > 0 && (
+    <nav class="floor-nav floor-nav-bottom" aria-label="Selectare etaj (jos)" data-floor-nav>
+      {floors.map((floor, index) => (
+        <button
+          type="button"
+          class="floor-button"
+          data-floor-button={floor.id}
+          aria-pressed={index === 0 ? 'true' : 'false'}
+        >
+          {floor.name}
+        </button>
+      ))}
+    </nav>
+  )}
+
+  {!isUpcoming && floors.length > 0 && (
     <script>
-      const nav = document.querySelector('[data-floor-nav]');
-      const buttons = nav ? Array.from(nav.querySelectorAll('[data-floor-button]')) : [];
+      const navs = Array.from(document.querySelectorAll('[data-floor-nav]'));
+      const buttons = navs.flatMap((nav) => Array.from(nav.querySelectorAll('[data-floor-button]')));
       const sections = Array.from(document.querySelectorAll('[data-floor-id]'));
 
       const setActiveFloor = (floorId) => {

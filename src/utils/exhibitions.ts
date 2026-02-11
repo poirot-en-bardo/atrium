@@ -40,6 +40,11 @@ const floorsModules = import.meta.glob('../data/exhibitions/*/*/floors.json', {
 const artworksModules = import.meta.glob('../data/exhibitions/*/*/artworks.json', {
   eager: true,
 });
+const posterModules = import.meta.glob('../data/exhibitions/*/*/*.{png,jpg,jpeg,webp,avif,svg}', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+}) as Record<string, string>;
 
 function parseMetadata(module: unknown): ExhibitionMetadata {
   const data = (module as { default?: ExhibitionMetadata }).default ?? (module as ExhibitionMetadata);
@@ -52,9 +57,14 @@ export function getAllExhibitions(): Exhibition[] {
     const status = segments[segments.length - 3] as ExhibitionStatus;
     const folderId = segments[segments.length - 2];
     const data = parseMetadata(mod);
+    const thumbnailPath = `../data/exhibitions/${status}/${folderId}/${data.thumbnail}`;
+    const thumbnail = data.thumbnail.startsWith('/')
+      ? data.thumbnail
+      : posterModules[thumbnailPath] || data.thumbnail;
     return {
       ...data,
       id: data.id || folderId,
+      thumbnail,
       status,
     };
   });
