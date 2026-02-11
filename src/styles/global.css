@@ -821,6 +821,15 @@ img {
     flex: 0 0 50%;
   }
 
+  .carousel-arrows {
+    padding: 0 0.5rem;
+  }
+
+  .carousel-arrow {
+    font-size: 4.5rem;
+    padding: 0 0.5rem;
+  }
+
 }
   .feature-content {
     padding-top: 0;
