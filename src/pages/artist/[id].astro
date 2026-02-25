@@ -58,30 +58,64 @@ const photoUrl = artist ? withBase(artist.photoUrl) : '';
       {artworksByArtist.length > 0 && (
         <>
           <h2 class="artist-works-title">Lucrări în galerie</h2>
-          <ul class="artist-works">
-            {artworksByArtist.map((item) => (
-              <li class="artist-work-item">
-                <a
-                  class="artist-work-link"
-                  href={`exhibition/${item.exhibitionId}/?floor=${item.floorId}&room=${item.roomId}&artwork=${item.artworkId}`}
-                >
-                  <img
-                    class="artist-work-thumb"
-                    src={item.artworkThumb}
-                    alt={item.artworkTitle}
-                    loading="lazy"
-                  />
-                  <span class="artist-work-text">
-                    <span class="artist-work-title-link">{item.artworkTitle}</span>
-                    <span class="artist-meta">{item.exhibitionTitle}</span>
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div class="artist-works-wrap">
+            <ul class="artist-works" data-artist-works>
+              {artworksByArtist.map((item) => (
+                <li class="artist-work-item">
+                  <a
+                    class="artist-work-link"
+                    href={`exhibition/${item.exhibitionId}/?floor=${item.floorId}&room=${item.roomId}&artwork=${item.artworkId}`}
+                  >
+                    <img
+                      class="artist-work-thumb"
+                      src={item.artworkThumb}
+                      alt={item.artworkTitle}
+                      loading="lazy"
+                    />
+                    <span class="artist-work-text">
+                      <span class="artist-work-title-link">{item.artworkTitle}</span>
+                      <span class="artist-meta">{item.exhibitionTitle}</span>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div class="artist-works-scrollbar" aria-hidden="true">
+              <span class="artist-works-scroll-thumb" data-artist-works-thumb></span>
+            </div>
+          </div>
         </>
       )}
     </div>
   </section>
+  )}
+
+  {artist && artworksByArtist.length > 0 && (
+    <script is:inline>
+      const worksLists = document.querySelectorAll('[data-artist-works]');
+      worksLists.forEach((list) => {
+        const wrap = list.closest('.artist-works-wrap');
+        const thumb = wrap?.querySelector('[data-artist-works-thumb]');
+        const bar = wrap?.querySelector('.artist-works-scrollbar');
+        if (!wrap || !thumb || !bar) return;
+
+        const sync = () => {
+          const maxScroll = list.scrollHeight - list.clientHeight;
+          const trackHeight = wrap.clientHeight - 8;
+          const ratio = maxScroll > 0 ? list.clientHeight / list.scrollHeight : 1;
+          const thumbHeight = Math.max(18, Math.round(trackHeight * ratio));
+          const maxThumbTop = Math.max(0, trackHeight - thumbHeight);
+          const thumbTop = maxScroll > 0 ? Math.round((list.scrollTop / maxScroll) * maxThumbTop) : 0;
+
+          thumb.style.height = `${thumbHeight}px`;
+          thumb.style.transform = `translateY(${thumbTop}px)`;
+          bar.hidden = maxScroll <= 0;
+        };
+
+        sync();
+        list.addEventListener('scroll', sync, { passive: true });
+        window.addEventListener('resize', sync);
+      });
+    </script>
   )}
 </BaseLayout>
