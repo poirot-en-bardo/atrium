@@ -3,6 +3,7 @@ export interface Artist {
   name: string;
   photoUrl: string;
   bio: string;
+  contact: string;
 }
 
 export interface Floor {

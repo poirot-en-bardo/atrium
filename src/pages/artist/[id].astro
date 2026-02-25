@@ -28,6 +28,7 @@ const artworksByArtist = getAllExhibitions().flatMap((exhibition) => {
       exhibitionTitle: exhibition.title,
       floorId: artwork.floorId,
       roomId: artwork.roomId,
+      artworkThumb: withBase(artwork.imageUrl),
     }));
 });
 
@@ -42,19 +43,31 @@ const photoUrl = withBase(artist.photoUrl);
     <div>
       <h1 class="artist-name">{artist.name}</h1>
       <p class="artist-bio">{artist.bio}</p>
+      <p class="artist-contact-line">
+        <span class="artist-contact-label">Contact:</span>{' '}
+        <span>{artist.contact}</span>
+      </p>
 
       {artworksByArtist.length > 0 && (
         <>
           <h2 class="artist-works-title">Lucrări în galerie</h2>
           <ul class="artist-works">
             {artworksByArtist.map((item) => (
-              <li>
+              <li class="artist-work-item">
                 <a
                   class="artist-work-link"
                   href={`exhibition/${item.exhibitionId}/?floor=${item.floorId}&room=${item.roomId}&artwork=${item.artworkId}`}
                 >
-                  {item.artworkTitle}
-                  <span class="artist-meta">{item.exhibitionTitle}</span>
+                  <img
+                    class="artist-work-thumb"
+                    src={item.artworkThumb}
+                    alt={item.artworkTitle}
+                    loading="lazy"
+                  />
+                  <span class="artist-work-text">
+                    <span class="artist-work-title-link">{item.artworkTitle}</span>
+                    <span class="artist-meta">{item.exhibitionTitle}</span>
+                  </span>
                 </a>
               </li>
             ))}
