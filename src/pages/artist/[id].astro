@@ -12,12 +12,10 @@ export async function getStaticPaths() {
 
 const { id } = Astro.params as { id: string };
 const artist = getArtistById(id);
-
-if (!artist) {
+if (!artist && import.meta.env.DEV) {
   throw new Error(`Artist not found: ${id}`);
 }
-
-const artworksByArtist = getAllExhibitions().flatMap((exhibition) => {
+const artworksByArtist = artist ? getAllExhibitions().flatMap((exhibition) => {
   const { artworks } = getExhibitionContent(exhibition.id);
   return artworks
     .filter((artwork) => artwork.artist.id === artist.id)
@@ -30,12 +28,21 @@ const artworksByArtist = getAllExhibitions().flatMap((exhibition) => {
       roomId: artwork.roomId,
       artworkThumb: withBase(artwork.imageUrl),
     }));
-});
+}) : [];
 
-const photoUrl = withBase(artist.photoUrl);
+const photoUrl = artist ? withBase(artist.photoUrl) : '';
 ---
 
-<BaseLayout title={`${artist.name} | Atrium Gallery`} description={artist.bio}>
+<BaseLayout
+  title={artist ? `${artist.name} | Atrium Gallery` : 'Artist indisponibil | Atrium Gallery'}
+  description={artist?.bio ?? 'Pagina artistului nu este disponibilă momentan.'}
+>
+  {!artist ? (
+    <div class="placeholder-panel">
+      <h2>Artist indisponibil</h2>
+      <p>Profilul artistului nu poate fi încărcat momentan.</p>
+    </div>
+  ) : (
   <section class="artist-profile">
     <div class="artist-photo-wrap">
       <img class="artist-photo" src={photoUrl} alt={artist.name} loading="lazy" />
@@ -76,4 +83,5 @@ const photoUrl = withBase(artist.photoUrl);
       )}
     </div>
   </section>
+  )}
 </BaseLayout>

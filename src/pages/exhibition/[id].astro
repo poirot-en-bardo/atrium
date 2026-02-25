@@ -16,18 +16,26 @@ export async function getStaticPaths() {
 
 const { id } = Astro.params as { id: string };
 const exhibition = getExhibitionById(id);
-
-if (!exhibition) {
+if (!exhibition && import.meta.env.DEV) {
   throw new Error(`Exhibition not found: ${id}`);
 }
-
-const { floors, artworks } = getExhibitionContent(exhibition.id);
-const isUpcoming = exhibition.status === 'upcoming' || artworks.length === 0;
+const { floors, artworks } = exhibition ? getExhibitionContent(exhibition.id) : { floors: [], artworks: [] };
+const isUpcoming = exhibition ? exhibition.status === 'upcoming' || artworks.length === 0 : true;
 const sheetId = import.meta.env.PUBLIC_GOOGLE_SHEET_ID ?? '';
 const enableSheetMerge = Boolean(sheetId && !isUpcoming);
 ---
 
-<BaseLayout title={`${exhibition.title} | Atrium Gallery`} description={exhibition.description}>
+<BaseLayout
+  title={exhibition ? `${exhibition.title} | Atrium Gallery` : 'Expoziție indisponibilă | Atrium Gallery'}
+  description={exhibition?.description ?? 'Această expoziție nu este disponibilă momentan.'}
+>
+  {!exhibition ? (
+    <div class="placeholder-panel">
+      <h2>Expoziție indisponibilă</h2>
+      <p>Detaliile pentru această expoziție nu pot fi încărcate momentan.</p>
+    </div>
+  ) : (
+    <>
   <section class="exhibition-header">
     <div class="exhibition-hero">
       <div class="poster-frame">
@@ -225,14 +233,20 @@ const enableSheetMerge = Boolean(sheetId && !isUpcoming);
       };
 
       const hydrate = async () => {
-        const data = await fetchExhibitionSheet(sheetId, exhibitionId);
-        data.forEach((row) => {
-          const card = document.querySelector(`[data-artwork-id="${row.id}"]`);
-          if (card) updateCard(card, row);
-        });
+        try {
+          const data = await fetchExhibitionSheet(sheetId, exhibitionId);
+          data.forEach((row) => {
+            const card = document.querySelector(`[data-artwork-id="${row.id}"]`);
+            if (card) updateCard(card, row);
+          });
+        } catch (error) {
+          console.warn('[exhibition] Could not load live pricing data.', error);
+        }
       };
 
       hydrate();
     </script>
+  )}
+    </>
   )}
 </BaseLayout>

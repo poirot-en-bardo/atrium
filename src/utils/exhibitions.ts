@@ -33,6 +33,24 @@ const posterModules = import.meta.glob('../data/exhibitions/*/*/*.{png,jpg,jpeg,
   query: '?url',
   import: 'default',
 }) as Record<string, string>;
+let integrityChecked = false;
+const warnedIssues = new Set<string>();
+
+function handleDataIssue(message: string): void {
+  if (import.meta.env.DEV) {
+    throw new Error(message);
+  }
+  console.warn(message);
+}
+
+function handleDataIssueOnce(message: string): void {
+  if (import.meta.env.DEV) {
+    throw new Error(message);
+  }
+  if (warnedIssues.has(message)) return;
+  warnedIssues.add(message);
+  console.warn(message);
+}
 
 function getTodayLocalIsoDate(): string {
   const now = new Date();
@@ -60,7 +78,40 @@ function parseMetadata(module: unknown): ExhibitionMetadata {
   return data;
 }
 
+function getArtworkRecordsFromModule(module: unknown): ArtworkRecord[] {
+  const value = (module as { default?: ArtworkRecord[] }).default ?? (module as ArtworkRecord[]);
+  return Array.isArray(value) ? value : [];
+}
+
+function validateDataIntegrityOnce(): void {
+  if (integrityChecked) return;
+  integrityChecked = true;
+
+  const issues: string[] = [];
+  Object.entries(artworksModules).forEach(([file, module]) => {
+    const folderId = file.split('/').at(-2) ?? 'unknown-exhibition';
+    const records = getArtworkRecordsFromModule(module);
+    records.forEach((record) => {
+      if (!record.artistId) {
+        issues.push(
+          `[exhibitions] Missing artistId for artwork "${record.id}" in "${folderId}".`
+        );
+        return;
+      }
+      if (!getArtistById(record.artistId)) {
+        issues.push(
+          `[exhibitions] Missing artist "${record.artistId}" for artwork "${record.id}" in "${folderId}".`
+        );
+      }
+    });
+  });
+
+  if (issues.length === 0) return;
+  handleDataIssue(issues.join('\n'));
+}
+
 export function getAllExhibitions(): Exhibition[] {
+  validateDataIntegrityOnce();
   const raw = Object.entries(metadataModules).map(([file, mod]) => {
     const segments = file.split('/');
     const folderStatus = segments[segments.length - 3] as ExhibitionStatus;
@@ -158,19 +209,21 @@ export function getExhibitionContent(id: string): {
     ? ((floorsEntry[1] as { default?: Floor[] }).default ?? (floorsEntry[1] as Floor[]))
     : [];
   const artworkRecords = artworksEntry
-    ? ((artworksEntry[1] as { default?: ArtworkRecord[] }).default ??
-      (artworksEntry[1] as ArtworkRecord[]))
+    ? getArtworkRecordsFromModule(artworksEntry[1])
     : [];
-  const artworks = artworkRecords.map((artwork) => {
+  const artworks = artworkRecords.flatMap((artwork) => {
     const artist = getArtistById(artwork.artistId);
     if (!artist) {
-      throw new Error(`Unknown artistId "${artwork.artistId}" for artwork "${artwork.id}"`);
+      handleDataIssueOnce(
+        `[exhibitions] Missing artist "${artwork.artistId}" for artwork "${artwork.id}" in "${id}".`
+      );
+      return [];
     }
     const { artistId: _artistId, ...rest } = artwork;
-    return {
+    return [{
       ...rest,
       artist,
-    };
+    }];
   });
 
   return { floors, artworks };
