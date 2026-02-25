@@ -772,6 +772,11 @@ img {
   text-underline-offset: 0.16em;
 }
 
+.artist-link:visited {
+  color: inherit;
+  text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
 .artist-link:hover {
   color: var(--accent);
   text-decoration-color: var(--accent);

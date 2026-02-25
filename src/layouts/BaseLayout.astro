@@ -14,7 +14,8 @@ const normalizedPath =
 const isDespre = normalizedPath === '/despre/' || normalizedPath.startsWith('/despre/');
 const isExhibitionDetail =
   normalizedPath === '/exhibition/' || normalizedPath.startsWith('/exhibition/');
-const isExpoziții = !isDespre && !isExhibitionDetail;
+const isArtistDetail = normalizedPath === '/artist/' || normalizedPath.startsWith('/artist/');
+const isExpoziții = !isDespre && !isExhibitionDetail && !isArtistDetail;
 ---
 
 <!doctype html>

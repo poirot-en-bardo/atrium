@@ -122,6 +122,11 @@ const enableSheetMerge = Boolean(sheetId && !isUpcoming);
       const requestedRoomId = params.get('room');
       const isKnownFloor = (floorId) =>
         buttons.some((button) => button.getAttribute('data-floor-button') === floorId);
+      const persistFloorInUrl = (floorId) => {
+        const url = new URL(window.location.href);
+        url.searchParams.set('floor', floorId);
+        window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+      };
 
       const setActiveFloor = (floorId) => {
         sections.forEach((section) => {
@@ -154,7 +159,10 @@ const enableSheetMerge = Boolean(sheetId && !isUpcoming);
         buttons.forEach((button) => {
           button.addEventListener('click', () => {
             const floorId = button.getAttribute('data-floor-button');
-            if (floorId) setActiveFloor(floorId);
+            if (floorId) {
+              setActiveFloor(floorId);
+              persistFloorInUrl(floorId);
+            }
 
             const clickedBottomNav = button.closest('[data-floor-nav-bottom]');
             if (!floorId || !clickedBottomNav) return;
