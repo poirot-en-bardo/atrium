@@ -38,6 +38,17 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## Cache Busting
+
+To invalidate browser cache for static assets in `public/` that are generated through `withBase(...)`, set:
+
+```sh
+PUBLIC_ASSET_VERSION=2026-02-25
+```
+
+Only selected static paths are versioned (`/images/*`, `/favicon*`).
+External URLs (for example Cloudinary) and bundled hashed assets are left unchanged.
+
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
