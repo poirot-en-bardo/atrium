@@ -821,14 +821,15 @@ img {
 }
 
 .artist-photo-wrap {
-  max-width: 320px;
+  max-width: 150px;
+  margin: 0 auto;
 }
 
 .artist-photo {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 28px;
   border: 1px solid var(--line);
   background: var(--paper-alt);
 }
