@@ -1,17 +1,6 @@
 ---
 import ArtworkCard from './ArtworkCard.astro';
-
-interface Artwork {
-  id: string;
-  title: string;
-  author: string;
-  imageUrl: string;
-  year?: string;
-  description?: string;
-  price?: number;
-  sold?: boolean;
-  forSale?: boolean;
-}
+import type { Artwork } from '../types/gallery';
 
 interface Props {
   artworks: Artwork[];

@@ -1,24 +1,6 @@
 ---
 import RoomSection from './RoomSection.astro';
-
-interface Room {
-  id: string;
-  name: string;
-}
-
-interface Artwork {
-  id: string;
-  floorId: string;
-  roomId: string;
-  title: string;
-  author: string;
-  imageUrl: string;
-  year?: string;
-  description?: string;
-  price?: number;
-  sold?: boolean;
-  forSale?: boolean;
-}
+import type { Artwork, Room } from '../types/gallery';
 
 interface Props {
   floorId: string;
@@ -36,7 +18,7 @@ const { floorId, floorName, rooms, artworks } = Astro.props;
       const roomArtworks = artworks.filter(
         (art) => art.floorId === floorId && art.roomId === room.id
       );
-      return <RoomSection roomName={room.name} artworks={roomArtworks} />;
+      return <RoomSection roomId={room.id} roomName={room.name} artworks={roomArtworks} />;
     })}
   </div>
 </section>

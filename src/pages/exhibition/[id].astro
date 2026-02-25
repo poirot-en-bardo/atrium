@@ -84,7 +84,12 @@ const enableSheetMerge = Boolean(sheetId && !isUpcoming);
   )}
 
   {!isUpcoming && floors.length > 0 && (
-    <nav class="floor-nav floor-nav-bottom" aria-label="Selectare etaj (jos)" data-floor-nav>
+    <nav
+      class="floor-nav floor-nav-bottom"
+      aria-label="Selectare etaj (jos)"
+      data-floor-nav
+      data-floor-nav-bottom
+    >
       {floors.map((floor, index) => (
         <button
           type="button"
@@ -103,6 +108,12 @@ const enableSheetMerge = Boolean(sheetId && !isUpcoming);
       const navs = Array.from(document.querySelectorAll('[data-floor-nav]'));
       const buttons = navs.flatMap((nav) => Array.from(nav.querySelectorAll('[data-floor-button]')));
       const sections = Array.from(document.querySelectorAll('[data-floor-id]'));
+      const params = new URLSearchParams(window.location.search);
+      const requestedArtworkId = params.get('artwork');
+      const requestedFloorId = params.get('floor');
+      const requestedRoomId = params.get('room');
+      const isKnownFloor = (floorId) =>
+        buttons.some((button) => button.getAttribute('data-floor-button') === floorId);
 
       const setActiveFloor = (floorId) => {
         sections.forEach((section) => {
@@ -116,13 +127,60 @@ const enableSheetMerge = Boolean(sheetId && !isUpcoming);
       };
 
       if (buttons.length > 0) {
-        setActiveFloor(buttons[0].getAttribute('data-floor-button'));
+        let initialFloorId = buttons[0].getAttribute('data-floor-button');
+
+        if (requestedFloorId && isKnownFloor(requestedFloorId)) {
+          initialFloorId = requestedFloorId;
+        } else if (requestedArtworkId) {
+          const targetCard = document.querySelector(`[data-artwork-id="${requestedArtworkId}"]`);
+          const targetFloor = targetCard?.closest('[data-floor-id]')?.getAttribute('data-floor-id');
+          if (targetFloor && isKnownFloor(targetFloor)) {
+            initialFloorId = targetFloor;
+          }
+        }
+
+        if (initialFloorId) {
+          setActiveFloor(initialFloorId);
+        }
+
         buttons.forEach((button) => {
           button.addEventListener('click', () => {
             const floorId = button.getAttribute('data-floor-button');
             if (floorId) setActiveFloor(floorId);
+
+            const clickedBottomNav = button.closest('[data-floor-nav-bottom]');
+            if (!floorId || !clickedBottomNav) return;
+
+            requestAnimationFrame(() => {
+              const topFloorNav = document.querySelector(
+                '[data-floor-nav]:not([data-floor-nav-bottom])'
+              );
+              if (!topFloorNav) return;
+              const siteHeader = document.querySelector('.site-header');
+              const headerHeight = siteHeader ? siteHeader.getBoundingClientRect().height : 0;
+              const top =
+                window.scrollY + topFloorNav.getBoundingClientRect().top - headerHeight - 8;
+              window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+            });
           });
         });
+
+        if (requestedRoomId || requestedArtworkId) {
+          requestAnimationFrame(() => {
+            if (requestedRoomId) {
+              const room = document.querySelector(`[data-room-id="${requestedRoomId}"]`);
+              room?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            if (requestedArtworkId) {
+              const card = document.querySelector(`[data-artwork-id="${requestedArtworkId}"]`);
+              if (!card) return;
+              card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              card.classList.add('is-highlighted');
+              setTimeout(() => card.classList.remove('is-highlighted'), 2200);
+            }
+          });
+        }
       }
     </script>
   )}

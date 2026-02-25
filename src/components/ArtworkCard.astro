@@ -1,8 +1,11 @@
 ---
+import type { Artist } from '../types/gallery';
+import { withBase } from '../utils/withBase';
+
 interface Props {
   id: string;
   title: string;
-  author: string;
+  artist: Artist;
   imageUrl: string;
   year?: string;
   description?: string;
@@ -11,9 +14,7 @@ interface Props {
   forSale?: boolean;
 }
 
-import { withBase } from '../utils/withBase';
-
-const { id, title, author, imageUrl, year, description, price, sold, forSale } = Astro.props;
+const { id, title, artist, imageUrl, year, description, price, sold, forSale } = Astro.props;
 const resolvedImage = withBase(imageUrl);
 
 const formattedPrice =
@@ -47,7 +48,9 @@ const statusText = sold
   </div>
   <div class="artwork-meta">
     <h3 class="artwork-title">{title}</h3>
-    <p class="artwork-author">{author}</p>
+    <p class="artwork-author">
+      <a class="artist-link" href={`artist/${artist.id}/`}>{artist.name}</a>
+    </p>
     {year ? <p class="artwork-year">{year}</p> : null}
     {description ? <p class="artwork-description">{description}</p> : null}
     <p class="artwork-status" data-role="artwork-status">{statusText}</p>

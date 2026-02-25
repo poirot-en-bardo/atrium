@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllArtists, getArtistById } from '../../utils/artists';
+import { getAllExhibitions, getExhibitionContent } from '../../utils/exhibitions';
+import { withBase } from '../../utils/withBase';
+
+export async function getStaticPaths() {
+  return getAllArtists().map((artist) => ({
+    params: { id: artist.id },
+  }));
+}
+
+const { id } = Astro.params as { id: string };
+const artist = getArtistById(id);
+
+if (!artist) {
+  throw new Error(`Artist not found: ${id}`);
+}
+
+const artworksByArtist = getAllExhibitions().flatMap((exhibition) => {
+  const { artworks } = getExhibitionContent(exhibition.id);
+  return artworks
+    .filter((artwork) => artwork.artist.id === artist.id)
+    .map((artwork) => ({
+      artworkId: artwork.id,
+      artworkTitle: artwork.title,
+      exhibitionId: exhibition.id,
+      exhibitionTitle: exhibition.title,
+      floorId: artwork.floorId,
+      roomId: artwork.roomId,
+    }));
+});
+
+const photoUrl = withBase(artist.photoUrl);
+---
+
+<BaseLayout title={`${artist.name} | Atrium Gallery`} description={artist.bio}>
+  <section class="artist-profile">
+    <div class="artist-photo-wrap">
+      <img class="artist-photo" src={photoUrl} alt={artist.name} loading="lazy" />
+    </div>
+    <div>
+      <h1 class="artist-name">{artist.name}</h1>
+      <p class="artist-bio">{artist.bio}</p>
+
+      {artworksByArtist.length > 0 && (
+        <>
+          <h2 class="artist-works-title">Lucrări în galerie</h2>
+          <ul class="artist-works">
+            {artworksByArtist.map((item) => (
+              <li>
+                <a
+                  class="artist-work-link"
+                  href={`exhibition/${item.exhibitionId}/?floor=${item.floorId}&room=${item.roomId}&artwork=${item.artworkId}`}
+                >
+                  {item.artworkTitle}
+                  <span class="artist-meta">{item.exhibitionTitle}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </div>
+  </section>
+</BaseLayout>

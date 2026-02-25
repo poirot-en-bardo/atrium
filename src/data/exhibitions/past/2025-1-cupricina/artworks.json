@@ -2,261 +2,254 @@
   {
     "id": "pricina-1",
     "title": "Ganduri1",
-    "author": "Ramona Slug",
     "year": "2025",
     "description": "Pictura abstracta",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/ramona6_gvnyo7.jpg",
     "floorId": "parter",
     "roomId": "sala1",
-    "forSale": true
+    "forSale": true,
+    "artistId": "ramona-slug"
   },
   {
     "id": "pricina-2",
     "title": "Ganduri2",
-    "author": "Ramona Slug",
     "year": "2025",
     "description": "Pictura abstracta",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/ramona7_crw2iv.jpg",
     "floorId": "parter",
     "roomId": "sala1",
-    "forSale": true
+    "forSale": true,
+    "artistId": "ramona-slug"
   },
   {
     "id": "pricina-3",
     "title": "Ganduri3",
-    "author": "Ramona Slug",
     "year": "2025",
     "description": "Pictura abstracta",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841685/ramona2_ybdvgr.jpg",
     "floorId": "parter",
     "roomId": "sala1",
-    "forSale": true
+    "forSale": true,
+    "artistId": "ramona-slug"
   },
   {
     "id": "pricina-4",
     "title": "Ganduri4",
-    "author": "Ramona Slug",
     "year": "2025",
     "description": "Pictura abstracta",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/ramona5_mbsa7f.jpg",
     "floorId": "parter",
     "roomId": "sala1",
-    "forSale": true
+    "forSale": true,
+    "artistId": "ramona-slug"
   },
   {
     "id": "pricina-5",
     "title": "Domnul serios",
-    "author": "Ada Oprea",
     "year": "2025",
     "description": "Fotografie",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841683/ada1_lznj05.jpg",
     "floorId": "etaj1",
     "roomId": "sala1",
-    "forSale": true
+    "forSale": true,
+    "artistId": "ada-oprea"
   },
   {
     "id": "pricina-6",
     "title": "Covoras rosu",
-    "author": "Corina Eredenta Moldovan-Florea",
     "year": "2024",
     "description": "Tesaturi din lana premium",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770842423/corina1_fawni6.jpg",
     "floorId": "etaj1",
     "roomId": "sala1",
-    "forSale": true
+    "forSale": true,
+    "artistId": "corina-eredenta-moldovan-florea"
   },
   {
     "id": "pricina-7",
     "title": "Multe covorase",
-    "author": "Corina Eredenta Moldovan-Florea",
     "year": "2024",
     "description": "Multe tesaturi din lana premium",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/corina2_paipgc.jpg",
     "floorId": "etaj1",
     "roomId": "sala1",
-    "forSale": true
+    "forSale": true,
+    "artistId": "corina-eredenta-moldovan-florea"
   },
   {
     "id": "pricina-700",
     "title": "Ochii",
-    "author": "Deragos Nita",
     "year": "2024",
     "description": "Cranii pictate in acrilic si pandantive sculptate in os",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841682/dragos_ebpvlg.jpg",
     "floorId": "etaj1",
     "roomId": "sala1",
-    "forSale": true
+    "forSale": true,
+    "artistId": "deragos-nita"
   },
-
   {
     "id": "pricina-8",
     "title": "Fereastra",
-    "author": "Ionela Pațareniuc",
     "year": "2024",
     "description": "Ceramica decorativa pentru interior cu motive zoomorfe",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841689/ionela1_ket2xo.jpg",
     "floorId": "etaj1",
     "roomId": "sala1",
-    "forSale": true
+    "forSale": true,
+    "artistId": "ionela-patareniuc"
   },
   {
     "id": "pricina-9",
     "title": "Noi 3",
-    "author": "Ionela Pațareniuc",
     "year": "2025",
     "description": "Ceramica decorativa pentru interior",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841688/ionela2_v1gdci.jpg",
     "floorId": "etaj1",
     "roomId": "sala1",
-    "forSale": true
+    "forSale": true,
+    "artistId": "ionela-patareniuc"
   },
-
   {
     "id": "pricina-10",
     "title": "Lumea mea peste lumea ta",
-    "author": "Sergiu Negulici",
     "year": "2025",
     "description": "Instalatie in-situ cu spray paint",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841683/sergiu1_lfsgov.jpg",
     "floorId": "etaj1",
     "roomId": "sala2",
-    "forSale": true
+    "forSale": true,
+    "artistId": "sergiu-negulici"
   },
-
   {
     "id": "pricina-11",
     "title": "Oac",
-    "author": "Amandine Banescu",
     "year": "2023",
     "description": "Ilustratie in acuarela pentru cartea Oac si Tac",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841684/amandine2_ix7kkk.jpg",
     "floorId": "etaj1",
     "roomId": "sala3",
-    "forSale": true
+    "forSale": true,
+    "artistId": "amandine-banescu"
   },
   {
     "id": "pricina-12",
     "title": "Baietel",
-    "author": "Amandine Banescu",
     "year": "2023",
     "description": "Ilustratie in acuarela",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841684/amandine1_wbqvyy.jpg",
     "floorId": "etaj1",
     "roomId": "sala3",
-    "forSale": true
+    "forSale": true,
+    "artistId": "amandine-banescu"
   },
   {
     "id": "pricina-13",
     "title": "Cianotipii",
-    "author": "Ioana Binica",
     "year": "2024",
     "description": "Cianotipii de diverse dimensiuni, cu teme botanice si abstracte",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841682/ioana1_ib8b2f.jpg",
     "floorId": "etaj1",
     "roomId": "sala3",
-    "forSale": true
+    "forSale": true,
+    "artistId": "ioana-binica"
   },
-
   {
     "id": "pricina-14",
     "title": "Roro's Works",
-    "author": "Rares Aron",
     "year": "2025",
     "description": "Elemente folosite in pielaria artizanala",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841683/rares1_gamabl.jpg",
     "floorId": "etaj1",
     "roomId": "sala3",
-    "forSale": true
+    "forSale": true,
+    "artistId": "rares-aron"
   },
   {
     "id": "pricina-15",
     "title": "Portret de familie",
-    "author": "Natasa Radion",
     "year": "2025",
     "description": "Tesaturi",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/natasa_iudwyc.jpg",
     "floorId": "etaj1",
     "roomId": "sala3",
-    "forSale": true
+    "forSale": true,
+    "artistId": "natasa-radion"
   },
   {
     "id": "pricina-16",
     "title": "Ethereum",
-    "author": "Selma Duteanu",
     "year": "2024",
     "description": "Picturi in acuarela",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/selma_emarfa.jpg",
     "floorId": "etaj1",
     "roomId": "sala3",
-    "forSale": true
+    "forSale": true,
+    "artistId": "selma-duteanu"
   },
   {
     "id": "pricina-17",
     "title": "Grădina",
-    "author": "Zelmira Szabó",
     "year": "2024",
     "description": "Ilustratii in acuarela",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841683/zelmi_jprw8m.jpg",
     "floorId": "etaj1",
     "roomId": "sala3",
-    "forSale": true
+    "forSale": true,
+    "artistId": "zelmira-szabo"
   },
-
-
-
   {
     "id": "pricina-18",
     "title": "Instrument magic",
-    "author": "Iulian Milea",
     "year": "2024",
     "description": "Instrument muzical artizanal cu coarde",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841684/iulian1_r7u51z.jpg",
     "floorId": "etaj1",
     "roomId": "sala4",
-    "forSale": true
+    "forSale": true,
+    "artistId": "iulian-milea"
   },
   {
     "id": "pricina-19",
     "title": "Curtea vecinului",
-    "author": "Iulian Milea",
     "year": "2024",
     "description": "Tablouri din sarma",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841682/iulian2_troskh.jpg",
     "floorId": "etaj1",
     "roomId": "sala4",
-    "forSale": true
+    "forSale": true,
+    "artistId": "iulian-milea"
   },
   {
     "id": "pricina-20",
     "title": "Nu pipaiti pipele",
-    "author": "Iulian Milea",
     "year": "2024",
     "description": "Pipe artizanale",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841682/iulian3_goumjd.jpg",
     "floorId": "etaj1",
     "roomId": "sala4",
-    "forSale": true
+    "forSale": true,
+    "artistId": "iulian-milea"
   },
   {
     "id": "pricina-21",
     "title": "Atentie",
-    "author": "Victor Ghiga",
     "year": "2025",
     "description": "Sculptura in lemn",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841687/victor1_f8rwjh.jpg",
     "floorId": "etaj1",
     "roomId": "sala4",
-    "forSale": true
+    "forSale": true,
+    "artistId": "victor-ghiga"
   },
   {
     "id": "pricina-22",
     "title": "Coltul de Coloniale",
-    "author": "Rodica",
     "year": "2025",
     "description": "Covoras tesut manual cu motive traditionale",
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841684/rodica_qiwat8.jpg",
     "floorId": "etaj1",
     "roomId": "sala4",
-    "forSale": true
+    "forSale": true,
+    "artistId": "rodica"
   }
 ]

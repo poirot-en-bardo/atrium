@@ -121,6 +121,48 @@ img {
   transform: translateY(-2px);
 }
 
+.back-button {
+  position: fixed;
+  top: 3.2rem;
+  left: 0.9rem;
+  z-index: 20;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--ink);
+  display: none;
+  place-items: center;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+
+.back-button svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.back-button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+@media (max-width: 699px) {
+  .back-button {
+    display: grid;
+    top: 4rem;
+    left: 1.25rem;
+  }
+}
+
 .scroll-top {
   position: fixed;
   right: 1.5rem;
@@ -676,6 +718,11 @@ img {
   box-shadow: var(--shadow);
 }
 
+.artwork-card.is-highlighted {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 28%, transparent), var(--shadow);
+}
+
 .artwork-image {
   position: relative;
   background: #f3f2f1;
@@ -716,6 +763,18 @@ img {
   color: var(--muted);
 }
 
+.artist-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  text-underline-offset: 0.16em;
+}
+
+.artist-link:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
 .artwork-year {
   margin: 0 0 0.45rem;
   font-family: 'Space Grotesk', sans-serif;
@@ -745,6 +804,68 @@ img {
   border-radius: 20px;
   color: var(--muted);
   text-align: center;
+}
+
+.artist-profile {
+  display: grid;
+  gap: 1.5rem;
+  margin: 1.25rem auto 0;
+  max-width: 900px;
+}
+
+.artist-photo-wrap {
+  max-width: 320px;
+}
+
+.artist-photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: var(--paper-alt);
+}
+
+.artist-name {
+  margin: 0 0 0.7rem;
+  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.artist-bio {
+  margin: 0;
+  white-space: pre-line;
+  color: var(--muted-readable);
+  line-height: 1.5;
+}
+
+.artist-works-title {
+  margin: 1.4rem 0 0.75rem;
+  font-size: 1.2rem;
+}
+
+.artist-works {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.artist-work-link {
+  color: inherit;
+}
+
+.artist-work-link:hover {
+  color: var(--accent);
+}
+
+.artist-meta {
+  display: block;
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 
 @media (min-width: 700px) {
@@ -819,6 +940,12 @@ img {
 
   .artwork-carousel-single .artwork-slide {
     flex: 0 0 50%;
+  }
+
+  .artist-profile {
+    grid-template-columns: minmax(220px, 300px) 1fr;
+    align-items: start;
+    column-gap: 2rem;
   }
 
 }

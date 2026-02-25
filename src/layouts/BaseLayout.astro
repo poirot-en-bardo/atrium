@@ -29,6 +29,11 @@ const isExpoziții = !isDespre && !isExhibitionDetail;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
+    <button class="back-button" type="button" aria-label="Înapoi">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M15 5l-7 7 7 7" />
+      </svg>
+    </button>
     <header class="site-header">
       <div class="site-brand">
         <a href="./" class="site-logo">Atrium Gallery</a>
@@ -61,6 +66,15 @@ const isExpoziții = !isDespre && !isExhibitionDetail;
       ↑
     </button>
     <script is:inline>
+      const backButton = document.querySelector('.back-button');
+      backButton?.addEventListener('click', () => {
+        if (window.history.length > 1) {
+          window.history.back();
+          return;
+        }
+        window.location.href = './';
+      });
+
       const scrollButton = document.querySelector('.scroll-top');
       const toggleScrollButton = () => {
         if (!scrollButton) return;

@@ -1,3 +1,6 @@
+import { getArtistById } from './artists';
+import type { Artwork, ArtworkRecord, Floor } from '../types/gallery';
+
 export type ExhibitionStatus = 'current' | 'past' | 'upcoming';
 
 export interface ExhibitionMetadata {
@@ -13,22 +16,6 @@ export interface ExhibitionMetadata {
 
 export interface Exhibition extends ExhibitionMetadata {
   status: ExhibitionStatus;
-}
-
-interface Floor {
-  id: string;
-  name: string;
-  rooms: { id: string; name: string }[];
-}
-
-interface Artwork {
-  id: string;
-  title: string;
-  author: string;
-  imageUrl: string;
-  floorId: string;
-  roomId: string;
-  forSale?: boolean;
 }
 
 const metadataModules = import.meta.glob('../data/exhibitions/*/*/metadata.json', {
@@ -94,9 +81,21 @@ export function getExhibitionContent(id: string): {
   const floors = floorsEntry
     ? ((floorsEntry[1] as { default?: Floor[] }).default ?? (floorsEntry[1] as Floor[]))
     : [];
-  const artworks = artworksEntry
-    ? ((artworksEntry[1] as { default?: Artwork[] }).default ?? (artworksEntry[1] as Artwork[]))
+  const artworkRecords = artworksEntry
+    ? ((artworksEntry[1] as { default?: ArtworkRecord[] }).default ??
+      (artworksEntry[1] as ArtworkRecord[]))
     : [];
+  const artworks = artworkRecords.map((artwork) => {
+    const artist = getArtistById(artwork.artistId);
+    if (!artist) {
+      throw new Error(`Unknown artistId "${artwork.artistId}" for artwork "${artwork.id}"`);
+    }
+    const { artistId: _artistId, ...rest } = artwork;
+    return {
+      ...rest,
+      artist,
+    };
+  });
 
   return { floors, artworks };
 }
