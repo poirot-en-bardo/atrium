@@ -15,6 +15,7 @@ export interface ExhibitionMetadata {
 }
 
 export interface Exhibition extends ExhibitionMetadata {
+  folderId: string;
   status: ExhibitionStatus;
 }
 
@@ -33,28 +34,102 @@ const posterModules = import.meta.glob('../data/exhibitions/*/*/*.{png,jpg,jpeg,
   import: 'default',
 }) as Record<string, string>;
 
+function getTodayLocalIsoDate(): string {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function deriveStatusFromDates(startDate: string, endDate: string): ExhibitionStatus {
+  const today = getTodayLocalIsoDate();
+  if (today < startDate) return 'upcoming';
+  if (today > endDate) return 'past';
+  return 'current';
+}
+
+function statusPriority(status: ExhibitionStatus): number {
+  if (status === 'current') return 3;
+  if (status === 'upcoming') return 2;
+  return 1;
+}
+
 function parseMetadata(module: unknown): ExhibitionMetadata {
   const data = (module as { default?: ExhibitionMetadata }).default ?? (module as ExhibitionMetadata);
   return data;
 }
 
 export function getAllExhibitions(): Exhibition[] {
-  return Object.entries(metadataModules).map(([file, mod]) => {
+  const raw = Object.entries(metadataModules).map(([file, mod]) => {
     const segments = file.split('/');
-    const status = segments[segments.length - 3] as ExhibitionStatus;
+    const folderStatus = segments[segments.length - 3] as ExhibitionStatus;
     const folderId = segments[segments.length - 2];
     const data = parseMetadata(mod);
-    const thumbnailPath = `../data/exhibitions/${status}/${folderId}/${data.thumbnail}`;
+    const thumbnailPath = `../data/exhibitions/${folderStatus}/${folderId}/${data.thumbnail}`;
     const thumbnail = data.thumbnail.startsWith('/')
       ? data.thumbnail
       : posterModules[thumbnailPath] || data.thumbnail;
+    const status = deriveStatusFromDates(data.startDate, data.endDate);
     return {
       ...data,
-      id: data.id || folderId,
+      folderId,
       thumbnail,
       status,
+      folderStatus,
+      metadataId: data.id,
     };
   });
+
+  const metadataIdCounts = new Map<string, number>();
+  raw.forEach((entry) => {
+    const metadataId = entry.metadataId?.trim();
+    if (!metadataId) return;
+    metadataIdCounts.set(metadataId, (metadataIdCounts.get(metadataId) ?? 0) + 1);
+  });
+
+  const candidates = raw.map((entry) => {
+    const metadataId = entry.metadataId?.trim();
+    const isUniqueMetadataId = Boolean(metadataId) && metadataIdCounts.get(metadataId!) === 1;
+    const id = isUniqueMetadataId ? metadataId! : entry.folderId;
+    return {
+      ...entry,
+      id,
+    };
+  });
+
+  const byId = new Map<string, (Exhibition & { folderStatus: ExhibitionStatus })>();
+  candidates.forEach((candidate) => {
+    const existing = byId.get(candidate.id);
+    if (!existing) {
+      byId.set(candidate.id, candidate);
+      return;
+    }
+
+    const candidateMatchesStatus = candidate.folderStatus === candidate.status;
+    const existingMatchesStatus = existing.folderStatus === existing.status;
+    if (candidateMatchesStatus !== existingMatchesStatus) {
+      if (candidateMatchesStatus) byId.set(candidate.id, candidate);
+      return;
+    }
+
+    const candidatePriority = statusPriority(candidate.status);
+    const existingPriority = statusPriority(existing.status);
+    if (candidatePriority !== existingPriority) {
+      if (candidatePriority > existingPriority) {
+        byId.set(candidate.id, candidate);
+      }
+      return;
+    }
+
+    if (candidate.startDate > existing.startDate) {
+      byId.set(candidate.id, candidate);
+    }
+  });
+
+  return Array.from(byId.values()).map(
+    ({ folderStatus: _folderStatus, metadataId: _metadataId, ...exhibition }) => exhibition
+  );
 }
 
 export function getExhibitionsByStatus(status: ExhibitionStatus): Exhibition[] {
@@ -71,11 +146,12 @@ export function getExhibitionContent(id: string): {
   floors: Floor[];
   artworks: Artwork[];
 } {
+  const folderId = getAllExhibitions().find((exhibition) => exhibition.id === id)?.folderId ?? id;
   const floorsEntry = Object.entries(floorsModules).find(([file]) =>
-    file.includes(`/${id}/floors.json`)
+    file.includes(`/${folderId}/floors.json`)
   );
   const artworksEntry = Object.entries(artworksModules).find(([file]) =>
-    file.includes(`/${id}/artworks.json`)
+    file.includes(`/${folderId}/artworks.json`)
   );
 
   const floors = floorsEntry

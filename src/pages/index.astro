@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ExhibitionListSection from '../components/ExhibitionListSection.astro';
 import { getExhibitionsByStatus } from '../utils/exhibitions';
 import { formatDateRange } from '../utils/dates';
 import { withBase } from '../utils/withBase';
@@ -8,17 +9,60 @@ const current = getExhibitionsByStatus('current');
 const upcoming = getExhibitionsByStatus('upcoming');
 const past = getExhibitionsByStatus('past');
 
-const featured = current[0] ?? upcoming[0] ?? null;
-const hasCurrent = current.length > 0;
-const featuredIsUpcoming = featured ? upcoming.some((ex) => ex.id === featured.id) : false;
-const upcomingList = featuredIsUpcoming ? upcoming.slice(1) : upcoming;
-const hasFeatured = Boolean(featured);
 const lastPast = past.length > 0 ? past[past.length - 1] : null;
-const archiveList = [...past].reverse();
+const mostRecentCurrent = current.length > 0 ? current[current.length - 1] : null;
+const featured = mostRecentCurrent ?? upcoming[0] ?? lastPast ?? null;
+const hasFeatured = Boolean(featured);
+
+const featuredType = current.length > 0 ? 'current' : upcoming.length > 0 ? 'upcoming' : past.length > 0 ? 'past' : null;
+const featuredBadge =
+  featuredType === 'upcoming'
+    ? 'În curând'
+    : featuredType === 'current'
+      ? 'Expoziția curentă'
+      : 'Ultima expoziție';
+
+const currentList = [...current].reverse();
+const hasCurrentList = currentList.length > 1;
+
+const upcomingList = featuredType === 'upcoming' ? upcoming.slice(1) : upcoming;
+const hasUpcomingList = upcomingList.length > 0;
+
 const archiveLimit = 5;
-const archivePreview = archiveList.slice(0, archiveLimit);
-const hasMoreArchive = archiveList.length > archiveLimit;
-const hasUpcoming = upcomingList.length > 0;
+const archiveList = [...past].reverse();
+const archiveSource =
+  featuredType === 'past' && featured
+    ? archiveList.filter((exhibition) => exhibition.id !== featured.id)
+    : archiveList;
+const archivePreview = archiveSource.slice(0, archiveLimit);
+const hasArchivePreview = archivePreview.length > 0;
+const hasMoreArchive = archiveSource.length > archiveLimit;
+
+const listSections = [
+  hasCurrentList
+    ? {
+        key: 'current',
+        title: 'Expoziții curente',
+        exhibitions: currentList,
+      }
+    : null,
+  hasUpcomingList
+    ? {
+        key: 'upcoming',
+        title: 'În curând',
+        exhibitions: upcomingList,
+      }
+    : null,
+  hasArchivePreview
+    ? {
+        key: 'archive',
+        title: 'Arhiva',
+        exhibitions: archivePreview,
+        showMoreHref: hasMoreArchive ? 'past/' : undefined,
+      }
+    : null,
+].filter(Boolean);
+
 const mapImage = withBase('/images/harta.jpg');
 ---
 
@@ -35,9 +79,7 @@ const mapImage = withBase('/images/harta.jpg');
           <div class="poster-frame">
             <img class="poster-image" src={featured.thumbnail} alt={featured.title} loading="lazy" />
           </div>
-          <span class="feature-badge">
-            {featuredIsUpcoming ? 'În curând' : 'Expoziția curentă'}
-          </span>
+          <span class="feature-badge">{featuredBadge}</span>
         </div>
         <div class="feature-content">
           <h2>{featured.title}</h2>
@@ -55,136 +97,31 @@ const mapImage = withBase('/images/harta.jpg');
         </div>
       </a>
 
-      {hasCurrent ? (
-        hasUpcoming ? (
-          <div class="home-columns">
-            <section class="home-list">
-              <h3>În curând</h3>
-              <ul class="archive-list">
-                {upcomingList.map((exhibition) => (
-                  <li>
-                    <a class="list-link list-link--archive" href={`exhibition/${exhibition.id}/`}>
-                      <img class="list-thumb" src={exhibition.thumbnail} alt={exhibition.title} loading="lazy" />
-                      <span class="list-text">
-                        <span class="list-title">{exhibition.title}</span>
-                        <span class="list-meta">{formatDateRange(exhibition.startDate, exhibition.endDate)}</span>
-                        <span class="list-meta">{exhibition.location}</span>
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-          </section>
-
-            <section class="home-list">
-              <h3>Arhiva</h3>
-              {archivePreview.length > 0 ? (
-                <ul class="archive-list">
-                  {archivePreview.map((exhibition) => (
-                    <li>
-                      <a class="list-link list-link--archive" href={`exhibition/${exhibition.id}/`}>
-                        <img class="list-thumb" src={exhibition.thumbnail} alt={exhibition.title} loading="lazy" />
-                        <span class="list-text">
-                          <span class="list-title">{exhibition.title}</span>
-                          <span class="list-meta">{formatDateRange(exhibition.startDate, exhibition.endDate)}</span>
-                          <span class="list-meta">{exhibition.location}</span>
-                        </span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p class="muted">Arhiva este goala momentan.</p>
-              )}
-              {hasMoreArchive && (
-                <a class="archive-more" href="past/">Vezi toate expozițiile</a>
-              )}
-            </section>
-          </div>
+      {listSections.length > 0 &&
+        (listSections.length === 1 ? (
+          <ExhibitionListSection
+            title={listSections[0].title}
+            exhibitions={listSections[0].exhibitions}
+            sectionClass="home-archive"
+            headingLevel="h2"
+            showMoreHref={listSections[0].showMoreHref}
+          />
         ) : (
-          <section class="home-archive">
-            <h2 class="section-title">Arhiva</h2>
-            <ul class="archive-list">
-              {archivePreview.map((exhibition) => (
-                <li>
-                  <a class="list-link list-link--archive" href={`exhibition/${exhibition.id}/`}>
-                    <img class="list-thumb" src={exhibition.thumbnail} alt={exhibition.title} loading="lazy" />
-                    <span class="list-text">
-                      <span class="list-title">{exhibition.title}</span>
-                      <span class="list-meta">{formatDateRange(exhibition.startDate, exhibition.endDate)}</span>
-                    <span class="list-meta">{exhibition.location}</span>
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-            {hasMoreArchive && (
-              <a class="archive-more" href="past/">Vezi toate expozițiile</a>
-            )}
-          </section>
-        )
-      ) : (
-        <section class="home-archive">
-          <h2 class="section-title">Arhiva</h2>
-          <ul class="archive-list">
-            {archivePreview.map((exhibition) => (
-              <li>
-                <a class="list-link list-link--archive" href={`exhibition/${exhibition.id}/`}>
-                  <img class="list-thumb" src={exhibition.thumbnail} alt={exhibition.title} loading="lazy" />
-                  <span class="list-text">
-                    <span class="list-title">{exhibition.title}</span>
-                    <span class="list-meta">{formatDateRange(exhibition.startDate, exhibition.endDate)}</span>
-                <span class="list-meta">{exhibition.location}</span>
-                  </span>
-                </a>
-              </li>
+          <div class={`home-columns ${listSections.length === 3 ? 'home-columns--three' : ''}`}>
+            {listSections.map((section) => (
+              <ExhibitionListSection
+                title={section.title}
+                exhibitions={section.exhibitions}
+                sectionClass="home-list"
+                showMoreHref={section.showMoreHref}
+              />
             ))}
-          </ul>
-          {hasMoreArchive && (
-            <a class="archive-more" href="past/">Vezi toate expozițiile</a>
-          )}
-        </section>
-      )}
+          </div>
+        ))}
     </section>
   ) : (
     <section class="home-archive">
-      {lastPast && (
-        <a class="feature-card feature-card--archive" href={`exhibition/${lastPast.id}/`}>
-          <div class="feature-media">
-            <div class="poster-frame">
-              <img class="poster-image" src={lastPast.thumbnail} alt={lastPast.title} loading="lazy" />
-            </div>
-            <span class="feature-badge">Ultima expoziție</span>
-          </div>
-          <div class="feature-content">
-            <h2>{lastPast.title}</h2>
-            <p class="feature-dates">{formatDateRange(lastPast.startDate, lastPast.endDate)}</p>
-            <p class="feature-location">
-              <span class="location-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img" focusable="false">
-                  <path d="M12 2.5c-3.59 0-6.5 2.9-6.5 6.48 0 4.47 6.5 12.52 6.5 12.52s6.5-8.05 6.5-12.52C18.5 5.4 15.59 2.5 12 2.5zm0 8.6a2.12 2.12 0 1 1 0-4.25 2.12 2.12 0 0 1 0 4.25z" />
-                </svg>
-              </span>
-              {lastPast.location}
-            </p>
-            <p class="feature-description">{lastPast.description}</p>
-            <span class="exhibition-link">Vezi expoziția</span>
-          </div>
-        </a>
-      )}
-
-      <h2 class="section-title">Arhiva</h2>
-      <ul class="archive-list">
-        {archiveList.map((exhibition) => (
-          <li>
-            <div>
-              <a href={`exhibition/${exhibition.id}/`}>{exhibition.title}</a>
-              <span class="archive-dates">{formatDateRange(exhibition.startDate, exhibition.endDate)}</span>
-              <span class="archive-location">{exhibition.location}</span>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <p class="muted">Nu există încă expoziții publicate.</p>
     </section>
   )}
 </BaseLayout>

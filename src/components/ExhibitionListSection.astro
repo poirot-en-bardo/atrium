@@ -1,0 +1,61 @@
+---
+import { formatDateRange } from '../utils/dates';
+
+interface ExhibitionItem {
+  id: string;
+  title: string;
+  thumbnail: string;
+  startDate: string;
+  endDate: string;
+  location: string;
+}
+
+interface Props {
+  title: string;
+  exhibitions: ExhibitionItem[];
+  sectionClass?: string;
+  headingLevel?: 'h2' | 'h3';
+  showMoreHref?: string;
+  showMoreLabel?: string;
+  emptyMessage?: string;
+}
+
+const {
+  title,
+  exhibitions,
+  sectionClass = 'home-list',
+  headingLevel = 'h3',
+  showMoreHref,
+  showMoreLabel = 'Vezi toate expozițiile',
+  emptyMessage = 'Arhiva este goala momentan.',
+} = Astro.props;
+
+const HeadingTag = headingLevel;
+---
+
+<section class={sectionClass}>
+  <HeadingTag class={headingLevel === 'h2' ? 'section-title' : undefined}>{title}</HeadingTag>
+
+  {exhibitions.length > 0 ? (
+    <ul class="archive-list">
+      {exhibitions.map((exhibition) => (
+        <li>
+          <a class="list-link list-link--archive" href={`exhibition/${exhibition.id}/`}>
+            <img class="list-thumb" src={exhibition.thumbnail} alt={exhibition.title} loading="lazy" />
+            <span class="list-text">
+              <span class="list-title">{exhibition.title}</span>
+              <span class="list-meta">{formatDateRange(exhibition.startDate, exhibition.endDate)}</span>
+              <span class="list-meta">{exhibition.location}</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p class="muted">{emptyMessage}</p>
+  )}
+
+  {showMoreHref && exhibitions.length > 0 && (
+    <a class="archive-more" href={showMoreHref}>{showMoreLabel}</a>
+  )}
+</section>

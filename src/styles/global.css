@@ -339,9 +339,10 @@ img {
 
 .feature-content h2 {
   font-family: 'Cormorant Garamond', 'Times New Roman', serif;
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.9rem;
   font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-  font-weight: 400;
+  font-weight: 700;
+  color: #b14f31;
 }
 
 .exhibition-title-link {
@@ -353,17 +354,17 @@ img {
 }
 
 .feature-dates {
-  font-size: 1.2rem;
-  margin: 0 0 0.7rem;
+  font-size: 1.1rem;
+  margin: 0 0 0.6rem;
 }
 
 .feature-location {
   display: inline-flex;
   align-items: center;
   gap: 0.1rem;
-  margin: 0 0 1.1rem;
+  margin: 0 0 1.8rem;
   color: var(--ink);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .feature-description {
@@ -470,6 +471,7 @@ img {
 
 .archive-list .list-title {
   font-size: 1.3rem;
+  color: #b14f31;
 }
 
 .archive-more {
@@ -487,10 +489,10 @@ img {
 }
 
 .exhibition-link {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  font-size: 1.08rem;
+  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-size: 1.2rem;
   color: var(--accent);
 }
 
@@ -899,6 +901,10 @@ img {
   .home-columns {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2.5rem;
+  }
+
+  .home-columns--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .poster-frame {
