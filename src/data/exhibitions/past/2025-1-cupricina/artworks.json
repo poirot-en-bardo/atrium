@@ -9,7 +9,8 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ramona-slug",
-    "price": "1,200 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-1111",
@@ -21,7 +22,8 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ramona-slug",
-    "price": "1,500 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-13123",
@@ -33,7 +35,8 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ramona-slug",
-    "price": "2,000 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-1123",
@@ -45,7 +48,8 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ramona-slug",
-    "price": "2,500 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-13253",
@@ -57,7 +61,8 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ramona-slug",
-    "price": "3,000 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-1765",
@@ -69,7 +74,8 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ramona-slug",
-    "price": "800 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-144",
@@ -81,7 +87,8 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ramona-slug",
-    "price": "1,800 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-123425",
@@ -93,7 +100,8 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ramona-slug",
-    "price": "2,200 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-1777",
@@ -103,10 +111,10 @@
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/ramona6_gvnyo7.jpg",
     "floorId": "parter",
     "roomId": "sala1",
-    "forSale": false,
+    "forSale": true,
     "artistId": "ramona-slug",
-    "price": "VÂNDUT",
-    "sold": true
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-17888",
@@ -118,7 +126,8 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ramona-slug",
-    "price": "4,500 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-2",
@@ -130,7 +139,8 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ramona-slug",
-    "price": "1,000 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-3",
@@ -142,7 +152,8 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ramona-slug",
-    "price": "3,500 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-4",
@@ -154,7 +165,8 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ramona-slug",
-    "price": "1,200 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-5",
@@ -166,7 +178,8 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ada-oprea",
-    "price": "1,500 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-6",
@@ -178,7 +191,8 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "corina-eredenta-moldovan-florea",
-    "price": "2,000 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-7",
@@ -190,7 +204,8 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "corina-eredenta-moldovan-florea",
-    "price": "2,500 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-700",
@@ -202,7 +217,8 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "dragos-nita",
-    "price": "3,000 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-8",
@@ -214,7 +230,8 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ionela-patareniuc",
-    "price": "800 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-9",
@@ -226,7 +243,8 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ionela-patareniuc",
-    "price": "1,800 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-10",
@@ -238,7 +256,8 @@
     "roomId": "sala2",
     "forSale": true,
     "artistId": "sergiu-negulici",
-    "price": "2,200 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-11",
@@ -248,10 +267,10 @@
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841684/amandine2_ix7kkk.jpg",
     "floorId": "etaj1",
     "roomId": "sala3",
-    "forSale": false,
+    "forSale": true,
     "artistId": "amandine-banescu",
-    "price": "VÂNDUT",
-    "sold": true
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-12",
@@ -263,7 +282,8 @@
     "roomId": "sala3",
     "forSale": true,
     "artistId": "amandine-banescu",
-    "price": "4,500 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-13",
@@ -275,7 +295,8 @@
     "roomId": "sala3",
     "forSale": true,
     "artistId": "ioana-binica",
-    "price": "1,000 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-14",
@@ -287,7 +308,8 @@
     "roomId": "sala3",
     "forSale": true,
     "artistId": "rares-aron",
-    "price": "3,500 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-15",
@@ -299,7 +321,8 @@
     "roomId": "sala3",
     "forSale": true,
     "artistId": "natasa-radion",
-    "price": "1,200 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-16",
@@ -311,7 +334,8 @@
     "roomId": "sala3",
     "forSale": true,
     "artistId": "selma-duteanu",
-    "price": "1,500 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-17",
@@ -323,7 +347,8 @@
     "roomId": "sala3",
     "forSale": true,
     "artistId": "zelmira-szabo",
-    "price": "2,000 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-18",
@@ -335,7 +360,8 @@
     "roomId": "sala4",
     "forSale": true,
     "artistId": "iulian-milea",
-    "price": "2,500 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-19",
@@ -347,7 +373,8 @@
     "roomId": "sala4",
     "forSale": true,
     "artistId": "iulian-milea",
-    "price": "3,000 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-20",
@@ -359,7 +386,8 @@
     "roomId": "sala4",
     "forSale": true,
     "artistId": "iulian-milea",
-    "price": "800 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-21",
@@ -371,7 +399,8 @@
     "roomId": "sala4",
     "forSale": true,
     "artistId": "victor-ghiga",
-    "price": "1,800 RON"
+    "price": "La cerere",
+    "sold": false
   },
   {
     "id": "pricina-22",
@@ -383,6 +412,7 @@
     "roomId": "sala4",
     "forSale": true,
     "artistId": "rodica",
-    "price": "2,200 RON"
+    "price": "La cerere",
+    "sold": false
   }
 ]

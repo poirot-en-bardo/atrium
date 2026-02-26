@@ -13,10 +13,11 @@ const normalizedPath =
   pathname.startsWith(base) ? `/${pathname.slice(base.length)}` : pathname;
 const isDespre = normalizedPath === '/despre/' || normalizedPath.startsWith('/despre/');
 const isArtisti = normalizedPath === '/artisti/' || normalizedPath.startsWith('/artisti/');
+const isContact = normalizedPath === '/contact/' || normalizedPath.startsWith('/contact/');
 const isExhibitionDetail =
   normalizedPath === '/exhibition/' || normalizedPath.startsWith('/exhibition/');
 const isArtistDetail = normalizedPath === '/artist/' || normalizedPath.startsWith('/artist/');
-const isExpoziții = !isDespre && !isArtisti && !isExhibitionDetail && !isArtistDetail;
+const isExpoziții = !isDespre && !isArtisti && !isContact && !isExhibitionDetail && !isArtistDetail;
 ---
 
 <!doctype html>
@@ -49,6 +50,9 @@ const isExpoziții = !isDespre && !isArtisti && !isExhibitionDetail && !isArtist
         </a>
         <a href="despre/" class={`nav-link ${isDespre ? 'is-active' : ''}`} aria-current={isDespre ? 'page' : undefined}>
           Despre noi
+        </a>
+        <a href="contact/" class={`nav-link ${isContact ? 'is-active' : ''}`} aria-current={isContact ? 'page' : undefined}>
+          Contact
         </a>
       </nav>
     </header>
