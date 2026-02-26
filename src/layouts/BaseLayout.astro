@@ -11,13 +11,13 @@ const pathname = Astro.url.pathname;
 const base = import.meta.env.BASE_URL;
 const normalizedPath =
   pathname.startsWith(base) ? `/${pathname.slice(base.length)}` : pathname;
-const isDespre = normalizedPath === '/despre/' || normalizedPath.startsWith('/despre/');
 const isArtisti = normalizedPath === '/artisti/' || normalizedPath.startsWith('/artisti/');
+const isLocatii = normalizedPath === '/locatii/' || normalizedPath.startsWith('/locatii/');
 const isContact = normalizedPath === '/contact/' || normalizedPath.startsWith('/contact/');
 const isExhibitionDetail =
   normalizedPath === '/exhibition/' || normalizedPath.startsWith('/exhibition/');
 const isArtistDetail = normalizedPath === '/artist/' || normalizedPath.startsWith('/artist/');
-const isExpoziții = !isDespre && !isArtisti && !isContact && !isExhibitionDetail && !isArtistDetail;
+const isExpoziții = !isArtisti && !isLocatii && !isContact && !isExhibitionDetail && !isArtistDetail;
 ---
 
 <!doctype html>
@@ -48,11 +48,11 @@ const isExpoziții = !isDespre && !isArtisti && !isContact && !isExhibitionDetai
         <a href="artisti/" class={`nav-link ${isArtisti ? 'is-active' : ''}`} aria-current={isArtisti ? 'page' : undefined}>
           Artiști
         </a>
-        <a href="despre/" class={`nav-link ${isDespre ? 'is-active' : ''}`} aria-current={isDespre ? 'page' : undefined}>
-          Despre noi
-        </a>
         <a href="contact/" class={`nav-link ${isContact ? 'is-active' : ''}`} aria-current={isContact ? 'page' : undefined}>
           Contact
+        </a>
+        <a href="locatii/" class={`nav-link ${isLocatii ? 'is-active' : ''}`} aria-current={isLocatii ? 'page' : undefined}>
+          Locații
         </a>
       </nav>
     </header>

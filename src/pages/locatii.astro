@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../utils/withBase';
+
+const mapImage = withBase('/images/harta.jpg');
+---
+
+<BaseLayout title="Locații | Atrium Gallery" description="Locațiile Atrium Gallery.">
+  <section class="hero">
+    <h1 class="accent-title accent-title--decorated">Locații</h1>
+    <img class="hero-map" src={mapImage} alt="Harta expoziției" loading="lazy" />
+    <p>de mutat pe site-ul 2</p>
+  </section>
+</BaseLayout>

@@ -178,6 +178,12 @@ img {
 }
 
 @media (max-width: 699px) {
+  .site-nav {
+    width: 100%;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
   .back-button {
     display: grid;
     top: 4rem;

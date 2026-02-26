@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ExhibitionListSection from '../components/ExhibitionListSection.astro';
 import { getExhibitionsByStatus } from '../utils/exhibitions';
 import { formatDateRange } from '../utils/dates';
-import { withBase } from '../utils/withBase';
 
 const current = getExhibitionsByStatus('current');
 const upcoming = getExhibitionsByStatus('upcoming');
@@ -63,12 +62,10 @@ const listSections = [
     : null,
 ].filter(Boolean);
 
-const mapImage = withBase('/images/harta.jpg');
 ---
 
 <BaseLayout title="Atrium Gallery" description="Arhiva statica de expoziții pentru vizitarea in galerie.">
   <section class="hero">
-    <img class="hero-map" src={mapImage} alt="Harta expoziției" loading="lazy" />
     <h1 class="accent-title accent-title--decorated">Expoziții</h1>
   </section>
 
