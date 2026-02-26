@@ -1,0 +1,255 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact | Atrium Gallery"
+  description="Contactează Atrium Gallery - Platformă de expoziție și intermediere pentru opere de artă"
+>
+  <article class="contact-page">
+    <section class="hero">
+      <h1 class="accent-title accent-title--decorated">Contact</h1>
+      <p>Suntem aici să vă ajutăm. Contactați-ne pentru orice întrebare despre artiști, opere sau expoziții.</p>
+    </section>
+
+    <section class="contact-content">
+      <div class="contact-grid">
+
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h2>Email</h2>
+          <a href="mailto:hello@atriumgallery.ro" class="contact-link">
+            hello@atriumgallery.ro
+          </a>
+          <p class="contact-description">
+            Trimite-ne un email și îți vom răspunde în cel mai scurt timp posibil.
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+          </div>
+          <h2>Telefon</h2>
+          <a href="tel:0723232323" class="contact-link">
+            0723 232 323
+          </a>
+          <p class="contact-description">
+            Suntem disponibili pentru apeluri în program de lucru.
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h2>Locație</h2>
+          <p class="contact-link contact-location">
+            Câmpulung-Muscel<br>
+            România
+          </p>
+        </div>
+
+      </div>
+
+      <div class="contact-info-section">
+        <h2>Program</h2>
+        <div class="schedule">
+          <div class="schedule-item">
+            <span class="schedule-day">Luni - Vineri</span>
+            <span class="schedule-hours">10:00 - 18:00</span>
+          </div>
+          <div class="schedule-item">
+            <span class="schedule-day">Sâmbătă - Duminică</span>
+            <span class="schedule-hours">Închis</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-note">
+        <p>
+          <strong>Notă:</strong> Pentru întrebări despre achiziționarea unei opere de artă,
+          vă recomandăm să contactați direct artistul prin informațiile de pe pagina sa.
+          Atrium Gallery funcționează ca platformă de intermediere și expoziție.
+        </p>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+.contact-page {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.hero {
+  text-align: center;
+  padding: 2rem 0 1rem;
+}
+
+.hero p {
+  color: var(--muted-readable);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 1rem auto 0;
+}
+
+.contact-content {
+  margin-top: 3rem;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 700px) {
+  .contact-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.contact-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+  transform: translateY(-4px);
+}
+
+.contact-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1.5rem;
+  color: var(--highlight);
+}
+
+.contact-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.contact-card h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin: 0 0 1rem;
+}
+
+.contact-link {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  margin-bottom: 1rem;
+  transition: color 0.2s ease;
+}
+
+.contact-link:hover {
+  color: var(--accent);
+}
+
+.contact-location {
+  line-height: 1.6;
+  cursor: default;
+}
+
+.contact-location:hover {
+  color: var(--ink);
+}
+
+.contact-description {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.contact-info-section {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.contact-info-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  color: var(--accent);
+  margin: 0 0 1.5rem;
+  text-align: center;
+}
+
+.schedule {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.schedule-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.schedule-item:last-child {
+  border-bottom: none;
+}
+
+.schedule-day {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.schedule-hours {
+  color: var(--muted-readable);
+}
+
+.contact-note {
+  background: #fff9e6;
+  border-left: 4px solid var(--highlight);
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.contact-note p {
+  margin: 0;
+  color: var(--muted-readable);
+  line-height: 1.6;
+}
+
+.contact-note strong {
+  color: var(--ink);
+}
+
+@media (max-width: 699px) {
+  .contact-grid {
+    gap: 1.5rem;
+  }
+
+  .contact-card {
+    padding: 1.5rem;
+  }
+}
+</style>
