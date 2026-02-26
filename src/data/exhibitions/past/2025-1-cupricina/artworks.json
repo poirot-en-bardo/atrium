@@ -8,7 +8,8 @@
     "floorId": "parter",
     "roomId": "sala1",
     "forSale": true,
-    "artistId": "ramona-slug"
+    "artistId": "ramona-slug",
+    "price": "1,200 RON"
   },
   {
     "id": "pricina-1111",
@@ -19,7 +20,8 @@
     "floorId": "parter",
     "roomId": "sala1",
     "forSale": true,
-    "artistId": "ramona-slug"
+    "artistId": "ramona-slug",
+    "price": "1,500 RON"
   },
   {
     "id": "pricina-13123",
@@ -30,7 +32,8 @@
     "floorId": "parter",
     "roomId": "sala1",
     "forSale": true,
-    "artistId": "ramona-slug"
+    "artistId": "ramona-slug",
+    "price": "2,000 RON"
   },
   {
     "id": "pricina-1123",
@@ -41,7 +44,8 @@
     "floorId": "parter",
     "roomId": "sala1",
     "forSale": true,
-    "artistId": "ramona-slug"
+    "artistId": "ramona-slug",
+    "price": "2,500 RON"
   },
   {
     "id": "pricina-13253",
@@ -52,7 +56,8 @@
     "floorId": "parter",
     "roomId": "sala1",
     "forSale": true,
-    "artistId": "ramona-slug"
+    "artistId": "ramona-slug",
+    "price": "3,000 RON"
   },
   {
     "id": "pricina-1765",
@@ -63,7 +68,8 @@
     "floorId": "parter",
     "roomId": "sala1",
     "forSale": true,
-    "artistId": "ramona-slug"
+    "artistId": "ramona-slug",
+    "price": "800 RON"
   },
   {
     "id": "pricina-144",
@@ -74,7 +80,8 @@
     "floorId": "parter",
     "roomId": "sala1",
     "forSale": true,
-    "artistId": "ramona-slug"
+    "artistId": "ramona-slug",
+    "price": "1,800 RON"
   },
   {
     "id": "pricina-123425",
@@ -85,7 +92,8 @@
     "floorId": "parter",
     "roomId": "sala1",
     "forSale": true,
-    "artistId": "ramona-slug"
+    "artistId": "ramona-slug",
+    "price": "2,200 RON"
   },
   {
     "id": "pricina-1777",
@@ -95,8 +103,10 @@
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/ramona6_gvnyo7.jpg",
     "floorId": "parter",
     "roomId": "sala1",
-    "forSale": true,
-    "artistId": "ramona-slug"
+    "forSale": false,
+    "artistId": "ramona-slug",
+    "price": "VÂNDUT",
+    "sold": true
   },
   {
     "id": "pricina-17888",
@@ -107,7 +117,8 @@
     "floorId": "parter",
     "roomId": "sala1",
     "forSale": true,
-    "artistId": "ramona-slug"
+    "artistId": "ramona-slug",
+    "price": "4,500 RON"
   },
   {
     "id": "pricina-2",
@@ -118,7 +129,8 @@
     "floorId": "parter",
     "roomId": "sala1",
     "forSale": true,
-    "artistId": "ramona-slug"
+    "artistId": "ramona-slug",
+    "price": "1,000 RON"
   },
   {
     "id": "pricina-3",
@@ -129,7 +141,8 @@
     "floorId": "parter",
     "roomId": "sala1",
     "forSale": true,
-    "artistId": "ramona-slug"
+    "artistId": "ramona-slug",
+    "price": "3,500 RON"
   },
   {
     "id": "pricina-4",
@@ -140,7 +153,8 @@
     "floorId": "parter",
     "roomId": "sala1",
     "forSale": true,
-    "artistId": "ramona-slug"
+    "artistId": "ramona-slug",
+    "price": "1,200 RON"
   },
   {
     "id": "pricina-5",
@@ -151,7 +165,8 @@
     "floorId": "etaj1",
     "roomId": "sala1",
     "forSale": true,
-    "artistId": "ada-oprea"
+    "artistId": "ada-oprea",
+    "price": "1,500 RON"
   },
   {
     "id": "pricina-6",
@@ -162,7 +177,8 @@
     "floorId": "etaj1",
     "roomId": "sala1",
     "forSale": true,
-    "artistId": "corina-eredenta-moldovan-florea"
+    "artistId": "corina-eredenta-moldovan-florea",
+    "price": "2,000 RON"
   },
   {
     "id": "pricina-7",
@@ -173,7 +189,8 @@
     "floorId": "etaj1",
     "roomId": "sala1",
     "forSale": true,
-    "artistId": "corina-eredenta-moldovan-florea"
+    "artistId": "corina-eredenta-moldovan-florea",
+    "price": "2,500 RON"
   },
   {
     "id": "pricina-700",
@@ -184,7 +201,8 @@
     "floorId": "etaj1",
     "roomId": "sala1",
     "forSale": true,
-    "artistId": "dragos-nita"
+    "artistId": "dragos-nita",
+    "price": "3,000 RON"
   },
   {
     "id": "pricina-8",
@@ -195,7 +213,8 @@
     "floorId": "etaj1",
     "roomId": "sala1",
     "forSale": true,
-    "artistId": "ionela-patareniuc"
+    "artistId": "ionela-patareniuc",
+    "price": "800 RON"
   },
   {
     "id": "pricina-9",
@@ -206,7 +225,8 @@
     "floorId": "etaj1",
     "roomId": "sala1",
     "forSale": true,
-    "artistId": "ionela-patareniuc"
+    "artistId": "ionela-patareniuc",
+    "price": "1,800 RON"
   },
   {
     "id": "pricina-10",
@@ -217,7 +237,8 @@
     "floorId": "etaj1",
     "roomId": "sala2",
     "forSale": true,
-    "artistId": "sergiu-negulici"
+    "artistId": "sergiu-negulici",
+    "price": "2,200 RON"
   },
   {
     "id": "pricina-11",
@@ -227,8 +248,10 @@
     "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841684/amandine2_ix7kkk.jpg",
     "floorId": "etaj1",
     "roomId": "sala3",
-    "forSale": true,
-    "artistId": "amandine-banescu"
+    "forSale": false,
+    "artistId": "amandine-banescu",
+    "price": "VÂNDUT",
+    "sold": true
   },
   {
     "id": "pricina-12",
@@ -239,7 +262,8 @@
     "floorId": "etaj1",
     "roomId": "sala3",
     "forSale": true,
-    "artistId": "amandine-banescu"
+    "artistId": "amandine-banescu",
+    "price": "4,500 RON"
   },
   {
     "id": "pricina-13",
@@ -250,7 +274,8 @@
     "floorId": "etaj1",
     "roomId": "sala3",
     "forSale": true,
-    "artistId": "ioana-binica"
+    "artistId": "ioana-binica",
+    "price": "1,000 RON"
   },
   {
     "id": "pricina-14",
@@ -261,7 +286,8 @@
     "floorId": "etaj1",
     "roomId": "sala3",
     "forSale": true,
-    "artistId": "rares-aron"
+    "artistId": "rares-aron",
+    "price": "3,500 RON"
   },
   {
     "id": "pricina-15",
@@ -272,7 +298,8 @@
     "floorId": "etaj1",
     "roomId": "sala3",
     "forSale": true,
-    "artistId": "natasa-radion"
+    "artistId": "natasa-radion",
+    "price": "1,200 RON"
   },
   {
     "id": "pricina-16",
@@ -283,7 +310,8 @@
     "floorId": "etaj1",
     "roomId": "sala3",
     "forSale": true,
-    "artistId": "selma-duteanu"
+    "artistId": "selma-duteanu",
+    "price": "1,500 RON"
   },
   {
     "id": "pricina-17",
@@ -294,7 +322,8 @@
     "floorId": "etaj1",
     "roomId": "sala3",
     "forSale": true,
-    "artistId": "zelmira-szabo"
+    "artistId": "zelmira-szabo",
+    "price": "2,000 RON"
   },
   {
     "id": "pricina-18",
@@ -305,7 +334,8 @@
     "floorId": "etaj1",
     "roomId": "sala4",
     "forSale": true,
-    "artistId": "iulian-milea"
+    "artistId": "iulian-milea",
+    "price": "2,500 RON"
   },
   {
     "id": "pricina-19",
@@ -316,7 +346,8 @@
     "floorId": "etaj1",
     "roomId": "sala4",
     "forSale": true,
-    "artistId": "iulian-milea"
+    "artistId": "iulian-milea",
+    "price": "3,000 RON"
   },
   {
     "id": "pricina-20",
@@ -327,7 +358,8 @@
     "floorId": "etaj1",
     "roomId": "sala4",
     "forSale": true,
-    "artistId": "iulian-milea"
+    "artistId": "iulian-milea",
+    "price": "800 RON"
   },
   {
     "id": "pricina-21",
@@ -338,7 +370,8 @@
     "floorId": "etaj1",
     "roomId": "sala4",
     "forSale": true,
-    "artistId": "victor-ghiga"
+    "artistId": "victor-ghiga",
+    "price": "1,800 RON"
   },
   {
     "id": "pricina-22",
@@ -349,6 +382,7 @@
     "floorId": "etaj1",
     "roomId": "sala4",
     "forSale": true,
-    "artistId": "rodica"
+    "artistId": "rodica",
+    "price": "2,200 RON"
   }
 ]

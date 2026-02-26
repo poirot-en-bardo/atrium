@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getAllArtists } from '../utils/artists';
+import { withBase } from '../utils/withBase';
+
+const artists = getAllArtists();
+---
+
+<BaseLayout title="Artiști | Atrium Gallery" description="Descoperă artiștii din galeria Atrium">
+  <section class="hero">
+    <h1 class="accent-title accent-title--decorated">Artiști</h1>
+    <p>Descoperă artiștii care expun în galeria noastră</p>
+  </section>
+
+  <section class="artists-grid">
+    {artists.map((artist) => (
+      <a href={`artist/${artist.id}/`} class="artist-card">
+        <div class="artist-card-image">
+          <img src={withBase(artist.photoUrl)} alt={artist.name} loading="lazy" />
+        </div>
+        <div class="artist-card-content">
+          <h2 class="artist-card-name">{artist.name}</h2>
+          <p class="artist-card-bio">{artist.bio}</p>
+        </div>
+      </a>
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+.artists-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 700px) {
+  .artists-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .artists-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.artist-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.artist-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+  transform: translateY(-4px);
+}
+
+.artist-card-image {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.artist-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.artist-card-content {
+  padding: 1.5rem;
+}
+
+.artist-card-name {
+  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+  color: var(--accent);
+}
+
+.artist-card-bio {
+  margin: 0;
+  color: var(--muted-readable);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+</style>
