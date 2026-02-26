@@ -12,10 +12,11 @@ const base = import.meta.env.BASE_URL;
 const normalizedPath =
   pathname.startsWith(base) ? `/${pathname.slice(base.length)}` : pathname;
 const isDespre = normalizedPath === '/despre/' || normalizedPath.startsWith('/despre/');
+const isArtisti = normalizedPath === '/artisti/' || normalizedPath.startsWith('/artisti/');
 const isExhibitionDetail =
   normalizedPath === '/exhibition/' || normalizedPath.startsWith('/exhibition/');
 const isArtistDetail = normalizedPath === '/artist/' || normalizedPath.startsWith('/artist/');
-const isExpoziții = !isDespre && !isExhibitionDetail && !isArtistDetail;
+const isExpoziții = !isDespre && !isArtisti && !isExhibitionDetail && !isArtistDetail;
 ---
 
 <!doctype html>
@@ -43,6 +44,9 @@ const isExpoziții = !isDespre && !isExhibitionDetail && !isArtistDetail;
         <a href="./" class={`nav-link ${isExpoziții ? 'is-active' : ''}`} aria-current={isExpoziții ? 'page' : undefined}>
           Expoziții
         </a>
+        <a href="artisti/" class={`nav-link ${isArtisti ? 'is-active' : ''}`} aria-current={isArtisti ? 'page' : undefined}>
+          Artiști
+        </a>
         <a href="despre/" class={`nav-link ${isDespre ? 'is-active' : ''}`} aria-current={isDespre ? 'page' : undefined}>
           Despre noi
         </a>
@@ -61,6 +65,11 @@ const isExpoziții = !isDespre && !isExhibitionDetail && !isArtistDetail;
         </span>
         Câmpulung-Muscel, România
       </p>
+      <nav class="footer-links">
+        <a href="termeni/">Termeni și Condiții</a>
+        <span class="footer-separator">•</span>
+        <a href="politica-confidentialitate/">Politică de Confidențialitate</a>
+      </nav>
     </footer>
 
     <button class="scroll-top" type="button" aria-label="Inapoi sus" hidden>

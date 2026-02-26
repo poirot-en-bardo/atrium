@@ -9,7 +9,7 @@ interface Props {
   imageUrl: string;
   year?: string;
   description?: string;
-  price?: number;
+  price?: string;
   sold?: boolean;
   forSale?: boolean;
 }
@@ -17,33 +17,21 @@ interface Props {
 const { id, title, artist, imageUrl, year, description, price, sold, forSale } = Astro.props;
 const resolvedImage = withBase(imageUrl);
 
-const formattedPrice =
-  typeof price === 'number'
-    ? new Intl.NumberFormat('ro-RO', {
-        style: 'currency',
-        currency: 'EUR',
-        maximumFractionDigits: 0,
-      }).format(price)
-    : null;
-
-const statusText = sold
-  ? 'VANDUT'
-  : forSale
-    ? formattedPrice || 'Pret la cerere'
-    : 'Nu este de vanzare';
+const displayPrice = price || (forSale ? 'Preț la cerere' : null);
+const isSold = sold || price === 'VÂNDUT';
 ---
 
 <article
   class="artwork-card"
   data-artwork-id={id}
   data-for-sale={forSale ? 'true' : 'false'}
-  data-sold={sold ? 'true' : 'false'}
-  data-price={typeof price === 'number' ? String(price) : ''}
+  data-sold={isSold ? 'true' : 'false'}
+  data-price={price || ''}
 >
   <div class="artwork-image">
     <img src={resolvedImage} alt={title} loading="lazy" />
-    <span class="sold-badge" data-role="sold-badge" aria-hidden={!sold} hidden={!sold}>
-      VANDUT
+    <span class="sold-badge" data-role="sold-badge" aria-hidden={!isSold} hidden={!isSold}>
+      VÂNDUT
     </span>
   </div>
   <div class="artwork-meta">
@@ -53,6 +41,10 @@ const statusText = sold
     </p>
     {year ? <p class="artwork-year">{year}</p> : null}
     {description ? <p class="artwork-description">{description}</p> : null}
-    <p class="artwork-status" data-role="artwork-status">{statusText}</p>
+    {displayPrice && (
+      <p class={`artwork-price ${isSold ? 'is-sold' : ''}`}>
+        {displayPrice}
+      </p>
+    )}
   </div>
 </article>

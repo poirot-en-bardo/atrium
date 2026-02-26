@@ -26,7 +26,11 @@ const artworksByArtist = artist ? getAllExhibitions().flatMap((exhibition) => {
       exhibitionTitle: exhibition.title,
       floorId: artwork.floorId,
       roomId: artwork.roomId,
-      artworkThumb: withBase(artwork.imageUrl),
+      artworkImage: withBase(artwork.imageUrl),
+      year: artwork.year,
+      description: artwork.description,
+      price: artwork.price,
+      sold: artwork.sold,
     }));
 }) : [];
 
@@ -57,33 +61,7 @@ const photoUrl = artist ? withBase(artist.photoUrl) : '';
 
       {artworksByArtist.length > 0 && (
         <>
-          <h2 class="artist-works-title">Lucrări în galerie</h2>
-          <div class="artist-works-wrap">
-            <ul class="artist-works" data-artist-works>
-              {artworksByArtist.map((item) => (
-                <li class="artist-work-item">
-                  <a
-                    class="artist-work-link"
-                    href={`exhibition/${item.exhibitionId}/?floor=${item.floorId}&room=${item.roomId}&artwork=${item.artworkId}`}
-                  >
-                    <img
-                      class="artist-work-thumb"
-                      src={item.artworkThumb}
-                      alt={item.artworkTitle}
-                      loading="lazy"
-                    />
-                    <span class="artist-work-text">
-                      <span class="artist-work-title-link">{item.artworkTitle}</span>
-                      <span class="artist-meta">{item.exhibitionTitle}</span>
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <div class="artist-works-scrollbar" aria-hidden="true">
-              <span class="artist-works-scroll-thumb" data-artist-works-thumb></span>
-            </div>
-          </div>
+          <h2 class="artist-works-title">Lucrări disponibile</h2>
         </>
       )}
     </div>
@@ -91,31 +69,161 @@ const photoUrl = artist ? withBase(artist.photoUrl) : '';
   )}
 
   {artist && artworksByArtist.length > 0 && (
-    <script is:inline>
-      const worksLists = document.querySelectorAll('[data-artist-works]');
-      worksLists.forEach((list) => {
-        const wrap = list.closest('.artist-works-wrap');
-        const thumb = wrap?.querySelector('[data-artist-works-thumb]');
-        const bar = wrap?.querySelector('.artist-works-scrollbar');
-        if (!wrap || !thumb || !bar) return;
-
-        const sync = () => {
-          const maxScroll = list.scrollHeight - list.clientHeight;
-          const trackHeight = wrap.clientHeight - 8;
-          const ratio = maxScroll > 0 ? list.clientHeight / list.scrollHeight : 1;
-          const thumbHeight = Math.max(18, Math.round(trackHeight * ratio));
-          const maxThumbTop = Math.max(0, trackHeight - thumbHeight);
-          const thumbTop = maxScroll > 0 ? Math.round((list.scrollTop / maxScroll) * maxThumbTop) : 0;
-
-          thumb.style.height = `${thumbHeight}px`;
-          thumb.style.transform = `translateY(${thumbTop}px)`;
-          bar.hidden = maxScroll <= 0;
-        };
-
-        sync();
-        list.addEventListener('scroll', sync, { passive: true });
-        window.addEventListener('resize', sync);
-      });
-    </script>
+    <section class="artist-gallery">
+      <div class="artist-gallery-grid">
+        {artworksByArtist.map((artwork) => (
+          <a
+            href={`exhibition/${artwork.exhibitionId}/?floor=${artwork.floorId}&room=${artwork.roomId}&artwork=${artwork.artworkId}`}
+            class="artist-gallery-item"
+          >
+            <div class="artist-gallery-image">
+              <img src={artwork.artworkImage} alt={artwork.artworkTitle} loading="lazy" />
+              {artwork.sold && (
+                <span class="sold-badge">VÂNDUT</span>
+              )}
+            </div>
+            <div class="artist-gallery-info">
+              <h3 class="artist-gallery-title">{artwork.artworkTitle}</h3>
+              {artwork.year && <p class="artist-gallery-year">{artwork.year}</p>}
+              {artwork.description && (
+                <p class="artist-gallery-description">{artwork.description}</p>
+              )}
+              {artwork.price && (
+                <p class={`artist-gallery-price ${artwork.sold ? 'is-sold' : ''}`}>
+                  {artwork.price}
+                </p>
+              )}
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
   )}
 </BaseLayout>
+
+<style>
+.artist-gallery {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+
+.artist-gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 600px) {
+  .artist-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .artist-gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.artist-gallery-item {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.artist-gallery-item:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+  transform: translateY(-4px);
+}
+
+.artist-gallery-image {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  background: #f5f4f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.artist-gallery-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.artist-gallery-image .sold-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--ink);
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+}
+
+.artist-gallery-info {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.artist-gallery-title {
+  font-family: 'Newsreader', 'Times New Roman', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--ink);
+}
+
+.artist-gallery-year {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin: 0;
+}
+
+.artist-gallery-description {
+  font-size: 0.95rem;
+  color: var(--muted-readable);
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.artist-gallery-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--highlight);
+  margin: 0.5rem 0 0;
+}
+
+.artist-gallery-price.is-sold {
+  color: var(--ink);
+  background: var(--line);
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  display: inline-block;
+  width: fit-content;
+}
+</style>

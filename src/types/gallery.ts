@@ -26,7 +26,7 @@ export interface ArtworkRecord {
   roomId: string;
   year?: string;
   description?: string;
-  price?: number;
+  price?: string;
   sold?: boolean;
   forSale?: boolean;
 }
