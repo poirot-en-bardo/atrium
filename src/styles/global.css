@@ -209,7 +209,7 @@ img {
   .back-button {
     display: grid;
     top: 4rem;
-    left: 1.25rem;
+    left: 2em;
   }
 }
 
