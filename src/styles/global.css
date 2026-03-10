@@ -376,7 +376,7 @@ img {
   width: var(--timeline-dot-size);
   height: var(--timeline-dot-size);
   border-radius: 999px;
-  background: var(--highlight);
+  background: #9a741a;
   border: 2px solid var(--paper);
   box-shadow: 0 0 0 8px rgba(205, 165, 96, 0.2);
   transition: transform 0.35s ease, box-shadow 0.35s ease, width 0.35s ease, height 0.35s ease;
@@ -518,6 +518,7 @@ img {
   width: calc(var(--timeline-dot-size) + 4px);
   height: calc(var(--timeline-dot-size) + 4px);
   transform: translate(-50%, -50%);
+  background: var(--highlight);
   box-shadow: 0 0 0 12px rgba(205, 165, 96, 0.25);
 }
 
