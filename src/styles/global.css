@@ -351,12 +351,13 @@ img {
   display: grid;
   grid-template-columns: var(--timeline-marker-width) minmax(0, 1fr);
   gap: var(--timeline-gap);
-  align-items: stretch;
+  align-items: start;
   position: relative;
 }
 
 .timeline-marker {
-  position: static;
+  position: sticky;
+  top: clamp(1.25rem, 28vh, 7rem);
   padding-top: 0.35rem;
   text-align: right;
   padding-right: calc(var(--timeline-gap) / 2 + 1.2rem);
@@ -365,13 +366,12 @@ img {
   align-items: flex-end;
   justify-content: center;
   min-height: 52px;
-  height: 100%;
-  align-self: stretch;
+  align-self: start;
 }
 
 .timeline-dot {
   position: absolute;
-  left: var(--timeline-line-x);
+  left: calc(100% + (var(--timeline-gap) / 2));
   top: 50%;
   width: var(--timeline-dot-size);
   height: var(--timeline-dot-size);
@@ -563,23 +563,29 @@ img {
 @media (min-width: 900px) {
   .timeline {
     --timeline-marker-width: 200px;
-    --timeline-gap: 2.8rem;
+    --timeline-gap: 3.6rem;
     --timeline-dot-size: 18px;
   }
 
   .timeline-row {
-    gap: 2rem;
+    gap: var(--timeline-gap);
   }
 
   .timeline-card-link {
     grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
     gap: 2rem;
     padding: 2rem;
+    transform: scale(0.88);
+    transform-origin: center center;
   }
 
   .timeline-date {
     font-size: 1.05rem;
     letter-spacing: 0.06em;
+  }
+
+  .timeline-row.is-active .timeline-card-link {
+    transform: translate(14px, -6px) scaleX(1.02) scaleY(1.01);
   }
 }
 
@@ -603,21 +609,20 @@ img {
     grid-template-columns: var(--timeline-marker-width) minmax(0, 1fr);
     gap: var(--timeline-gap);
     padding-left: 0;
-    align-items: stretch;
+    align-items: start;
   }
 
   .timeline-marker {
-    position: relative;
+    position: sticky;
+    top: clamp(2.25rem, 30vh, 6.8rem);
     text-align: center;
     padding-top: 0.1rem;
     padding-right: 0;
     align-items: center;
-    height: 100%;
-    align-self: stretch;
   }
 
   .timeline-dot {
-    left: var(--timeline-line-x);
+    left: calc(100% + (var(--timeline-gap) / 2));
     top: 50%;
     box-shadow: none;
     transition: transform 0.2s ease, box-shadow 0.2s ease, width 0.2s ease, height 0.2s ease;
@@ -625,7 +630,7 @@ img {
 
   .timeline-date {
     position: absolute;
-    left: calc(var(--timeline-line-x) - 1.6rem);
+    left: calc(100% + (var(--timeline-gap) / 2) - 1.6rem);
     top: 50%;
     transform: translate(-100%, -50%);
     text-align: right;
