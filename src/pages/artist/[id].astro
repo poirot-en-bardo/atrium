@@ -20,6 +20,16 @@ const artworksByArtist = artist ? getAllExhibitions().flatMap((exhibition) => {
   return artworks
     .filter((artwork) => artwork.artist.id === artist.id)
     .map((artwork) => ({
+      displayPrice: (() => {
+        const normalizedPrice = artwork.price?.trim().toLowerCase();
+        const isPriceOnRequest = normalizedPrice
+          ? ['la cerere', 'pret la cerere', 'preț la cerere'].includes(normalizedPrice)
+          : false;
+        return {
+          value: isPriceOnRequest ? 'Preț la cerere' : artwork.price,
+          isOnRequest: isPriceOnRequest,
+        };
+      })(),
       artworkId: artwork.id,
       artworkTitle: artwork.title,
       exhibitionId: exhibition.id,
@@ -84,9 +94,11 @@ const photoUrl = artist ? withBase(artist.photoUrl) : '';
               {artwork.description && (
                 <p class="artist-gallery-description">{artwork.description}</p>
               )}
-              {artwork.price && (
-                <p class={`artist-gallery-price ${artwork.sold ? 'is-sold' : ''}`}>
-                  {artwork.price}
+              {artwork.displayPrice?.value && (
+                <p
+                  class={`artist-gallery-price ${artwork.sold ? 'is-sold' : ''} ${artwork.displayPrice.isOnRequest ? 'is-on-request' : ''}`}
+                >
+                  {artwork.displayPrice.value}
                 </p>
               )}
             </div>
@@ -212,6 +224,13 @@ const photoUrl = artist ? withBase(artist.photoUrl) : '';
   letter-spacing: 0.04em;
   color: var(--highlight);
   margin: 0.5rem 0 0;
+}
+
+.artist-gallery-price.is-on-request {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .artist-gallery-price.is-sold {

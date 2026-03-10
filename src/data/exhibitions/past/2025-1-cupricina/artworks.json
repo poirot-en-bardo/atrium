@@ -9,124 +9,7 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ramona-slug",
-    "price": "La cerere",
-    "sold": false
-  },
-  {
-    "id": "pricina-1111",
-    "title": "Ganduri1",
-    "year": "2025",
-    "description": "Pictura abstracta",
-    "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/ramona6_gvnyo7.jpg",
-    "floorId": "parter",
-    "roomId": "sala1",
-    "forSale": true,
-    "artistId": "ramona-slug",
-    "price": "La cerere",
-    "sold": false
-  },
-  {
-    "id": "pricina-13123",
-    "title": "Ganduri1",
-    "year": "2025",
-    "description": "Pictura abstracta",
-    "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/ramona6_gvnyo7.jpg",
-    "floorId": "parter",
-    "roomId": "sala1",
-    "forSale": true,
-    "artistId": "ramona-slug",
-    "price": "La cerere",
-    "sold": false
-  },
-  {
-    "id": "pricina-1123",
-    "title": "Ganduri1",
-    "year": "2025",
-    "description": "Pictura abstracta",
-    "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/ramona6_gvnyo7.jpg",
-    "floorId": "parter",
-    "roomId": "sala1",
-    "forSale": true,
-    "artistId": "ramona-slug",
-    "price": "La cerere",
-    "sold": false
-  },
-  {
-    "id": "pricina-13253",
-    "title": "Ganduri1",
-    "year": "2025",
-    "description": "Pictura abstracta",
-    "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/ramona6_gvnyo7.jpg",
-    "floorId": "parter",
-    "roomId": "sala1",
-    "forSale": true,
-    "artistId": "ramona-slug",
-    "price": "La cerere",
-    "sold": false
-  },
-  {
-    "id": "pricina-1765",
-    "title": "Ganduri1",
-    "year": "2025",
-    "description": "Pictura abstracta",
-    "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/ramona6_gvnyo7.jpg",
-    "floorId": "parter",
-    "roomId": "sala1",
-    "forSale": true,
-    "artistId": "ramona-slug",
-    "price": "La cerere",
-    "sold": false
-  },
-  {
-    "id": "pricina-144",
-    "title": "Ganduri1",
-    "year": "2025",
-    "description": "Pictura abstracta",
-    "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/ramona6_gvnyo7.jpg",
-    "floorId": "parter",
-    "roomId": "sala1",
-    "forSale": true,
-    "artistId": "ramona-slug",
-    "price": "La cerere",
-    "sold": false
-  },
-  {
-    "id": "pricina-123425",
-    "title": "Ganduri1",
-    "year": "2025",
-    "description": "Pictura abstracta",
-    "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/ramona6_gvnyo7.jpg",
-    "floorId": "parter",
-    "roomId": "sala1",
-    "forSale": true,
-    "artistId": "ramona-slug",
-    "price": "La cerere",
-    "sold": false
-  },
-  {
-    "id": "pricina-1777",
-    "title": "Ganduri1",
-    "year": "2025",
-    "description": "Pictura abstracta",
-    "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/ramona6_gvnyo7.jpg",
-    "floorId": "parter",
-    "roomId": "sala1",
-    "forSale": true,
-    "artistId": "ramona-slug",
-    "price": "La cerere",
-    "sold": false
-  },
-  {
-    "id": "pricina-17888",
-    "title": "Ganduri1",
-    "year": "2025",
-    "description": "Pictura abstracta",
-    "imageUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/ramona6_gvnyo7.jpg",
-    "floorId": "parter",
-    "roomId": "sala1",
-    "forSale": true,
-    "artistId": "ramona-slug",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -139,7 +22,7 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ramona-slug",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -152,7 +35,7 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ramona-slug",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -165,7 +48,7 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ramona-slug",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -178,7 +61,7 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ada-oprea",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -191,7 +74,7 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "corina-eredenta-moldovan-florea",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -204,7 +87,7 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "corina-eredenta-moldovan-florea",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -217,7 +100,7 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "dragos-nita",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -230,7 +113,7 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ionela-patareniuc",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -243,7 +126,7 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ionela-patareniuc",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -256,7 +139,7 @@
     "roomId": "sala2",
     "forSale": true,
     "artistId": "sergiu-negulici",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -269,7 +152,7 @@
     "roomId": "sala3",
     "forSale": true,
     "artistId": "amandine-banescu",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -282,7 +165,7 @@
     "roomId": "sala3",
     "forSale": true,
     "artistId": "amandine-banescu",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -295,7 +178,7 @@
     "roomId": "sala3",
     "forSale": true,
     "artistId": "ioana-binica",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -308,7 +191,7 @@
     "roomId": "sala3",
     "forSale": true,
     "artistId": "rares-aron",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -321,7 +204,7 @@
     "roomId": "sala3",
     "forSale": true,
     "artistId": "natasa-radion",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -334,7 +217,7 @@
     "roomId": "sala3",
     "forSale": true,
     "artistId": "selma-duteanu",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -347,7 +230,7 @@
     "roomId": "sala3",
     "forSale": true,
     "artistId": "zelmira-szabo",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -360,7 +243,7 @@
     "roomId": "sala4",
     "forSale": true,
     "artistId": "iulian-milea",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -373,7 +256,7 @@
     "roomId": "sala4",
     "forSale": true,
     "artistId": "iulian-milea",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -386,7 +269,7 @@
     "roomId": "sala4",
     "forSale": true,
     "artistId": "iulian-milea",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -399,7 +282,7 @@
     "roomId": "sala4",
     "forSale": true,
     "artistId": "victor-ghiga",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   },
   {
@@ -412,7 +295,7 @@
     "roomId": "sala4",
     "forSale": true,
     "artistId": "rodica",
-    "price": "La cerere",
+    "price": "Preț la cerere",
     "sold": false
   }
 ]

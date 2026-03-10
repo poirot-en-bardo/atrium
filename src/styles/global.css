@@ -1283,6 +1283,13 @@ img {
   margin: 0;
 }
 
+.artwork-price.is-on-request {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
 .artwork-price.is-sold {
   color: var(--ink);
   background: var(--line);
