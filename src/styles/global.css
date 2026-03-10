@@ -92,6 +92,10 @@ img {
   border-bottom-color: var(--accent);
 }
 
+.nav-link.is-hidden {
+  display: none;
+}
+
 .site-main {
   padding: 1.5rem;
   max-width: 1200px;

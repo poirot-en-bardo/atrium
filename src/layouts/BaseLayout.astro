@@ -39,7 +39,7 @@ const isExpoziții = !isArtisti && !isLocatii && !isContact && !isExhibitionDeta
     </button>
     <header class="site-header">
       <div class="site-brand">
-        <a href="./" class="site-logo">Atrium Gallery</a>
+        <a href="./" class="site-logo">Galeria Cutare</a>
       </div>
       <nav class="site-nav" aria-label="Principal">
         <a href="./" class={`nav-link ${isExpoziții ? 'is-active' : ''}`} aria-current={isExpoziții ? 'page' : undefined}>
@@ -51,7 +51,7 @@ const isExpoziții = !isArtisti && !isLocatii && !isContact && !isExhibitionDeta
         <a href="contact/" class={`nav-link ${isContact ? 'is-active' : ''}`} aria-current={isContact ? 'page' : undefined}>
           Contact
         </a>
-        <a href="locatii/" class={`nav-link ${isLocatii ? 'is-active' : ''}`} aria-current={isLocatii ? 'page' : undefined}>
+        <a href="locatii/" class={`nav-link is-hidden ${isLocatii ? 'is-active' : ''}`} aria-current={isLocatii ? 'page' : undefined}>
           Locații
         </a>
       </nav>
