@@ -104,6 +104,18 @@ img {
   flex: 1;
 }
 
+@media (max-width: 699px) {
+  .site-brand {
+    margin-left: 0.75em;
+  }
+
+  .site-nav {
+    margin-left: 0;
+    margin-right: 0;
+    justify-content: center;
+  }
+}
+
 .site-footer {
   padding: 0.75rem 1.5rem 1rem;
   color: var(--muted);
