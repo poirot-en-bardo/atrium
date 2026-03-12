@@ -25,9 +25,11 @@ const artworksByArtist = artist ? getAllExhibitions().flatMap((exhibition) => {
         const isPriceOnRequest = normalizedPrice
           ? ['la cerere', 'pret la cerere', 'preț la cerere'].includes(normalizedPrice)
           : false;
+        const isUnavailable = normalizedPrice === 'indisponibil';
         return {
           value: isPriceOnRequest ? 'Preț la cerere' : artwork.price,
           isOnRequest: isPriceOnRequest,
+          isUnavailable,
         };
       })(),
       artworkId: artwork.id,
@@ -68,7 +70,15 @@ const photoUrl = artist ? withBase(artist.photoUrl) : '';
         <span class="artist-contact-label">Contact:</span>{' '}
         <span>{artist.contact}</span>
       </p>
-
+      {artist.instagram && (
+        <a class="artist-instagram" href={artist.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="5"/>
+            <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+      )}
     </div>
   </section>
   )}
@@ -104,7 +114,14 @@ const photoUrl = artist ? withBase(artist.photoUrl) : '';
           </span>
         </div>
       </div>
-      <h2 class="artist-works-title">Lucrări disponibile</h2>
+      <div class="artist-works-header">
+        <h2 class="artist-works-title">Lucrări</h2>
+        <label class="availability-toggle" data-availability-toggle>
+          <input type="checkbox" data-availability-checkbox />
+          <span class="availability-switch"></span>
+          <span class="availability-label">Doar disponibile</span>
+        </label>
+      </div>
       <div class="artist-gallery-grid">
         {artworksByArtist.map((artwork) => (
           <a
@@ -115,6 +132,7 @@ const photoUrl = artist ? withBase(artist.photoUrl) : '';
             data-artwork-year={artwork.year ?? ''}
             data-artwork-description={artwork.description ?? ''}
             data-artwork-exhibition={artwork.exhibitionTitle ?? ''}
+            data-available={artwork.displayPrice.isUnavailable || artwork.sold ? 'false' : 'true'}
           >
             <div class="artist-gallery-image">
               <img src={artwork.artworkImage} alt={artwork.artworkTitle} loading="lazy" />
@@ -130,7 +148,7 @@ const photoUrl = artist ? withBase(artist.photoUrl) : '';
               )}
               {artwork.displayPrice?.value && (
                 <p
-                  class={`artist-gallery-price ${artwork.sold ? 'is-sold' : ''} ${artwork.displayPrice.isOnRequest ? 'is-on-request' : ''}`}
+                  class={`artist-gallery-price ${artwork.sold ? 'is-sold' : ''} ${artwork.displayPrice.isOnRequest ? 'is-on-request' : ''} ${artwork.displayPrice.isUnavailable ? 'is-unavailable' : ''}`}
                 >
                   {artwork.displayPrice.value}
                 </p>
@@ -156,8 +174,11 @@ const photoUrl = artist ? withBase(artist.photoUrl) : '';
       .toLowerCase();
   };
 
+  const availabilityCheckbox = document.querySelector('[data-availability-checkbox]');
+
   const updateArtworkCards = () => {
     const query = normalizeText(artworkSearchInput?.value || '');
+    const onlyAvailable = availabilityCheckbox?.checked || false;
     artworkCards.forEach((card) => {
       const title = normalizeText(card.getAttribute('data-artwork-title'));
       const year = normalizeText(card.getAttribute('data-artwork-year'));
@@ -169,12 +190,17 @@ const photoUrl = artist ? withBase(artist.photoUrl) : '';
         year.includes(query) ||
         description.includes(query) ||
         exhibition.includes(query);
-      card.style.display = isMatch ? '' : 'none';
+      const isAvailable = card.getAttribute('data-available') !== 'false';
+      const passesFilter = !onlyAvailable || isAvailable;
+      card.style.display = isMatch && passesFilter ? '' : 'none';
     });
   };
 
   if (artworkSearchInput) {
     artworkSearchInput.addEventListener('input', updateArtworkCards);
+  }
+  if (availabilityCheckbox) {
+    availabilityCheckbox.addEventListener('change', updateArtworkCards);
   }
 </script>
 
@@ -320,5 +346,89 @@ const photoUrl = artist ? withBase(artist.photoUrl) : '';
   border-radius: 6px;
   display: inline-block;
   width: fit-content;
+}
+
+.artist-gallery-price.is-unavailable {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+
+/* --- works header with filter --- */
+.artist-works-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* --- availability toggle --- */
+.availability-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.availability-toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.availability-switch {
+  position: relative;
+  width: 32px;
+  height: 18px;
+  background: var(--line);
+  border-radius: 999px;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.availability-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.availability-toggle input:checked + .availability-switch {
+  background: var(--accent);
+}
+
+.availability-toggle input:checked + .availability-switch::after {
+  transform: translateX(14px);
+}
+
+.availability-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+}
+
+/* --- instagram link --- */
+.artist-instagram {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.6rem;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.artist-instagram:hover {
+  color: var(--accent);
 }
 </style>

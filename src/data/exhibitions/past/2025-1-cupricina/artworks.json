@@ -22,7 +22,7 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ramona-slug",
-    "price": "Preț la cerere",
+    "price": "Indisponibil",
     "sold": false
   },
   {
@@ -48,7 +48,7 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ramona-slug",
-    "price": "Preț la cerere",
+    "price": "Indisponibil",
     "sold": false
   },
   {
@@ -74,7 +74,7 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "corina-eredenta-moldovan-florea",
-    "price": "Preț la cerere",
+    "price": "Indisponibil",
     "sold": false
   },
   {
@@ -113,7 +113,7 @@
     "roomId": "sala1",
     "forSale": true,
     "artistId": "ionela-patareniuc",
-    "price": "Preț la cerere",
+    "price": "Indisponibil",
     "sold": false
   },
   {
@@ -139,7 +139,7 @@
     "roomId": "sala2",
     "forSale": true,
     "artistId": "sergiu-negulici",
-    "price": "Preț la cerere",
+    "price": "Indisponibil",
     "sold": false
   },
   {
@@ -165,7 +165,7 @@
     "roomId": "sala3",
     "forSale": true,
     "artistId": "amandine-banescu",
-    "price": "Preț la cerere",
+    "price": "Indisponibil",
     "sold": false
   },
   {
@@ -191,7 +191,7 @@
     "roomId": "sala3",
     "forSale": true,
     "artistId": "rares-aron",
-    "price": "Preț la cerere",
+    "price": "Indisponibil",
     "sold": false
   },
   {
@@ -217,7 +217,7 @@
     "roomId": "sala3",
     "forSale": true,
     "artistId": "selma-duteanu",
-    "price": "Preț la cerere",
+    "price": "Indisponibil",
     "sold": false
   },
   {
@@ -256,7 +256,7 @@
     "roomId": "sala4",
     "forSale": true,
     "artistId": "iulian-milea",
-    "price": "Preț la cerere",
+    "price": "Indisponibil",
     "sold": false
   },
   {
@@ -295,7 +295,7 @@
     "roomId": "sala4",
     "forSale": true,
     "artistId": "rodica",
-    "price": "Preț la cerere",
+    "price": "Indisponibil",
     "sold": false
   }
 ]

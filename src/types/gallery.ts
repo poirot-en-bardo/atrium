@@ -4,6 +4,7 @@ export interface Artist {
   photoUrl: string;
   bio: string;
   contact: string;
+  instagram?: string;
 }
 
 export interface Floor {

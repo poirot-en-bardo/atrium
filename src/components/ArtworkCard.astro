@@ -21,6 +21,7 @@ const normalizedPrice = price?.trim().toLowerCase();
 const isPriceOnRequest = normalizedPrice
   ? ['la cerere', 'pret la cerere', 'preț la cerere'].includes(normalizedPrice)
   : false;
+const isUnavailable = normalizedPrice === 'indisponibil';
 const displayPrice = isPriceOnRequest
   ? 'Preț la cerere'
   : price || (forSale ? 'Preț la cerere' : null);
@@ -48,7 +49,7 @@ const isSold = sold || price === 'VÂNDUT';
     {year ? <p class="artwork-year">{year}</p> : null}
     {description ? <p class="artwork-description">{description}</p> : null}
     {displayPrice && (
-      <p class={`artwork-price ${isSold ? 'is-sold' : ''} ${!isSold && (isPriceOnRequest || (forSale && !price)) ? 'is-on-request' : ''}`}>
+      <p class={`artwork-price ${isSold ? 'is-sold' : ''} ${!isSold && (isPriceOnRequest || (forSale && !price)) ? 'is-on-request' : ''} ${isUnavailable ? 'is-on-request' : ''}`}>
         {displayPrice}
       </p>
     )}
