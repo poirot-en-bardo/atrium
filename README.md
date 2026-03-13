@@ -1,4 +1,4 @@
-# Cutare Gallery
+# Cutare Gallery 🎨 
 
 Source code for the official website of **Galeria Cutare**, a contemporary art gallery in Câmpulung‑Muscel, Romania. The site showcases local artists, exhibitions, and events.  
 
