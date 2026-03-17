@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteContact } from '../data/siteContact';
 ---
 
 <BaseLayout
@@ -130,8 +131,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         Pentru exercitarea drepturilor dumneavoastră sau întrebări legate de protecția datelor:
       </p>
       <ul class="contact-list">
-        <li><strong>Email:</strong> galeria.cutare@gmail.com</li>
-        <li><strong>Telefon:</strong> 0724 394 014</li>
+        <li><strong>Email:</strong> {siteContact.email}</li>
+        <li><strong>Telefon:</strong> {siteContact.phone}</li>
         <li><strong>Adresă:</strong> Câmpulung-Muscel, România</li>
       </ul>
     </section>

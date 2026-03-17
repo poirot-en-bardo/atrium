@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPhoneTel, siteContact } from '../data/siteContact';
+
+const phoneTel = getPhoneTel();
 ---
 
 <BaseLayout
@@ -25,8 +28,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </svg>
           </div>
           <h2>Email</h2>
-          <a href="mailto:galeria.cutare@gmail.com" class="contact-link">
-            galeria.cutare@gmail.com
+          <a href={`mailto:${siteContact.email}`} class="contact-link">
+            {siteContact.email}
           </a>
           <p class="contact-description">
             Trimite-ne un email și îți vom răspunde în cel mai scurt timp posibil.
@@ -40,8 +43,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </svg>
           </div>
           <h2>Telefon</h2>
-          <a href="tel:0724394014" class="contact-link">
-            0724 394 014
+          <a href={`tel:${phoneTel}`} class="contact-link">
+            {siteContact.phone}
           </a>
           <p class="contact-description">
             Suntem disponibili pentru apeluri în program de lucru.
