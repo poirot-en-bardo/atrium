@@ -47,6 +47,14 @@ function normalizeKey(value) {
   return normalizeCell(value).toLowerCase();
 }
 
+function normalizeSaleAvailability(value) {
+  const text = normalizeCell(value).toLowerCase();
+  if (!text) return undefined;
+  if (['da', 'yes', 'true', '1', 'y'].includes(text)) return true;
+  if (['nu', 'no', 'false', '0', 'n'].includes(text)) return false;
+  return undefined;
+}
+
 function slugify(value) {
   return normalizeCell(value)
     .normalize('NFKD')
@@ -133,6 +141,7 @@ function parseArtistRows(rows, sourceName) {
   const descriptionIndex = headerRow.indexOf('descriere');
   const floorIndex = headerRow.indexOf('etaj');
   const roomIndex = headerRow.indexOf('sala');
+  const saleIndex = headerRow.indexOf('disponibila pentru vanzare (da/nu)');
 
   if (titleIndex === -1 || yearIndex === -1 || descriptionIndex === -1) {
     throw new Error(`Missing artwork columns in ${sourceName}`);
@@ -146,6 +155,7 @@ function parseArtistRows(rows, sourceName) {
     const description = normalizeCell(row[descriptionIndex]);
     const floorId = floorIndex >= 0 ? normalizeCell(row[floorIndex]) : '';
     const roomId = roomIndex >= 0 ? normalizeCell(row[roomIndex]) : '';
+    const forSale = saleIndex >= 0 ? normalizeSaleAvailability(row[saleIndex]) : undefined;
 
     if (!title && !year && !description) continue;
     if (!title) {
@@ -159,6 +169,7 @@ function parseArtistRows(rows, sourceName) {
       description: description || undefined,
       floorId: floorId || undefined,
       roomId: roomId || undefined,
+      forSale,
     });
   }
 
@@ -287,6 +298,8 @@ for (const filePath of files) {
 
     const floorId = artwork.floorId || defaultFloorId;
     const roomId = artwork.roomId || defaultRoomId;
+    const forSale = artwork.forSale ?? true;
+    const price = forSale ? 'Preț la cerere' : 'Indisponibil';
 
     artworks.push({
       id,
@@ -297,9 +310,9 @@ for (const filePath of files) {
       roomId,
       year: artwork.year,
       description: artwork.description,
-      forSale: true,
+      forSale,
       sold: false,
-      price: 'Pret la cerere',
+      price,
     });
 
     existingArtworkSignatures.add(signature);

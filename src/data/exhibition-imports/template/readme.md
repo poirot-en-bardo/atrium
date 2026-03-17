@@ -10,4 +10,4 @@
 
 The parser appends to src/data/artists.json and the matching artworks.json inside src/data/exhibitions/*/<exhibition-id>/.
 
-New artworks default to the first floor/room from floors.json, and set imageUrl/photoUrl to empty strings.
+New artworks default the imageUrl/photoUrl to empty strings.
