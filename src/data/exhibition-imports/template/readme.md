@@ -1,0 +1,13 @@
+## How to use
+1. Share the artist-submission-template.xls with the artists
+2. Put filled files in:
+   src/data/exhibition-imports/<exhibition-id>/
+3. Run:
+   `npm run parse:artist-xls -- <exhibition-id>`
+
+
+## Notes
+
+The parser appends to src/data/artists.json and the matching artworks.json inside src/data/exhibitions/*/<exhibition-id>/.
+
+New artworks default to the first floor/room from floors.json, and set imageUrl/photoUrl to empty strings.
