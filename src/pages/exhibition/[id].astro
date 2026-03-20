@@ -53,7 +53,7 @@ const spotifyPlaylistUrl =
         <img class="poster-image" src={exhibition.thumbnail} alt={exhibition.title} />
       </div>
     </div>
-    <div class="exhibition-summary">
+    <div class={`exhibition-summary ${spotifyPlaylistUrl ? 'exhibition-summary--with-spotify' : ''}`}>
       <div class="exhibition-heading-row">
         <h1>{exhibition.title}</h1>
         <div class={`exhibition-title-meta exhibition-title-meta--${exhibition.status}`}>
