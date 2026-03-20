@@ -1,9 +1,9 @@
 [
   {
     "id": "ramona-slug",
-    "name": "Ramona Slug",
+    "name": "Ramona Șlug",
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/ramona6_gvnyo7.jpg",
-    "bio": "Artist vizual cu o pasiune pentru pictura abstractă și explorarea emoțiilor prin culoare. Lucrările sale captează momente de introspecție și transformare interioară, invitând privitorul într-un dialog intim cu sinele.",
+    "bio": "Artist vizual cu o pasiune pentru pictura abstractă și explorarea emoțiilor prin culoare.",
     "contact": "ramona.slug@cutare.art",
     "instagram": "https://instagram.com/ramona.slug"
   },
@@ -11,7 +11,7 @@
     "id": "ada-oprea",
     "name": "Ada Oprea",
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841683/ada1_lznj05.jpg",
-    "bio": "Fotograf documentarist specializat în portrete autentice și scene urbane. Captează esența umană în momente neașteptate, revelând povești ascunse în expresii și gesturi.",
+    "bio": "Fotograf specializat în portrete autentice și scene urbane. Captează esența umană în momente neașteptate, revelând povești ascunse în expresii și gesturi.",
     "contact": "ada.oprea@cutare.art",
     "instagram": "https://instagram.com/ada.oprea"
   },
@@ -19,7 +19,7 @@
     "id": "corina-eredenta-moldovan-florea",
     "name": "Corina Eredenta Moldovan-Florea",
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770842423/corina1_fawni6.jpg",
-    "bio": "Meșter tradițional în arta țesutului manual, păstrând vie tehnica ancestrală a covoarelor și textilelor decorative. Fiecare piesă este creată cu răbdare și dedicație, îmbinând motive tradiționale cu interpretări contemporane.",
+    "bio": "Meșter în arta țesutului covoarelor traditionale și textilelor decorative.",
     "contact": "corina.moldovan@cutare.art",
     "instagram": ""
   },
@@ -27,7 +27,7 @@
     "id": "dragos-nita",
     "name": "Dragos Nita",
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841682/dragos_ebpvlg.jpg",
-    "bio": "Artist multidisciplinar care explorează teme existențiale prin picturi pe cranii și sculpturi în os. Lucrările sale provoacă spectatorii să reflecteze asupra mortalității și frumuseții efemere.",
+    "bio": "Artist multidisciplinar care explorează teme existențiale prin picturi pe cranii și sculpturi în os.",
     "contact": "dragos.nita@cutare.art",
     "instagram": "https://instagram.com/dragos.nita.art"
   },
@@ -35,7 +35,7 @@
     "id": "ionela-patareniuc",
     "name": "Ionela Pațareniuc",
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841689/ionela1_ket2xo.jpg",
-    "bio": "Ceramist specializat în obiecte decorative cu motive zoomorfe și abstracte. Lucrările sale aduc un echilibru armonios între funcționalitate și expresie artistică, transformând ceramica în poezie vizuală.",
+    "bio": "Ceramist specializat în obiecte decorative cu motive zoomorfe și abstracte.",
     "contact": "ionela.patareniuc@cutare.art",
     "instagram": "https://instagram.com/ionela.ceramica"
   },
@@ -43,7 +43,7 @@
     "id": "sergiu-negulici",
     "name": "Sergiu Negulici",
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841683/sergiu1_lfsgov.jpg",
-    "bio": "Street artist și creator de instalații in-situ care transformă spațiile urbane în canvas-uri vii. Utilizează spray paint pentru a crea lucrări care interacționează cu arhitectura și mediul înconjurător.",
+    "bio": "Street artist și creator de instalații in-situ.",
     "contact": "sergiu.negulici@cutare.art",
     "instagram": ""
   },
@@ -51,7 +51,7 @@
     "id": "amandine-banescu",
     "name": "Amandine Banescu",
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841684/amandine2_ix7kkk.jpg",
-    "bio": "Ilustrator și artist de carte pentru copii, specializat în tehnica acuarelei. Creațiile sale aduc magie și candoare în poveștile ilustrate, cu personaje care prind viață pe hârtie.",
+    "bio": "Artist si ilustrator de carte pentru copii.",
     "contact": "amandine.banescu@cutare.art",
     "instagram": "https://instagram.com/amandine.illustration"
   },
@@ -59,7 +59,7 @@
     "id": "ioana-binica",
     "name": "Ioana Binica",
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841682/ioana1_ib8b2f.jpg",
-    "bio": "Artist fotograf specializat în tehnica cianotipiei, explorând teme botanice și abstracte. Lucrările sale îmbină proceseul fotografic alternativ cu sensibilitatea pentru formele naturale.",
+    "bio": "Artist specializat în tehnica cianotipiei și în pictura în ulei.",
     "contact": "ioana.binica@cutare.art",
     "instagram": "https://instagram.com/ioana.cyanotype"
   },
@@ -67,7 +67,7 @@
     "id": "rares-aron",
     "name": "Rares Aron",
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841683/rares1_gamabl.jpg",
-    "bio": "Meșter pielar artizanal, creând piese unice din piele naturală. Fiecare obiect este lucrat manual cu atenție la detalii, îmbinând funcționalitatea cu estetica tradițională.",
+    "bio": "Meșter pielar artizanal, creând piese unice din piele naturală.",
     "contact": "rares.aron@cutare.art",
     "instagram": ""
   },
@@ -75,7 +75,7 @@
     "id": "natasa-radion",
     "name": "Natasa Radion",
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/natasa_iudwyc.jpg",
-    "bio": "Artist textil specializat în țesături contemporane cu teme de familie și identitate. Lucrările sale explorează legăturile emoționale prin fire și culori, țesând povești personale în fiecare piesă.",
+    "bio": "Artist textil specializat în țesături contemporane.",
     "contact": "natasa.radion@cutare.art",
     "instagram": "https://instagram.com/natasa.textil"
   },
@@ -83,7 +83,7 @@
     "id": "selma-duteanu",
     "name": "Selma Duteanu",
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/selma_emarfa.jpg",
-    "bio": "Pictor în acuarelă cu o sensibilitate aparte pentru lumină și transparență. Lucrările sale captează momente efemere și emoții subtile, transformând apa și pigmentul în poezie vizuală.",
+    "bio": "Pictor în acuarelă cu o sensibilitate aparte pentru motive botanice si mitice.",
     "contact": "selma.duteanu@cutare.art",
     "instagram": ""
   },
@@ -91,7 +91,7 @@
     "id": "zelmira-szabo",
     "name": "Zelmira Szabó",
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841683/zelmi_jprw8m.jpg",
-    "bio": "Ilustrator specializat în teme botanice și de grădină, lucrând în acuarelă. Creațiile sale aduc natura în interioare, cu detalii delicate și culori vibrante care celebrează flora.",
+    "bio": "Ilustrator specializat în teme botanice și ludice, lucrând în acuarelă.",
     "contact": "zelmira.szabo@cutare.art",
     "instagram": "https://instagram.com/zelmira.botanical"
   },
@@ -99,7 +99,7 @@
     "id": "iulian-milea",
     "name": "Iulian Milea",
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841684/iulian1_r7u51z.jpg",
-    "bio": "Meșter artizanal și constructor de instrumente muzicale tradiționale. Creează obiecte funcționale și decorative din lemn și sârmă, îmbinând meșteșugul tradițional cu inovația artistică.",
+    "bio": "Meșter artizanal și constructor de instrumente muzicale tradiționale.",
     "contact": "iulian.milea@cutare.art",
     "instagram": "https://instagram.com/iulian.milea.art"
   },
@@ -107,7 +107,7 @@
     "id": "victor-ghiga",
     "name": "Victor Ghiga",
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841687/victor1_f8rwjh.jpg",
-    "bio": "Sculptor în lemn specializat în forme organice și abstracte. Lucrările sale explorează relația dintre material și formă, revelând frumusețea ascunsă în fibra lemnului.",
+    "bio": "Sculptor în lemn specializat în forme organice și abstracte.",
     "contact": "victor.ghiga@cutare.art",
     "instagram": ""
   },
@@ -115,7 +115,7 @@
     "id": "rodica",
     "name": "Rodica",
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841684/rodica_qiwat8.jpg",
-    "bio": "Meșter în arta țesutului tradițional, păstrând tehnici ancestrale transmise din generație în generație. Covoarele și textilele sale aduc căldura tradițiilor românești în spații contemporane.",
+    "bio": "Meșter în arta țesutului tradițional.",
     "contact": "rodica@cutare.art",
     "instagram": "https://instagram.com/rodica.tesaturi"
   }
