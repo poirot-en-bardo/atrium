@@ -23,8 +23,27 @@ artists.forEach((artist) => {
   artistsById.set(artist.id, artist);
 });
 
+function getArtistLastNameKey(name: string): string {
+  const trimmed = name.trim();
+  if (!trimmed) return '';
+  const parts = trimmed.split(/\s+/);
+  return parts[parts.length - 1] ?? trimmed;
+}
+
+function compareArtistsByLastName(a: Artist, b: Artist): number {
+  const lastNameComparison = getArtistLastNameKey(a.name).localeCompare(
+    getArtistLastNameKey(b.name),
+    'ro',
+    { sensitivity: 'base' }
+  );
+  if (lastNameComparison !== 0) return lastNameComparison;
+  return a.name.localeCompare(b.name, 'ro', { sensitivity: 'base' });
+}
+
+const sortedArtists = Array.from(artistsById.values()).sort(compareArtistsByLastName);
+
 export function getAllArtists(): Artist[] {
-  return Array.from(artistsById.values());
+  return [...sortedArtists];
 }
 
 export function getArtistById(id: string): Artist | undefined {
