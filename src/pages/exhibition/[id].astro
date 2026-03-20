@@ -7,6 +7,7 @@ import {
   getExhibitionContent,
 } from '../../utils/exhibitions';
 import { formatDateRange } from '../../utils/dates';
+import { withBase } from '../../utils/withBase';
 
 export async function getStaticPaths() {
   return getAllExhibitions().map((exhibition) => ({
@@ -23,6 +24,16 @@ const { floors, artworks } = exhibition ? getExhibitionContent(exhibition.id) : 
 const isUpcoming = exhibition ? exhibition.status === 'upcoming' || artworks.length === 0 : true;
 const sheetId = import.meta.env.PUBLIC_GOOGLE_SHEET_ID ?? '';
 const enableSheetMerge = Boolean(sheetId && !isUpcoming);
+const descriptionBlocks = exhibition
+  ? exhibition.description
+      .split(/\n\s*\n/)
+      .map((block) => block.trim())
+      .filter(Boolean)
+  : [];
+const spotifyPlaylistUrl =
+  exhibition?.id === '2025-1-cupricina'
+    ? 'https://open.spotify.com/playlist/5SdlstCJFBpCExLvpLF8xi'
+    : null;
 ---
 
 <BaseLayout
@@ -44,7 +55,7 @@ const enableSheetMerge = Boolean(sheetId && !isUpcoming);
     </div>
     <div class="exhibition-summary">
       <h1>{exhibition.title}</h1>
-      <p>{formatDateRange(exhibition.startDate, exhibition.endDate)}</p>
+      <p class="exhibition-dates">{formatDateRange(exhibition.startDate, exhibition.endDate)}</p>
       <p class="exhibition-location">
         <span class="location-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" role="img" focusable="false">
@@ -55,7 +66,28 @@ const enableSheetMerge = Boolean(sheetId && !isUpcoming);
           {exhibition.location}
         </a>
       </p>
-      <p class="exhibition-description">{exhibition.description}</p>
+      <div class="exhibition-description-group">
+        {(descriptionBlocks.length > 0 ? descriptionBlocks : [exhibition.description]).map((block) => (
+          <p class="exhibition-description">{block}</p>
+        ))}
+        {spotifyPlaylistUrl && (
+          <a
+            class="spotify-insert"
+            href={spotifyPlaylistUrl}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Ascultă playlistul CuPricina pe Spotify"
+          >
+            <span class="spotify-insert__eyebrow">Playlistul expoziției</span>
+            <img
+              class="spotify-insert__logo"
+              src={withBase('/images/spotify-logo.svg')}
+              alt="Spotify"
+              loading="lazy"
+            />
+          </a>
+        )}
+      </div>
     </div>
   </section>
 
