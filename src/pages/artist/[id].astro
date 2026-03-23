@@ -52,6 +52,7 @@ const photoUrl = artist ? withBase(artist.photoUrl) : '';
 <BaseLayout
   title={artist ? `${artist.name} | Galeria Cutare` : 'Artist indisponibil | Galeria Cutare'}
   description={artist?.bio ?? 'Pagina artistului nu este disponibilă momentan.'}
+  image={artist ? photoUrl : undefined}
 >
   {!artist ? (
     <div class="placeholder-panel">

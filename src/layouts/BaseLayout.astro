@@ -1,16 +1,24 @@
 ---
 import '../styles/global.css';
 import { withBase } from '../utils/withBase';
-import { siteContact } from '../data/siteContact';
+import { getPhoneTel, siteContact } from '../data/siteContact';
+import { siteMeta } from '../data/siteMeta';
 
 interface Props {
   title: string;
   description?: string;
+  image?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, image } = Astro.props;
 const pathname = Astro.url.pathname;
 const base = import.meta.env.BASE_URL;
+const pageUrl = Astro.url.toString();
+const siteUrl = new URL(base, Astro.url.origin).toString();
+const metaDescription = description ?? siteMeta.defaultDescription;
+const metaImage = image ? new URL(image, Astro.url).toString() : undefined;
+const phoneDigits = getPhoneTel();
+const internationalPhone = phoneDigits.startsWith('0') ? `+4${phoneDigits}` : `+${phoneDigits}`;
 const normalizedPath =
   pathname.startsWith(base) ? `/${pathname.slice(base.length)}` : pathname;
 const isArtisti = normalizedPath === '/artisti/' || normalizedPath.startsWith('/artisti/');
@@ -21,18 +29,66 @@ const isExpoziții = normalizedPath === '/expozitii/' || normalizedPath.startsWi
 const isExhibitionDetail =
   normalizedPath === '/exhibition/' || normalizedPath.startsWith('/exhibition/');
 const isArtistDetail = normalizedPath === '/artist/' || normalizedPath.startsWith('/artist/');
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteMeta.name,
+    url: siteUrl,
+    inLanguage: siteMeta.language,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ArtGallery',
+    name: siteMeta.name,
+    url: siteUrl,
+    description: siteMeta.defaultDescription,
+    telephone: internationalPhone,
+    email: siteContact.email,
+    openingHours: siteMeta.openingHours,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: siteMeta.city,
+      addressRegion: siteMeta.region,
+      addressCountry: siteMeta.countryCode,
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: siteMeta.countryName,
+    },
+    hasMap: siteMeta.mapUrl,
+  },
+];
 ---
 
 <!doctype html>
-<html lang="ro">
+<html lang={siteMeta.language}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <base href={base} />
-    {description ? <meta name="description" content={description} /> : null}
+    <meta name="description" content={metaDescription} />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="author" content={siteMeta.name} />
+    <link rel="canonical" href={pageUrl} />
+    <link rel="alternate" hrefLang="ro-RO" href={pageUrl} />
+    <meta property="og:site_name" content={siteMeta.name} />
+    <meta property="og:locale" content={siteMeta.locale} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={pageUrl} />
+    {metaImage ? <meta property="og:image" content={metaImage} /> : null}
+    <meta name="twitter:card" content={metaImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={metaDescription} />
+    {metaImage ? <meta name="twitter:image" content={metaImage} /> : null}
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    {structuredData.map((entry) => (
+      <script type="application/ld+json" set:html={JSON.stringify(entry)} />
+    ))}
   </head>
   <body>
     <button class="back-button" type="button" aria-label="Înapoi">

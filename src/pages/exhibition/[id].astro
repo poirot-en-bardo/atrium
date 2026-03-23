@@ -39,6 +39,7 @@ const spotifyPlaylistUrl =
 <BaseLayout
   title={exhibition ? `${exhibition.title} | Galeria Cutare` : 'Expoziție indisponibilă | Galeria Cutare'}
   description={exhibition?.description ?? 'Această expoziție nu este disponibilă momentan.'}
+  image={exhibition?.thumbnail}
 >
   {!exhibition ? (
     <div class="placeholder-panel">
