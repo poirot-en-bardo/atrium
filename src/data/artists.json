@@ -5,7 +5,7 @@
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/ramona6_gvnyo7.jpg",
     "bio": "Artist vizual cu o pasiune pentru pictura abstractă și explorarea emoțiilor prin culoare.",
     "contact": "ramona.slug@cutare.art",
-    "instagram": "https://instagram.com/ramona.slug"
+    "instagram": "https://www.instagram.com/ramonaslug/"
   },
   {
     "id": "ada-oprea",
@@ -21,7 +21,7 @@
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770842423/corina1_fawni6.jpg",
     "bio": "Meșter în arta țesutului covoarelor traditionale și textilelor decorative.",
     "contact": "corina.moldovan@cutare.art",
-    "instagram": ""
+    "instagram": "https://www.instagram.com/corina_eredenta/"
   },
   {
     "id": "dragos-nita",
@@ -37,7 +37,7 @@
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841689/ionela1_ket2xo.jpg",
     "bio": "Ceramist specializat în obiecte decorative cu motive zoomorfe și abstracte.",
     "contact": "ionela.patareniuc@cutare.art",
-    "instagram": ""
+    "instagram": "https://www.instagram.com/tile.room/"
   },
   {
     "id": "sergiu-negulici",
@@ -45,7 +45,7 @@
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841683/sergiu1_lfsgov.jpg",
     "bio": "Street artist și creator de instalații in-situ.",
     "contact": "sergiu.negulici@cutare.art",
-    "instagram": ""
+    "instagram": "https://www.instagram.com/s____k_____t_"
   },
   {
     "id": "amandine-banescu",
@@ -61,7 +61,7 @@
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841682/ioana1_ib8b2f.jpg",
     "bio": "Artist specializat în tehnica cianotipiei și în pictura în ulei.",
     "contact": "ioana.binica@cutare.art",
-    "instagram": "https://instagram.com/ioana.cyanotype"
+    "instagram": ""
   },
   {
     "id": "rares-aron",
@@ -77,7 +77,7 @@
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841681/natasa_iudwyc.jpg",
     "bio": "Artist textil specializat în țesături contemporane.",
     "contact": "natasa.radion@cutare.art",
-    "instagram": "https://instagram.com/natasa.textil"
+    "instagram": ""
   },
   {
     "id": "selma-duteanu",
@@ -93,7 +93,7 @@
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841683/zelmi_jprw8m.jpg",
     "bio": "Ilustrator specializat în teme botanice și ludice, lucrând în acuarelă.",
     "contact": "zelmira.szabo@cutare.art",
-    "instagram": "https://instagram.com/zelmira.botanical"
+    "instagram": "https://www.instagram.com/zelmirka_illustrations/"
   },
   {
     "id": "iulian-milea",
@@ -101,7 +101,7 @@
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841684/iulian1_r7u51z.jpg",
     "bio": "Meșter artizanal și constructor de instrumente muzicale tradiționale.",
     "contact": "iulian.milea@cutare.art",
-    "instagram": "https://instagram.com/iulian.milea.art"
+    "instagram": ""
   },
   {
     "id": "victor-ghiga",
@@ -117,6 +117,6 @@
     "photoUrl": "https://res.cloudinary.com/dxyeal4gg/image/upload/v1770841684/rodica_qiwat8.jpg",
     "bio": "Meșter în arta țesutului tradițional.",
     "contact": "rodica@cutare.art",
-    "instagram": "https://instagram.com/rodica.tesaturi"
+    "instagram": ""
   }
 ]
